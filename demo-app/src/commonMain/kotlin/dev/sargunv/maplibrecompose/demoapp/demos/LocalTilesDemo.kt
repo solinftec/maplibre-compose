@@ -15,10 +15,12 @@ import dev.sargunv.maplibrecompose.demoapp.DemoMapControls
 import dev.sargunv.maplibrecompose.demoapp.DemoOrnamentSettings
 import dev.sargunv.maplibrecompose.demoapp.DemoScaffold
 import dev.sargunv.maplibrecompose.demoapp.generated.Res
+import dev.sargunv.maplibrecompose.material3.controls.ScaleBarMeasure
+import dev.sargunv.maplibrecompose.material3.controls.ScaleBarMeasures
 
 object LocalTilesDemo : Demo {
-  override val name = "Tile Set"
-  override val description = "Configure a Tile Set programatically with local tiles"
+  override val name = "Local Tiles"
+  override val description = "Display a fictional map using local tile assets."
 
   @Composable
   override fun Component(navigateUp: () -> Unit) {
@@ -30,6 +32,7 @@ object LocalTilesDemo : Demo {
         Box(modifier = Modifier.Companion.weight(1f)) {
           MaplibreMap(
             styleUri = Res.getUri("files/styles/empty.json"),
+            zoomRange = 0f..4f,
             cameraState = cameraState,
             styleState = styleState,
             ornamentSettings = DemoOrnamentSettings(),
@@ -39,7 +42,6 @@ object LocalTilesDemo : Demo {
                 id = "fantasy-map",
                 tileSize = 256,
                 tiles =
-                  // TODO this is not working on Android atm (works on iOS)
                   listOf(
                     Res.getUri("files/data/fantasy-map/0/0-0-fs8.png")
                       .replace("0/0-0", "{z}/{x}-{y}")
@@ -49,9 +51,14 @@ object LocalTilesDemo : Demo {
 
             RasterLayer(id = "fantasy-map", source = tiles)
           }
-          DemoMapControls(cameraState, styleState)
+          DemoMapControls(cameraState, styleState, scaleBarMeasures = ScaleBarMeasures(FakeMetric))
         }
       }
     }
   }
+}
+
+data object FakeMetric : ScaleBarMeasure by ScaleBarMeasure.Metric {
+  // hack to scale it down for the fantasy map
+  override val unitInMeters: Double = 20.0
 }
