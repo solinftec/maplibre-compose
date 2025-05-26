@@ -15,6 +15,6 @@ public fun zoom(): Expression<FloatValue> = FunctionCall.of("zoom").cast()
  * Gets the kernel density estimation of a pixel in a heatmap layer, which is a relative measure of
  * how many data points are crowded around a particular pixel. Can only be used in the expression
  * for the `color` parameter in a HeatmapLayer
- * [[HeatmapLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.HeatmapLayer].
+ * [HeatmapLayer][org.maplibre.maplibrecompose.compose.layer.HeatmapLayer].
  */
 public fun heatmapDensity(): Expression<FloatValue> = FunctionCall.of("heatmap-density").cast()

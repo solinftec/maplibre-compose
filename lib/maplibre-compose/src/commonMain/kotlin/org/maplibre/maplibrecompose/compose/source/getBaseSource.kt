@@ -7,7 +7,7 @@ import org.maplibre.maplibrecompose.core.source.Source
 
 /**
  * Get the source with the given [id] from the base style specified via the `styleUri` parameter in
- * [[MaplibreMap][org.maplibre.][org.maplibre.maplibrecompose.compose.MaplibreMap].
+ * [MaplibreMap][org.maplibre.maplibrecompose.compose.MaplibreMap].
  *
  * @throws IllegalStateException if the source does not exist
  */

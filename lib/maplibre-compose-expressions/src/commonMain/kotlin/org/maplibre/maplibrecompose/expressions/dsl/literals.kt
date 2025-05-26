@@ -92,7 +92,7 @@ public fun const(list: List<Number>): Literal<VectorValue<Number>, *> =
 
 /**
  * Creates a literal expression for [TextVariableAnchorOffsetValue], used by
- * [[SymbolLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]'s
+ * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]'s
  * `textVariableAnchorOffset` parameter.
  *
  * The offset is measured in a multipler of the text size (EM). It's in [Offset] instead of [offset]

@@ -32,7 +32,7 @@ import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
  * @param filter An expression specifying conditions on source features. Only features that match
  *   the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom
  *   levels. The
- *   [[featureState][org.maplibre.][org.maplibre.maplibrecompose.expressions.dsl.Feature.state]
+ *   [featureState][org.maplibre.maplibrecompose.expressions.dsl.Feature.state]
  *   expression is not supported in filter expressions.
  * @param visible Whether the layer should be displayed.
  * @param translate The geometry's offset relative to the [translateAnchor]. Negative numbers

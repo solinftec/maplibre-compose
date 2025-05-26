@@ -60,7 +60,7 @@ import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
  * @param filter An expression specifying conditions on source features. Only features that match
  *   the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom
  *   levels. The
- *   [[featureState][org.maplibre.][org.maplibre.maplibrecompose.expressions.dsl.Feature.state]
+ *   [featureState][org.maplibre.maplibrecompose.expressions.dsl.Feature.state]
  *   expression is not supported in filter expressions.
  * @param visible Whether the layer should be displayed.
  * @param sortKey Sorts features within this layer in ascending order based on this value. Features
@@ -187,7 +187,7 @@ import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
  *   the plain string "My label".
  *
  *   The text can also be formatted, employing different colors, fonts, etc., see
- *   [[format][org.maplibre.][org.maplibre.maplibrecompose.expressions.dsl.format].
+ *   [format][org.maplibre.maplibrecompose.expressions.dsl.format].
  *
  * @param textOpacity The opacity at which the text will be drawn.
  *
@@ -347,7 +347,7 @@ import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
  *
  * @param textOverlap Controls whether to show an icon/text when it overlaps other symbols on the
  *   map. See
- *   [[SymbolOverlap][org.maplibre.][org.maplibre.maplibrecompose.expressions.value.SymbolOverlap].
+ *   [SymbolOverlap][org.maplibre.maplibrecompose.expressions.value.SymbolOverlap].
  *   Overrides [textAllowOverlap].
  *
  *   Ignored if [textField] is not specified.

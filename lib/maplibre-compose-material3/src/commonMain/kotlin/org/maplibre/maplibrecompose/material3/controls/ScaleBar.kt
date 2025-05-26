@@ -42,7 +42,7 @@ public data class ScaleBarMeasures(
  *
  * @param metersPerDp how many meters are displayed in one device independent pixel (dp), i.e. the
  *   scale. See
- *   [[CameraState.metersPerDpAtTarget][org.maplibre.][org.maplibre.maplibrecompose.compose.CameraState.metersPerDpAtTarget]
+ *   [CameraState.metersPerDpAtTarget][org.maplibre.maplibrecompose.compose.CameraState.metersPerDpAtTarget]
  * @param modifier the [Modifier] to be applied to this layout node
  * @param measures which measures to show on the scale bar. If `null`, measures will be selected
  *   based on the system settings or otherwise the user's locale.
