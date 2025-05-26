@@ -59,8 +59,7 @@ import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
  *   this, the layer will be hidden. A value in the range of `[0..24]`.
  * @param filter An expression specifying conditions on source features. Only features that match
  *   the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom
- *   levels. The
- *   [featureState][org.maplibre.maplibrecompose.expressions.dsl.Feature.state]
+ *   levels. The [featureState][org.maplibre.maplibrecompose.expressions.dsl.Feature.state]
  *   expression is not supported in filter expressions.
  * @param visible Whether the layer should be displayed.
  * @param sortKey Sorts features within this layer in ascending order based on this value. Features
@@ -346,8 +345,7 @@ import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
  *   Ignored if [textField] is not specified.
  *
  * @param textOverlap Controls whether to show an icon/text when it overlaps other symbols on the
- *   map. See
- *   [SymbolOverlap][org.maplibre.maplibrecompose.expressions.value.SymbolOverlap].
+ *   map. See [SymbolOverlap][org.maplibre.maplibrecompose.expressions.value.SymbolOverlap].
  *   Overrides [textAllowOverlap].
  *
  *   Ignored if [textField] is not specified.

@@ -40,9 +40,9 @@ import org.maplibre.maplibrecompose.core.util.PlatformUtils
  *   at what tilt, etc.
  * @param onMapClick Invoked when the map is clicked. A click callback can be defined per layer,
  *   too, see e.g. the `onClick` parameter for
- *   [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]. However,
- *   this callback is always called first and can thus prevent subsequent callbacks to be invoked by
- *   consuming the event.
+ *   [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]. However, this callback is
+ *   always called first and can thus prevent subsequent callbacks to be invoked by consuming the
+ *   event.
  * @param onMapLongClick Invoked when the map is long-clicked. See [onMapClick].
  * @param onFrame Invoked on every rendered frame.
  * @param isDebugEnabled Whether the map debug information is shown.
@@ -56,12 +56,12 @@ import org.maplibre.maplibrecompose.core.util.PlatformUtils
  *   base map style linked in [styleUri].
  *
  * Additional [sources](https://maplibre.org/maplibre-style-spec/sources/) can be added via:
- * - [rememberGeoJsonSource][org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource]
- *   (see [GeoJsonSource][org.maplibre.maplibrecompose.core.source.GeoJsonSource]),
- * - [rememberVectorSource][org.maplibre.maplibrecompose.compose.source.rememberVectorSource]
- *   (see [VectorSource][org.maplibre.maplibrecompose.core.source.VectorSource]),
- * - [rememberRasterSource][org.maplibre.maplibrecompose.compose.source.rememberRasterSource]
- *   (see [RasterSource][org.maplibre.maplibrecompose.core.source.RasterSource])
+ * - [rememberGeoJsonSource][org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource] (see
+ *   [GeoJsonSource][org.maplibre.maplibrecompose.core.source.GeoJsonSource]),
+ * - [rememberVectorSource][org.maplibre.maplibrecompose.compose.source.rememberVectorSource] (see
+ *   [VectorSource][org.maplibre.maplibrecompose.core.source.VectorSource]),
+ * - [rememberRasterSource][org.maplibre.maplibrecompose.compose.source.rememberRasterSource] (see
+ *   [RasterSource][org.maplibre.maplibrecompose.core.source.RasterSource])
  *
  * A source that is already defined in the base map style can be referenced via
  * [getBaseSource][org.maplibre.maplibrecompose.compose.source.getBaseSource].

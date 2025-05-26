@@ -12,13 +12,12 @@ import org.maplibre.maplibrecompose.expressions.value.StringValue
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern`
- * entries (see
+ * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern` entries (see
  * [BackgroundLayer][org.maplibre.maplibrecompose.compose.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.maplibrecompose.compose.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.maplibrecompose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a
- * section in the [format] expression.
+ * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a section in the
+ * [format] expression.
  *
  * If set, the image argument will check that the requested image exists in the style and will
  * return either the resolved image name or `null`, depending on whether or not the image is
@@ -30,13 +29,12 @@ public fun image(value: Expression<StringValue>): Expression<ImageValue> =
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern`
- * entries (see
+ * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern` entries (see
  * [BackgroundLayer][org.maplibre.maplibrecompose.compose.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.maplibrecompose.compose.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.maplibrecompose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a
- * section in the [format] expression.
+ * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a section in the
+ * [format] expression.
  *
  * The image argument will check that the requested image exists in the style and will return either
  * the resolved image name or `null`, depending on whether or not the image is currently in the
@@ -47,13 +45,12 @@ public fun image(value: String): Expression<ImageValue> = image(const(value))
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern`
- * entries (see
+ * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern` entries (see
  * [BackgroundLayer][org.maplibre.maplibrecompose.compose.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.maplibrecompose.compose.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.maplibrecompose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a
- * section in the [format] expression.
+ * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a section in the
+ * [format] expression.
  *
  * The [ImageBitmap] will be registered with the style when it's referenced by a layer, and
  * unregistered from the style if it's no longer referenced by any layer. An ID referencing the
@@ -64,13 +61,12 @@ public fun image(value: ImageBitmap, sdf: Boolean = false): Expression<ImageValu
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern`
- * entries (see
+ * [SymbolLayer][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]), `pattern` entries (see
  * [BackgroundLayer][org.maplibre.maplibrecompose.compose.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.maplibrecompose.compose.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.maplibrecompose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a
- * section in the [format] expression.
+ * [LineLayer][org.maplibre.maplibrecompose.compose.layer.LineLayer]) and as a section in the
+ * [format] expression.
  *
  * The [Painter] will be drawn to an [ImageBitmap] and registered with the style when it's
  * referenced by a layer, and unregistered from the style if it's no longer referenced by any layer.
