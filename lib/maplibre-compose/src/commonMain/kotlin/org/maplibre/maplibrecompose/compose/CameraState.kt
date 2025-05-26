@@ -7,6 +7,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpRect
 import androidx.compose.ui.unit.dp
+import io.github.dellisd.spatialk.geojson.BoundingBox
+import io.github.dellisd.spatialk.geojson.Feature
+import io.github.dellisd.spatialk.geojson.Position
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.coroutines.channels.Channel
 import org.maplibre.maplibrecompose.core.CameraMoveReason
 import org.maplibre.maplibrecompose.core.CameraPosition
 import org.maplibre.maplibrecompose.core.MaplibreMap
@@ -16,12 +22,6 @@ import org.maplibre.maplibrecompose.expressions.ExpressionContext
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.dsl.const
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import io.github.dellisd.spatialk.geojson.BoundingBox
-import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.Position
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
-import kotlinx.coroutines.channels.Channel
 
 /** Remember a new [CameraState] in the initial state as given in [firstPosition]. */
 @Composable

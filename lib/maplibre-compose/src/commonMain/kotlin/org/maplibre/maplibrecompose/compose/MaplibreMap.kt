@@ -10,6 +10,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import co.touchlab.kermit.Logger
+import io.github.dellisd.spatialk.geojson.Position
+import kotlin.math.roundToInt
+import kotlinx.coroutines.launch
 import org.maplibre.maplibrecompose.compose.engine.LayerNode
 import org.maplibre.maplibrecompose.compose.engine.rememberStyleComposition
 import org.maplibre.maplibrecompose.core.CameraMoveReason
@@ -22,9 +25,6 @@ import org.maplibre.maplibrecompose.core.StandardMaplibreMap
 import org.maplibre.maplibrecompose.core.Style
 import org.maplibre.maplibrecompose.core.defaultMapOptions
 import org.maplibre.maplibrecompose.core.util.PlatformUtils
-import io.github.dellisd.spatialk.geojson.Position
-import kotlin.math.roundToInt
-import kotlinx.coroutines.launch
 
 /**
  * Displays a MapLibre based map.
@@ -40,9 +40,9 @@ import kotlinx.coroutines.launch
  *   at what tilt, etc.
  * @param onMapClick Invoked when the map is clicked. A click callback can be defined per layer,
  *   too, see e.g. the `onClick` parameter for
- *   [[LineLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.LineLayer]. However, this callback is
- *   always called first and can thus prevent subsequent callbacks to be invoked by consuming the
- *   event.
+ *   [[LineLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.LineLayer]. However,
+ *   this callback is always called first and can thus prevent subsequent callbacks to be invoked by
+ *   consuming the event.
  * @param onMapLongClick Invoked when the map is long-clicked. See [onMapClick].
  * @param onFrame Invoked on every rendered frame.
  * @param isDebugEnabled Whether the map debug information is shown.
@@ -56,12 +56,12 @@ import kotlinx.coroutines.launch
  *   base map style linked in [styleUri].
  *
  * Additional [sources](https://maplibre.org/maplibre-style-spec/sources/) can be added via:
- * - [[rememberGeoJsonSource][org.maplibre.][org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource] (see
- *   [[GeoJsonSource][org.maplibre.][org.maplibre.maplibrecompose.core.source.GeoJsonSource]),
- * - [[rememberVectorSource][org.maplibre.][org.maplibre.maplibrecompose.compose.source.rememberVectorSource] (see
- *   [[VectorSource][org.maplibre.][org.maplibre.maplibrecompose.core.source.VectorSource]),
- * - [[rememberRasterSource][org.maplibre.][org.maplibre.maplibrecompose.compose.source.rememberRasterSource] (see
- *   [[RasterSource][org.maplibre.][org.maplibre.maplibrecompose.core.source.RasterSource])
+ * - [[rememberGeoJsonSource][org.maplibre.][org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource]
+ *   (see [[GeoJsonSource][org.maplibre.][org.maplibre.maplibrecompose.core.source.GeoJsonSource]),
+ * - [[rememberVectorSource][org.maplibre.][org.maplibre.maplibrecompose.compose.source.rememberVectorSource]
+ *   (see [[VectorSource][org.maplibre.][org.maplibre.maplibrecompose.core.source.VectorSource]),
+ * - [[rememberRasterSource][org.maplibre.][org.maplibre.maplibrecompose.compose.source.rememberRasterSource]
+ *   (see [[RasterSource][org.maplibre.][org.maplibre.maplibrecompose.core.source.RasterSource])
  *
  * A source that is already defined in the base map style can be referenced via
  * [[getBaseSource][org.maplibre.][org.maplibre.maplibrecompose.compose.source.getBaseSource].

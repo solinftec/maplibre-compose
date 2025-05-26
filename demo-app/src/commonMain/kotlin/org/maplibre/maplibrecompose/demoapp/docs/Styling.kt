@@ -4,9 +4,9 @@ package org.maplibre.maplibrecompose.demoapp.docs
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.demoapp.generated.Res
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 @Composable
 @OptIn(ExperimentalResourceApi::class)

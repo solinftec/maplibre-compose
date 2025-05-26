@@ -8,11 +8,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.util.fastRoundToInt
-import org.maplibre.maplibrecompose.demoapp.generated.Res
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.maplibre.maplibrecompose.demoapp.generated.Res
 
 interface Demo {
   val name: String

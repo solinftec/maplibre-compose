@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import io.github.dellisd.spatialk.geojson.Position
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
@@ -23,7 +24,6 @@ import org.maplibre.maplibrecompose.demoapp.DemoMapControls
 import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
 import org.maplibre.maplibrecompose.demoapp.DemoScaffold
 import org.maplibre.maplibrecompose.demoapp.getDefaultColorScheme
-import io.github.dellisd.spatialk.geojson.Position
 
 private val NEW_YORK = Position(latitude = 40.744, longitude = -73.981)
 

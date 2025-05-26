@@ -13,6 +13,19 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import io.github.dellisd.spatialk.geojson.Feature
+import io.github.dellisd.spatialk.geojson.FeatureCollection
+import io.github.dellisd.spatialk.geojson.Point
+import io.github.dellisd.spatialk.geojson.Position
+import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.double
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.maplibre.maplibrecompose.compose.ClickResult
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.layer.CircleLayer
@@ -36,19 +49,6 @@ import org.maplibre.maplibrecompose.expressions.dsl.not
 import org.maplibre.maplibrecompose.expressions.dsl.offset
 import org.maplibre.maplibrecompose.expressions.dsl.plus
 import org.maplibre.maplibrecompose.expressions.dsl.step
-import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.FeatureCollection
-import io.github.dellisd.spatialk.geojson.Point
-import io.github.dellisd.spatialk.geojson.Position
-import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonNull
-import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.double
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 private const val GBFS_FILE = "files/data/lime_seattle.gbfs.json"
 

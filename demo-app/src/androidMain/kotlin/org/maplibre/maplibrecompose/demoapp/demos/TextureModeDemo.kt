@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
@@ -13,7 +14,6 @@ import org.maplibre.maplibrecompose.demoapp.Demo
 import org.maplibre.maplibrecompose.demoapp.DemoMapControls
 import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
 import org.maplibre.maplibrecompose.demoapp.DemoScaffold
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 object TextureModeDemo : Demo {
   override val name = "Texture Mode"

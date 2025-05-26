@@ -3,6 +3,7 @@
 
 package org.maplibre.maplibrecompose.webview
 
+import kotlinx.browser.document
 import org.maplibre.maplibrejs.AttributionControl
 import org.maplibre.maplibrejs.LogoControl
 import org.maplibre.maplibrejs.Map
@@ -10,7 +11,6 @@ import org.maplibre.maplibrejs.MapOptions
 import org.maplibre.maplibrejs.NavigationControl
 import org.maplibre.maplibrejs.NavigationControlOptions
 import org.maplibre.maplibrejs.ScaleControl
-import kotlinx.browser.document
 import org.w3c.dom.HTMLDivElement
 
 @JsExport

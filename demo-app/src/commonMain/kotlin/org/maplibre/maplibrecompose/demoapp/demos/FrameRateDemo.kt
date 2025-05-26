@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
@@ -25,7 +26,6 @@ import org.maplibre.maplibrecompose.demoapp.DemoScaffold
 import org.maplibre.maplibrecompose.demoapp.FrameRateState
 import org.maplibre.maplibrecompose.demoapp.Platform
 import org.maplibre.maplibrecompose.demoapp.usesMaplibreNative
-import kotlin.math.roundToInt
 
 object FrameRateDemo : Demo {
   override val name = "Frame rate"

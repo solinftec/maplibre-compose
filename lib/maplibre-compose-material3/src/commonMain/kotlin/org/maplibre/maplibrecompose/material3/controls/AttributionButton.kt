@@ -42,6 +42,8 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.maplibrecompose.compose.CameraState
 import org.maplibre.maplibrecompose.compose.StyleState
 import org.maplibre.maplibrecompose.core.CameraMoveReason
@@ -53,8 +55,6 @@ import org.maplibre.maplibrecompose.material3.horizontal
 import org.maplibre.maplibrecompose.material3.reverse
 import org.maplibre.maplibrecompose.material3.toArrangement
 import org.maplibre.maplibrecompose.material3.vertical
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
 
 /**
  * Info button from which an attribution popup text is expanded. This version retracts when the user

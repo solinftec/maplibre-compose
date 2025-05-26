@@ -38,7 +38,8 @@ import org.maplibre.maplibrecompose.expressions.value.ExpressionValue
  *   See [ClusterPropertyAggregator.reducer] for an example.
  *
  * @param lineMetrics Whether to calculate line distance metrics. This is required for
- *   [[LineLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.LineLayer]s that specify a `gradient`.
+ *   [[LineLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.LineLayer]s that specify
+ *   a `gradient`.
  */
 @Immutable
 public data class GeoJsonOptions(

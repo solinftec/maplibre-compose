@@ -9,6 +9,7 @@ import cocoapods.MapLibre.MLNTileSourceOptionMaximumZoomLevel
 import cocoapods.MapLibre.MLNTileSourceOptionMinimumZoomLevel
 import cocoapods.MapLibre.MLNTileSourceOptionTileCoordinateSystem
 import cocoapods.MapLibre.MLNVectorTileSource
+import io.github.dellisd.spatialk.geojson.Feature
 import org.maplibre.maplibrecompose.core.util.toFeature
 import org.maplibre.maplibrecompose.core.util.toMLNCoordinateBounds
 import org.maplibre.maplibrecompose.core.util.toNSPredicate
@@ -16,7 +17,6 @@ import org.maplibre.maplibrecompose.expressions.ExpressionContext
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.dsl.const
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import io.github.dellisd.spatialk.geojson.Feature
 import platform.Foundation.NSURL
 
 public actual class VectorSource : Source {

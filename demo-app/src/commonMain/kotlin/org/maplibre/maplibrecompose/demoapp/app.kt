@@ -33,6 +33,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.maplibrecompose.compose.CameraState
 import org.maplibre.maplibrecompose.compose.StyleState
 import org.maplibre.maplibrecompose.core.OrnamentSettings
@@ -54,7 +55,6 @@ import org.maplibre.maplibrecompose.material3.controls.DisappearingScaleBar
 import org.maplibre.maplibrecompose.material3.controls.ExpandingAttributionButton
 import org.maplibre.maplibrecompose.material3.controls.ScaleBarMeasures
 import org.maplibre.maplibrecompose.material3.defaultScaleBarMeasures
-import org.jetbrains.compose.resources.vectorResource
 
 private val DEMOS = buildList {
   add(StyleSwitcherDemo)

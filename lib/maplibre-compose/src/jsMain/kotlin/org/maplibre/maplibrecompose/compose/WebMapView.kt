@@ -11,12 +11,12 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import co.touchlab.kermit.Logger
+import kotlinx.browser.document
 import org.maplibre.composehtmlinterop.HtmlElement
 import org.maplibre.maplibrecompose.core.JsMap
 import org.maplibre.maplibrecompose.core.MapOptions
 import org.maplibre.maplibrecompose.core.MaplibreMap
 import org.maplibre.maplibrecompose.core.SafeStyle
-import kotlinx.browser.document
 import org.w3c.dom.HTMLElement
 
 @Composable

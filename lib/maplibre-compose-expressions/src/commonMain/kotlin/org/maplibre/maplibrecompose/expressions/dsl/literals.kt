@@ -7,6 +7,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
+import kotlin.jvm.JvmName
+import kotlin.time.Duration
 import org.maplibre.maplibrecompose.expressions.ast.BooleanLiteral
 import org.maplibre.maplibrecompose.expressions.ast.ColorLiteral
 import org.maplibre.maplibrecompose.expressions.ast.DpLiteral
@@ -31,8 +33,6 @@ import org.maplibre.maplibrecompose.expressions.value.SymbolAnchor
 import org.maplibre.maplibrecompose.expressions.value.TextUnitOffsetValue
 import org.maplibre.maplibrecompose.expressions.value.TextVariableAnchorOffsetValue
 import org.maplibre.maplibrecompose.expressions.value.VectorValue
-import kotlin.jvm.JvmName
-import kotlin.time.Duration
 
 /** Creates a literal expression for a [String] value. */
 public fun const(string: String): StringLiteral = StringLiteral.of(string)
@@ -92,8 +92,8 @@ public fun const(list: List<Number>): Literal<VectorValue<Number>, *> =
 
 /**
  * Creates a literal expression for [TextVariableAnchorOffsetValue], used by
- * [[SymbolLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]'s `textVariableAnchorOffset`
- * parameter.
+ * [[SymbolLayer][org.maplibre.][org.maplibre.maplibrecompose.compose.layer.SymbolLayer]'s
+ * `textVariableAnchorOffset` parameter.
  *
  * The offset is measured in a multipler of the text size (EM). It's in [Offset] instead of [offset]
  * because of technical limitations in MapLibre.

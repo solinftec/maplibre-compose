@@ -1,6 +1,7 @@
 package org.maplibre.maplibrecompose.expressions.dsl
 
 import androidx.compose.ui.unit.TextUnitType
+import kotlin.enums.enumEntries
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
 import org.maplibre.maplibrecompose.expressions.ast.Options
@@ -22,7 +23,6 @@ import org.maplibre.maplibrecompose.expressions.value.MillisecondsValue
 import org.maplibre.maplibrecompose.expressions.value.NumberValue
 import org.maplibre.maplibrecompose.expressions.value.StringValue
 import org.maplibre.maplibrecompose.expressions.value.TextUnitValue
-import kotlin.enums.enumEntries
 
 /** Returns a string describing the type of this expression. */
 public fun Expression<*>.type(): Expression<ExpressionType> = FunctionCall.of("typeof", this).cast()

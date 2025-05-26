@@ -10,18 +10,6 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
-import org.maplibre.maplibrecompose.core.util.correctedAndroidUri
-import org.maplibre.maplibrecompose.core.util.toBoundingBox
-import org.maplibre.maplibrecompose.core.util.toGravity
-import org.maplibre.maplibrecompose.core.util.toLatLng
-import org.maplibre.maplibrecompose.core.util.toLatLngBounds
-import org.maplibre.maplibrecompose.core.util.toMLNExpression
-import org.maplibre.maplibrecompose.core.util.toOffset
-import org.maplibre.maplibrecompose.core.util.toPointF
-import org.maplibre.maplibrecompose.core.util.toPosition
-import org.maplibre.maplibrecompose.core.util.toRectF
-import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
@@ -47,6 +35,18 @@ import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style as MlnStyle
 import org.maplibre.android.style.expressions.Expression as MLNExpression
 import org.maplibre.geojson.Feature as MLNFeature
+import org.maplibre.maplibrecompose.core.util.correctedAndroidUri
+import org.maplibre.maplibrecompose.core.util.toBoundingBox
+import org.maplibre.maplibrecompose.core.util.toGravity
+import org.maplibre.maplibrecompose.core.util.toLatLng
+import org.maplibre.maplibrecompose.core.util.toLatLngBounds
+import org.maplibre.maplibrecompose.core.util.toMLNExpression
+import org.maplibre.maplibrecompose.core.util.toOffset
+import org.maplibre.maplibrecompose.core.util.toPointF
+import org.maplibre.maplibrecompose.core.util.toPosition
+import org.maplibre.maplibrecompose.core.util.toRectF
+import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
+import org.maplibre.maplibrecompose.expressions.value.BooleanValue
 
 internal class AndroidMap(
   private val mapView: MapView,

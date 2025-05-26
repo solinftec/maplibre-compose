@@ -10,9 +10,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCompositionContext
 import androidx.compose.runtime.staticCompositionLocalOf
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.awaitCancellation
 import org.maplibre.maplibrecompose.compose.MaplibreComposable
 import org.maplibre.maplibrecompose.core.SafeStyle
-import kotlinx.coroutines.awaitCancellation
 
 @Composable
 internal fun rememberStyleComposition(

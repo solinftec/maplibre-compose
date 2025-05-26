@@ -8,10 +8,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import dev.datlag.kcef.KCEF
-import org.maplibre.maplibrecompose.core.CustomCefAppHandler
 import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.maplibre.maplibrecompose.core.CustomCefAppHandler
 
 @Composable
 public fun KcefProvider(loading: @Composable () -> Unit = {}, content: @Composable () -> Unit) {

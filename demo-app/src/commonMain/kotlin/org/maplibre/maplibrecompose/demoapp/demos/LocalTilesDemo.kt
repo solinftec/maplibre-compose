@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.kevincianfarini.alchemist.scalar.kilometers
+import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.layer.RasterLayer
 import org.maplibre.maplibrecompose.compose.rememberCameraState
@@ -17,8 +19,6 @@ import org.maplibre.maplibrecompose.demoapp.DemoScaffold
 import org.maplibre.maplibrecompose.demoapp.generated.Res
 import org.maplibre.maplibrecompose.material3.controls.ScaleBarMeasure
 import org.maplibre.maplibrecompose.material3.controls.ScaleBarMeasures
-import io.github.kevincianfarini.alchemist.scalar.kilometers
-import io.github.kevincianfarini.alchemist.unit.LengthUnit
 
 object LocalTilesDemo : Demo {
   override val name = "Local Tiles"

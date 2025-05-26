@@ -1,5 +1,8 @@
 package org.maplibre.maplibrecompose.core.source
 
+import io.github.dellisd.spatialk.geojson.Feature
+import org.maplibre.android.style.sources.TileSet
+import org.maplibre.android.style.sources.VectorSource as MLNVectorSource
 import org.maplibre.maplibrecompose.core.util.correctedAndroidUri
 import org.maplibre.maplibrecompose.core.util.toLatLngBounds
 import org.maplibre.maplibrecompose.core.util.toMLNExpression
@@ -7,9 +10,6 @@ import org.maplibre.maplibrecompose.expressions.ExpressionContext
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.dsl.const
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import io.github.dellisd.spatialk.geojson.Feature
-import org.maplibre.android.style.sources.TileSet
-import org.maplibre.android.style.sources.VectorSource as MLNVectorSource
 
 public actual class VectorSource : Source {
   override val impl: MLNVectorSource

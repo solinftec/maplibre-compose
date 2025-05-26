@@ -1,5 +1,8 @@
 package org.maplibre.maplibrecompose.core.layer
 
+import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.android.style.layers.FillLayer as MLNFillLayer
+import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.core.util.toMLNExpression
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
@@ -9,9 +12,6 @@ import org.maplibre.maplibrecompose.expressions.value.DpOffsetValue
 import org.maplibre.maplibrecompose.expressions.value.FloatValue
 import org.maplibre.maplibrecompose.expressions.value.ImageValue
 import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
-import org.maplibre.android.style.expressions.Expression as MLNExpression
-import org.maplibre.android.style.layers.FillLayer as MLNFillLayer
-import org.maplibre.android.style.layers.PropertyFactory
 
 internal actual class FillLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

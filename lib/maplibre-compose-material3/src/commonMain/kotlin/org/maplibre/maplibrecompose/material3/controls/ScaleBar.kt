@@ -20,15 +20,15 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
-import org.maplibre.maplibrecompose.material3.backgroundColorFor
-import org.maplibre.maplibrecompose.material3.defaultScaleBarMeasures
-import org.maplibre.maplibrecompose.material3.drawPathsWithHalo
-import org.maplibre.maplibrecompose.material3.drawTextWithHalo
 import io.github.kevincianfarini.alchemist.scalar.meters
 import io.github.kevincianfarini.alchemist.type.Length
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import kotlin.math.ceil
 import kotlin.math.roundToInt
+import org.maplibre.maplibrecompose.material3.backgroundColorFor
+import org.maplibre.maplibrecompose.material3.defaultScaleBarMeasures
+import org.maplibre.maplibrecompose.material3.drawPathsWithHalo
+import org.maplibre.maplibrecompose.material3.drawTextWithHalo
 
 /** Which measures to show on the scale bar. */
 public data class ScaleBarMeasures(

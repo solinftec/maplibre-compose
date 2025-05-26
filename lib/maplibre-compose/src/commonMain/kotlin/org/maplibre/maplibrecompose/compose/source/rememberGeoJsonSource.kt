@@ -2,9 +2,9 @@ package org.maplibre.maplibrecompose.compose.source
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
+import io.github.dellisd.spatialk.geojson.GeoJson
 import org.maplibre.maplibrecompose.core.source.GeoJsonOptions
 import org.maplibre.maplibrecompose.core.source.GeoJsonSource
-import io.github.dellisd.spatialk.geojson.GeoJson
 
 /**
  * Remember a new [GeoJsonSource] with the given [id] and [options] from the GeoJson data at the

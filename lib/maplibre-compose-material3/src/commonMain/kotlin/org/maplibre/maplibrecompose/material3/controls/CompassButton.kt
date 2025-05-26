@@ -28,10 +28,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.maplibre.maplibrecompose.compose.CameraState
-import org.maplibre.maplibrecompose.material3.generated.Res
-import org.maplibre.maplibrecompose.material3.generated.compass
-import org.maplibre.maplibrecompose.material3.generated.compass_needle
 import kotlin.math.abs
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -39,6 +35,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.maplibre.maplibrecompose.compose.CameraState
+import org.maplibre.maplibrecompose.material3.generated.Res
+import org.maplibre.maplibrecompose.material3.generated.compass
+import org.maplibre.maplibrecompose.material3.generated.compass_needle
 
 @Composable
 public fun CompassButton(

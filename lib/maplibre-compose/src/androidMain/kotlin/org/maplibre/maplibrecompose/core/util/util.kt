@@ -15,6 +15,13 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonNull
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
+import io.github.dellisd.spatialk.geojson.BoundingBox
+import io.github.dellisd.spatialk.geojson.Position
+import java.net.URI
+import java.net.URISyntaxException
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.geometry.LatLngBounds
+import org.maplibre.android.style.expressions.Expression as MLNExpression
 import org.maplibre.maplibrecompose.expressions.ast.BooleanLiteral
 import org.maplibre.maplibrecompose.expressions.ast.ColorLiteral
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
@@ -27,13 +34,6 @@ import org.maplibre.maplibrecompose.expressions.ast.FloatLiteral
 import org.maplibre.maplibrecompose.expressions.ast.NullLiteral
 import org.maplibre.maplibrecompose.expressions.ast.OffsetLiteral
 import org.maplibre.maplibrecompose.expressions.ast.StringLiteral
-import io.github.dellisd.spatialk.geojson.BoundingBox
-import io.github.dellisd.spatialk.geojson.Position
-import java.net.URI
-import java.net.URISyntaxException
-import org.maplibre.android.geometry.LatLng
-import org.maplibre.android.geometry.LatLngBounds
-import org.maplibre.android.style.expressions.Expression as MLNExpression
 
 internal fun String.correctedAndroidUri(): String {
   return try {

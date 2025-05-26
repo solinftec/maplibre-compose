@@ -10,10 +10,10 @@ import cocoapods.MapLibre.MLNShapeSourceOptionMaximumZoomLevel
 import cocoapods.MapLibre.MLNShapeSourceOptionMaximumZoomLevelForClustering
 import cocoapods.MapLibre.MLNShapeSourceOptionMinimumZoomLevel
 import cocoapods.MapLibre.MLNShapeSourceOptionSimplificationTolerance
+import io.github.dellisd.spatialk.geojson.GeoJson
 import org.maplibre.maplibrecompose.core.util.toMLNShape
 import org.maplibre.maplibrecompose.core.util.toNSExpression
 import org.maplibre.maplibrecompose.expressions.ExpressionContext
-import io.github.dellisd.spatialk.geojson.GeoJson
 import platform.Foundation.NSNumber
 import platform.Foundation.NSURL
 

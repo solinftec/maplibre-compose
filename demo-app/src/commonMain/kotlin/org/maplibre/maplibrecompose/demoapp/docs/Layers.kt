@@ -5,6 +5,7 @@ package org.maplibre.maplibrecompose.demoapp.docs
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.maplibre.maplibrecompose.compose.ClickResult
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.layer.Anchor
@@ -19,7 +20,6 @@ import org.maplibre.maplibrecompose.expressions.dsl.interpolate
 import org.maplibre.maplibrecompose.expressions.dsl.zoom
 import org.maplibre.maplibrecompose.expressions.value.LineCap
 import org.maplibre.maplibrecompose.expressions.value.LineJoin
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 @Composable
 @OptIn(ExperimentalResourceApi::class)

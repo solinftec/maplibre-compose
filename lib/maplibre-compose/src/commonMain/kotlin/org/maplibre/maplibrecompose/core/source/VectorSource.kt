@@ -1,9 +1,9 @@
 package org.maplibre.maplibrecompose.core.source
 
+import io.github.dellisd.spatialk.geojson.Feature
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.dsl.const
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import io.github.dellisd.spatialk.geojson.Feature
 
 /** A map data source of tiled vector data. */
 public expect class VectorSource : Source {

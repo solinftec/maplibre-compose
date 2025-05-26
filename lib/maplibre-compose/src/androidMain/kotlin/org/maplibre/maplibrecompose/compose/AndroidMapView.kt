@@ -11,14 +11,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.viewinterop.AndroidView
 import co.touchlab.kermit.Logger
+import org.maplibre.android.MapLibre
+import org.maplibre.android.maps.MapLibreMapOptions
+import org.maplibre.android.maps.MapView
 import org.maplibre.maplibrecompose.core.AndroidMap
 import org.maplibre.maplibrecompose.core.AndroidScaleBar
 import org.maplibre.maplibrecompose.core.MapOptions
 import org.maplibre.maplibrecompose.core.MaplibreMap
 import org.maplibre.maplibrecompose.core.SafeStyle
-import org.maplibre.android.MapLibre
-import org.maplibre.android.maps.MapLibreMapOptions
-import org.maplibre.android.maps.MapView
 
 @Composable
 internal actual fun ComposableMapView(

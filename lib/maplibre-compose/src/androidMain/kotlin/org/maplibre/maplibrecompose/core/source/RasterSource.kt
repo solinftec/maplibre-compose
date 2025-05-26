@@ -1,9 +1,9 @@
 package org.maplibre.maplibrecompose.core.source
 
-import org.maplibre.maplibrecompose.core.util.correctedAndroidUri
-import org.maplibre.maplibrecompose.core.util.toLatLngBounds
 import org.maplibre.android.style.sources.RasterSource as MLNRasterSource
 import org.maplibre.android.style.sources.TileSet
+import org.maplibre.maplibrecompose.core.util.correctedAndroidUri
+import org.maplibre.maplibrecompose.core.util.toLatLngBounds
 
 public actual class RasterSource : Source {
   override val impl: MLNRasterSource

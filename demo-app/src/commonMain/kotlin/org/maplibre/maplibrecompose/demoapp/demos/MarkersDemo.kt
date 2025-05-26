@@ -13,6 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.em
+import io.github.dellisd.spatialk.geojson.Feature
+import io.github.dellisd.spatialk.geojson.Position
+import org.jetbrains.compose.resources.painterResource
 import org.maplibre.maplibrecompose.compose.ClickResult
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.layer.SymbolLayer
@@ -34,9 +37,6 @@ import org.maplibre.maplibrecompose.expressions.dsl.format
 import org.maplibre.maplibrecompose.expressions.dsl.image
 import org.maplibre.maplibrecompose.expressions.dsl.offset
 import org.maplibre.maplibrecompose.expressions.dsl.span
-import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.Position
-import org.jetbrains.compose.resources.painterResource
 
 private val CHICAGO = Position(latitude = 41.878, longitude = -87.626)
 

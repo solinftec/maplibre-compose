@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.safeContent
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.dellisd.spatialk.geojson.Position
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
@@ -18,7 +19,6 @@ import org.maplibre.maplibrecompose.demoapp.Demo
 import org.maplibre.maplibrecompose.demoapp.DemoAppBar
 import org.maplibre.maplibrecompose.demoapp.DemoMapControls
 import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import io.github.dellisd.spatialk.geojson.Position
 
 private val PORTLAND = Position(latitude = 45.521, longitude = -122.675)
 
