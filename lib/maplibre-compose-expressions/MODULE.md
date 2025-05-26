@@ -11,6 +11,6 @@ The abstract syntax tree (AST) for the expression language.
 The Kotlin DSL for creating MapLibre expressions. This is the primary API you'll
 be using to create expressions.
 
-# package org.maplibre.maplibrecompose.expressions.value
+# Package org.maplibre.maplibrecompose.expressions.value
 
 The interfaces and enums defining the type system for MapLibre expressions.
