@@ -34,6 +34,7 @@ import dev.sargunv.maplibrecompose.expressions.dsl.const
 import dev.sargunv.maplibrecompose.expressions.dsl.feature
 import dev.sargunv.maplibrecompose.expressions.dsl.not
 import dev.sargunv.maplibrecompose.expressions.dsl.offset
+import dev.sargunv.maplibrecompose.expressions.dsl.plus
 import dev.sargunv.maplibrecompose.expressions.dsl.step
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.FeatureCollection
@@ -42,6 +43,7 @@ import io.github.dellisd.spatialk.geojson.Position
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.double
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
@@ -80,7 +82,23 @@ object ClusteredPointsDemo : Demo {
             rememberGeoJsonSource(
               "bikes",
               gbfsData,
-              GeoJsonOptions(cluster = true, clusterRadius = 32, clusterMaxZoom = 16),
+              GeoJsonOptions(
+                cluster = true,
+                clusterRadius = 32,
+                clusterMaxZoom = 16,
+                // TODO on Android, this segfaults when the mapper is anything but a constant
+                // See https://github.com/maplibre/maplibre-native/issues/3493
+                // clusterProperties =
+                //   mapOf(
+                //     "total_range" to
+                //       GeoJsonOptions.ClusterPropertyAggregator(
+                //         mapper = feature.get("current_range_meters").asNumber(),
+                //         reducer =
+                //           feature.accumulated().asNumber() +
+                //             feature.get("total_range").asNumber(),
+                //       )
+                //   ),
+              ),
             )
 
           CircleLayer(
@@ -180,7 +198,7 @@ private suspend fun readGbfsData(gbfsFilePath: String): FeatureCollection {
             "vehicle_type" to (bike["vehicle_type"] ?: JsonNull),
             "vehicle_type_id" to (bike["vehicle_type_id"] ?: JsonNull),
             "last_reported" to (bike["last_reported"] ?: JsonNull),
-            "vehicle_range_meters" to (bike["vehicle_range_meters"] ?: JsonNull),
+            "current_range_meters" to (bike["current_range_meters"] ?: JsonPrimitive(0)),
             "is_reserved" to (bike["is_reserved"] ?: JsonNull),
             "is_disabled" to (bike["is_disabled"] ?: JsonNull),
           ),
