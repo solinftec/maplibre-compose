@@ -15,7 +15,7 @@ plugins {
   id(libs.plugins.mavenPublish.get().pluginId)
 }
 
-android { namespace = "dev.sargunv.maplibrecompose" }
+android { namespace = "org.maplibre.maplibrecompose" }
 
 mavenPublishing {
   pom {
@@ -111,7 +111,7 @@ kotlin {
 }
 
 compose.resources {
-  packageOfResClass = "dev.sargunv.maplibrecompose.generated"
+  packageOfResClass = "org.maplibre.maplibrecompose.generated"
 
   customDirectory(
     sourceSetName = "desktopMain",
