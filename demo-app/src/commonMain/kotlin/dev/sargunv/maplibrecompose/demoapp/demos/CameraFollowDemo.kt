@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import dev.sargunv.maplibrecompose.compose.CameraState
 import dev.sargunv.maplibrecompose.compose.MaplibreMap
 import dev.sargunv.maplibrecompose.compose.layer.CircleLayer
@@ -44,6 +45,7 @@ import dev.sargunv.maplibrecompose.demoapp.PositionVectorConverter
 import dev.sargunv.maplibrecompose.demoapp.supportsLayers
 import dev.sargunv.maplibrecompose.expressions.dsl.const
 import dev.sargunv.maplibrecompose.expressions.dsl.offset
+import dev.sargunv.maplibrecompose.material3.controls.PointerPinButton
 import io.github.dellisd.spatialk.geojson.Point
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.math.roundToInt
@@ -93,6 +95,15 @@ object CameraFollowDemo : Demo {
               )
             }
           }
+
+          PointerPinButton(
+            cameraState = cameraState,
+            targetPosition = animatedPosition,
+            onClick = { isFollowing = true },
+          ) {
+            Text("🚊", fontSize = 28.sp)
+          }
+
           DemoMapControls(
             cameraState,
             styleState,
