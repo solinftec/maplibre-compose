@@ -23,17 +23,17 @@ public class StyleState internal constructor() {
 
   internal fun attach(styleNode: StyleNode?) {
     if (this.styleNode != styleNode) {
-      this.styleNode?.onEndChangesCallback = null
       this.styleNode = styleNode
-      this.styleNode?.onEndChangesCallback = { updateSources() }
-      updateSources()
+      styleNode?.sourceManager?.state = this
+      reloadSources()
     }
   }
 
-  internal fun updateSources() {
-    sourcesState.value = styleNode?.style?.getSources().orEmpty()
+  internal fun reloadSources() {
+    this.sourcesState.value = styleNode?.style?.getSources().orEmpty()
   }
 
+  // TODO: we can remove the below if we update the `sources` state to a Map
   /**
    * Retrieves a source by its [id].
    *
