@@ -15,8 +15,8 @@ MapLibre Compose is a [Compose Multiplatform][compose] wrapper around the
 maps to your Compose UIs across Android, iOS, Desktop, and Web.
 
 <p float="left">
-  <img src="https://github.com/user-attachments/assets/997cf8a4-2841-40c8-b5a1-ef98193b21b2" width="200" alt="iOS Screenshot"/>
-  <img src="https://github.com/user-attachments/assets/e450f689-e254-48b7-bd91-3d3042faa290" width="200" alt="Android Screenshot"/>
+  <img src="https://github.com/user-attachments/assets/08233dcb-1237-4a70-93df-ee24d25c4be1" height="450" alt="iOS Screenshot"/>
+  <img src="https://github.com/user-attachments/assets/d9fdf1ee-eb78-490d-880d-054106cb29dc" height="450" alt="Android Screenshot"/>
 </p>
 
 ## Usage
