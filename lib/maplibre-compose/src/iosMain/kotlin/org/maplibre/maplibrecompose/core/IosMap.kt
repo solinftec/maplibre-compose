@@ -39,7 +39,6 @@ import cocoapods.MapLibre.MLNOrnamentPositionBottomLeft
 import cocoapods.MapLibre.MLNOrnamentPositionBottomRight
 import cocoapods.MapLibre.MLNOrnamentPositionTopLeft
 import cocoapods.MapLibre.MLNOrnamentPositionTopRight
-import cocoapods.MapLibre.MLNSource
 import cocoapods.MapLibre.MLNStyle
 import cocoapods.MapLibre.allowsTilting
 import io.github.dellisd.spatialk.geojson.BoundingBox
@@ -150,6 +149,7 @@ internal class IosMap(
 
     override fun mapViewDidFinishLoadingMap(mapView: MLNMapView) {
       map.logger?.i { "Map finished loading" }
+      map.callbacks.onMapFinishedLoading(map)
     }
 
     override fun mapView(mapView: MLNMapView, didFinishLoadingStyle: MLNStyle) {
@@ -158,12 +158,6 @@ internal class IosMap(
         map = map,
         style = IosStyle(style = didFinishLoadingStyle, getScale = { map.density.density }),
       )
-    }
-
-    override fun mapView(mapView: MLNMapView, sourceDidChange: MLNSource) {
-      val sourceId = sourceDidChange.identifier
-      map.logger?.i { "Source $sourceId changed" }
-      map.callbacks.onSourceChanged(map, sourceId)
     }
 
     private val anyGesture =

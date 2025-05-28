@@ -12,10 +12,12 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.awaitCancellation
 import org.maplibre.maplibrecompose.compose.MaplibreComposable
+import org.maplibre.maplibrecompose.compose.StyleState
 import org.maplibre.maplibrecompose.core.SafeStyle
 
 @Composable
 internal fun rememberStyleComposition(
+  styleState: StyleState,
   maybeStyle: SafeStyle?,
   logger: Logger?,
   content: @Composable @MaplibreComposable () -> Unit,
@@ -23,9 +25,10 @@ internal fun rememberStyleComposition(
   val nodeState = remember { mutableStateOf<StyleNode?>(null) }
   val compositionContext = rememberCompositionContext()
 
-  LaunchedEffect(maybeStyle, compositionContext) {
+  LaunchedEffect(styleState, maybeStyle, compositionContext) {
     val style = maybeStyle ?: return@LaunchedEffect
     val rootNode = StyleNode(style, logger).also { nodeState.value = it }
+    styleState.attach(rootNode)
     val composition = Composition(MapNodeApplier(rootNode), compositionContext)
 
     composition.setContent {

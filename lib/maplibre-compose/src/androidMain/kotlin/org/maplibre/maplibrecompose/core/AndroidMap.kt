@@ -96,10 +96,7 @@ internal class AndroidMap(
   }
 
   init {
-    mapView.addOnSourceChangedListener {
-      logger?.i { "Source $it changed" }
-      callbacks.onSourceChanged(this, it)
-    }
+    mapView.addOnDidFinishLoadingMapListener { callbacks.onMapFinishedLoading(this) }
 
     map.addOnCameraMoveStartedListener { reason ->
       // MapLibre doesn't have docs on these reasons, and even though they're named like Google's:
