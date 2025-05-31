@@ -1,4 +1,4 @@
-package org.maplibre.maplibrecompose.material3
+package org.maplibre.maplibrecompose.material3.util
 
 import android.icu.util.LocaleData
 import android.icu.util.ULocale

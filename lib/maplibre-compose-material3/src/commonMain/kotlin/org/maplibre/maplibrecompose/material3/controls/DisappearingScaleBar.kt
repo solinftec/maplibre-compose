@@ -17,6 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.maplibre.maplibrecompose.material3.util.backgroundColorFor
+import org.maplibre.maplibrecompose.material3.util.defaultScaleBarMeasures
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
@@ -50,9 +52,9 @@ public fun DisappearingScaleBar(
   metersPerDp: Double,
   zoom: Double,
   modifier: Modifier = Modifier,
-  measures: ScaleBarMeasures = defaultScaleBarMeasures(),
+  measures: ScaleBarMeasures = _root_ide_package_.org.maplibre.maplibrecompose.material3.util.defaultScaleBarMeasures(),
   color: Color = LocalContentColor.current,
-  haloColor: Color = backgroundColorFor(color),
+  haloColor: Color = _root_ide_package_.org.maplibre.maplibrecompose.material3.util.backgroundColorFor(color),
   haloWidth: Dp = 0.dp,
   barWidth: Dp = 2.dp,
   textStyle: TextStyle = MaterialTheme.typography.labelMedium,

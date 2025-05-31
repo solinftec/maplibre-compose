@@ -32,6 +32,12 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import org.maplibre.maplibrecompose.compose.CameraState
+import org.maplibre.maplibrecompose.material3.util.findEllipsisIntersection
+import org.maplibre.maplibrecompose.material3.util.proportionalAbsoluteOffset
+import org.maplibre.maplibrecompose.material3.util.proportionalPadding
+import org.maplibre.maplibrecompose.material3.util.toDpOffset
+import org.maplibre.maplibrecompose.material3.util.toOffset
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.math.PI
 import kotlin.math.cos
@@ -42,6 +48,10 @@ import org.maplibre.maplibrecompose.material3.proportionalAbsoluteOffset
 import org.maplibre.maplibrecompose.material3.proportionalPadding
 import org.maplibre.maplibrecompose.material3.toDpOffset
 import org.maplibre.maplibrecompose.material3.toOffset
+import org.maplibre.maplibrecompose.material3.util.proportionalAbsoluteOffset
+import org.maplibre.maplibrecompose.material3.util.proportionalPadding
+import org.maplibre.maplibrecompose.material3.util.toDpOffset
+import org.maplibre.maplibrecompose.material3.util.toOffset
 
 /**
  * An elevated button in the shape of a pointer pin on the edge of an ellipsis drawn inside the
@@ -91,7 +101,12 @@ public fun PointerPinButton(
   var area by remember { mutableStateOf<Rect?>(null) }
 
   Box(modifier = modifier.fillMaxSize().onGloballyPositioned { area = it.boundsInParent() }) {
-    val intersection = remember(target, area) { area?.let { findEllipsisIntersection(it, target) } }
+    val intersection = remember(target, area) { area?.let {
+      _root_ide_package_.org.maplibre.maplibrecompose.material3.util.findEllipsisIntersection(
+        it,
+        target
+      )
+    } }
 
     intersection?.let { (offset, angle) ->
       val rotation = angle * 180 / PI

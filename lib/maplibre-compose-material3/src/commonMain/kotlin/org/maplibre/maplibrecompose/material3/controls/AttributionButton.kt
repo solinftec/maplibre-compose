@@ -43,6 +43,17 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import org.maplibre.maplibrecompose.compose.CameraState
+import org.maplibre.maplibrecompose.compose.StyleState
+import org.maplibre.maplibrecompose.core.CameraMoveReason
+import org.maplibre.maplibrecompose.core.source.AttributionLink
+import org.maplibre.maplibrecompose.material3.generated.Res
+import org.maplibre.maplibrecompose.material3.generated.attribution
+import org.maplibre.maplibrecompose.material3.generated.info
+import org.maplibre.maplibrecompose.material3.util.horizontal
+import org.maplibre.maplibrecompose.material3.util.reverse
+import org.maplibre.maplibrecompose.material3.util.toArrangement
+import org.maplibre.maplibrecompose.material3.util.vertical
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.maplibrecompose.compose.CameraState
@@ -55,6 +66,10 @@ import org.maplibre.maplibrecompose.material3.generated.info
 import org.maplibre.maplibrecompose.material3.horizontal
 import org.maplibre.maplibrecompose.material3.reverse
 import org.maplibre.maplibrecompose.material3.toArrangement
+import org.maplibre.maplibrecompose.material3.util.horizontal
+import org.maplibre.maplibrecompose.material3.util.reverse
+import org.maplibre.maplibrecompose.material3.util.toArrangement
+import org.maplibre.maplibrecompose.material3.util.vertical
 import org.maplibre.maplibrecompose.material3.vertical
 
 /**

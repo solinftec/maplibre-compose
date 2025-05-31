@@ -1,4 +1,4 @@
-package org.maplibre.maplibrecompose.material3
+package org.maplibre.maplibrecompose.material3.util
 
 import androidx.compose.runtime.Composable
 import org.maplibre.maplibrecompose.material3.controls.ScaleBarMeasure
