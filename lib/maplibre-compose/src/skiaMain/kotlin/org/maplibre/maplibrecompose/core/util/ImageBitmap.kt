@@ -2,11 +2,7 @@ package org.maplibre.maplibrecompose.core.util
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asComposeImageBitmap
-import org.jetbrains.skia.Bitmap
-import org.jetbrains.skia.ColorAlphaType
-import org.jetbrains.skia.ColorSpace
-import org.jetbrains.skia.ColorType
-import org.jetbrains.skia.ImageInfo
+import org.jetbrains.skia.*
 
 internal actual fun IntArray.toImageBitmap(width: Int, height: Int): ImageBitmap {
   val bmp = Bitmap()

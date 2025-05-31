@@ -9,11 +9,7 @@ import org.maplibre.android.style.sources.Source as MLNSource
 import org.maplibre.android.style.sources.VectorSource as MLNVectorSource
 import org.maplibre.maplibrecompose.core.layer.Layer
 import org.maplibre.maplibrecompose.core.layer.UnknownLayer
-import org.maplibre.maplibrecompose.core.source.GeoJsonSource
-import org.maplibre.maplibrecompose.core.source.RasterSource
-import org.maplibre.maplibrecompose.core.source.Source
-import org.maplibre.maplibrecompose.core.source.UnknownSource
-import org.maplibre.maplibrecompose.core.source.VectorSource
+import org.maplibre.maplibrecompose.core.source.*
 
 internal class AndroidStyle(style: MLNStyle) : Style {
   private var impl: MLNStyle = style

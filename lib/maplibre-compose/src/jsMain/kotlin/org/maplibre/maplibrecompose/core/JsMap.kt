@@ -12,32 +12,10 @@ import io.github.dellisd.spatialk.geojson.Position
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.TimeSource
-import org.maplibre.maplibrecompose.core.util.toBoundingBox
-import org.maplibre.maplibrecompose.core.util.toControlPosition
-import org.maplibre.maplibrecompose.core.util.toDpOffset
-import org.maplibre.maplibrecompose.core.util.toLatLngBounds
-import org.maplibre.maplibrecompose.core.util.toLngLat
-import org.maplibre.maplibrecompose.core.util.toPaddingOptions
-import org.maplibre.maplibrecompose.core.util.toPaddingValuesAbsolute
-import org.maplibre.maplibrecompose.core.util.toPoint
-import org.maplibre.maplibrecompose.core.util.toPosition
+import org.maplibre.maplibrecompose.core.util.*
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrejs.AttributionControl
-import org.maplibre.maplibrejs.EaseToOptions
-import org.maplibre.maplibrejs.FitBoundsOptions
-import org.maplibre.maplibrejs.JumpToOptions
-import org.maplibre.maplibrejs.LngLat
-import org.maplibre.maplibrejs.LogoControl
-import org.maplibre.maplibrejs.Map
-import org.maplibre.maplibrejs.MapLibreEvent
-import org.maplibre.maplibrejs.MapMouseEvent
-import org.maplibre.maplibrejs.MapOptions
-import org.maplibre.maplibrejs.NavigationControl
-import org.maplibre.maplibrejs.NavigationControlOptions
-import org.maplibre.maplibrejs.Point
-import org.maplibre.maplibrejs.QueryRenderedFeaturesOptions
-import org.maplibre.maplibrejs.ScaleControl
+import org.maplibre.maplibrejs.*
 import org.w3c.dom.HTMLElement
 
 internal class JsMap(

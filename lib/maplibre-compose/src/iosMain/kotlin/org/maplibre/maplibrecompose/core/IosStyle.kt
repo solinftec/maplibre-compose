@@ -1,19 +1,10 @@
 package org.maplibre.maplibrecompose.core
 
 import androidx.compose.ui.graphics.ImageBitmap
-import cocoapods.MapLibre.MLNRasterTileSource
-import cocoapods.MapLibre.MLNShapeSource
-import cocoapods.MapLibre.MLNSource
-import cocoapods.MapLibre.MLNStyle
-import cocoapods.MapLibre.MLNStyleLayer
-import cocoapods.MapLibre.MLNVectorTileSource
+import cocoapods.MapLibre.*
 import org.maplibre.maplibrecompose.core.layer.Layer
 import org.maplibre.maplibrecompose.core.layer.UnknownLayer
-import org.maplibre.maplibrecompose.core.source.GeoJsonSource
-import org.maplibre.maplibrecompose.core.source.RasterSource
-import org.maplibre.maplibrecompose.core.source.Source
-import org.maplibre.maplibrecompose.core.source.UnknownSource
-import org.maplibre.maplibrecompose.core.source.VectorSource
+import org.maplibre.maplibrecompose.core.source.*
 import org.maplibre.maplibrecompose.core.util.toUIImage
 
 internal class IosStyle(style: MLNStyle, private val getScale: () -> Float) : Style {

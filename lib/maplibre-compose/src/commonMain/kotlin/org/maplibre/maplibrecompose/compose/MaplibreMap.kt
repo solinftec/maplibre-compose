@@ -1,12 +1,7 @@
 package org.maplibre.maplibrecompose.compose
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import co.touchlab.kermit.Logger
@@ -15,15 +10,7 @@ import kotlin.math.roundToInt
 import kotlinx.coroutines.launch
 import org.maplibre.maplibrecompose.compose.engine.LayerNode
 import org.maplibre.maplibrecompose.compose.engine.rememberStyleComposition
-import org.maplibre.maplibrecompose.core.CameraMoveReason
-import org.maplibre.maplibrecompose.core.GestureSettings
-import org.maplibre.maplibrecompose.core.MapOptions
-import org.maplibre.maplibrecompose.core.MaplibreMap
-import org.maplibre.maplibrecompose.core.OrnamentSettings
-import org.maplibre.maplibrecompose.core.SafeStyle
-import org.maplibre.maplibrecompose.core.StandardMaplibreMap
-import org.maplibre.maplibrecompose.core.Style
-import org.maplibre.maplibrecompose.core.defaultMapOptions
+import org.maplibre.maplibrecompose.core.*
 import org.maplibre.maplibrecompose.core.util.PlatformUtils
 
 /**

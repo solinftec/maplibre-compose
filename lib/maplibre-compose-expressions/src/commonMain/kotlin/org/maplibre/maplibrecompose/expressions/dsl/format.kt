@@ -5,11 +5,7 @@ import androidx.compose.ui.unit.TextUnit
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
 import org.maplibre.maplibrecompose.expressions.ast.Options
-import org.maplibre.maplibrecompose.expressions.value.ColorValue
-import org.maplibre.maplibrecompose.expressions.value.FormattableValue
-import org.maplibre.maplibrecompose.expressions.value.FormattedValue
-import org.maplibre.maplibrecompose.expressions.value.StringValue
-import org.maplibre.maplibrecompose.expressions.value.TextUnitValue
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /**
  * Returns a formatted string for displaying mixed-format text in the `textField` property (see

@@ -5,8 +5,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
-import org.maplibre.maplibrecompose.material3.util.horizontalBias
-import org.maplibre.maplibrecompose.material3.util.verticalBias
 
 private val Alignment.horizontalBias: Float
   get() {

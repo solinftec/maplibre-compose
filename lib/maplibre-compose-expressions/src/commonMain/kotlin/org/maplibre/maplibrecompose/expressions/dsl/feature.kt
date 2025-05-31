@@ -2,12 +2,9 @@ package org.maplibre.maplibrecompose.expressions.dsl
 
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrecompose.expressions.value.ExpressionValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.GeometryType
-import org.maplibre.maplibrecompose.expressions.value.MapValue
-import org.maplibre.maplibrecompose.expressions.value.StringValue
+import org.maplibre.maplibrecompose.expressions.dsl.Feature.get
+import org.maplibre.maplibrecompose.expressions.dsl.Feature.state
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /** Object to access feature-related data, see [feature] */
 public object Feature {

@@ -20,19 +20,11 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
-import org.maplibre.maplibrecompose.material3.util.backgroundColorFor
-import org.maplibre.maplibrecompose.material3.util.defaultScaleBarMeasures
-import org.maplibre.maplibrecompose.material3.util.drawPathsWithHalo
-import org.maplibre.maplibrecompose.material3.util.drawTextWithHalo
 import io.github.kevincianfarini.alchemist.scalar.meters
 import io.github.kevincianfarini.alchemist.type.Length
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import kotlin.math.ceil
 import kotlin.math.roundToInt
-import org.maplibre.maplibrecompose.material3.backgroundColorFor
-import org.maplibre.maplibrecompose.material3.defaultScaleBarMeasures
-import org.maplibre.maplibrecompose.material3.drawPathsWithHalo
-import org.maplibre.maplibrecompose.material3.drawTextWithHalo
 import org.maplibre.maplibrecompose.material3.util.drawPathsWithHalo
 import org.maplibre.maplibrecompose.material3.util.drawTextWithHalo
 
@@ -64,9 +56,11 @@ public data class ScaleBarMeasures(
 public fun ScaleBar(
   metersPerDp: Double,
   modifier: Modifier = Modifier,
-  measures: ScaleBarMeasures = _root_ide_package_.org.maplibre.maplibrecompose.material3.util.defaultScaleBarMeasures(),
+  measures: ScaleBarMeasures =
+    _root_ide_package_.org.maplibre.maplibrecompose.material3.util.defaultScaleBarMeasures(),
   color: Color = LocalContentColor.current,
-  haloColor: Color = _root_ide_package_.org.maplibre.maplibrecompose.material3.util.backgroundColorFor(color),
+  haloColor: Color =
+    _root_ide_package_.org.maplibre.maplibrecompose.material3.util.backgroundColorFor(color),
   haloWidth: Dp = 0.dp,
   barWidth: Dp = 2.dp,
   textStyle: TextStyle = MaterialTheme.typography.labelSmall,

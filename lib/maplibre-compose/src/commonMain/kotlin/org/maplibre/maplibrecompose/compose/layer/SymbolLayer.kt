@@ -14,37 +14,8 @@ import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.expressions.Defaults
 import org.maplibre.maplibrecompose.expressions.ZeroPadding
 import org.maplibre.maplibrecompose.expressions.ast.Expression
-import org.maplibre.maplibrecompose.expressions.dsl.const
-import org.maplibre.maplibrecompose.expressions.dsl.div
-import org.maplibre.maplibrecompose.expressions.dsl.nil
-import org.maplibre.maplibrecompose.expressions.dsl.offset
-import org.maplibre.maplibrecompose.expressions.dsl.times
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrecompose.expressions.value.ColorValue
-import org.maplibre.maplibrecompose.expressions.value.DpOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.DpPaddingValue
-import org.maplibre.maplibrecompose.expressions.value.DpValue
-import org.maplibre.maplibrecompose.expressions.value.FloatOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.FormattedValue
-import org.maplibre.maplibrecompose.expressions.value.IconPitchAlignment
-import org.maplibre.maplibrecompose.expressions.value.IconRotationAlignment
-import org.maplibre.maplibrecompose.expressions.value.IconTextFit
-import org.maplibre.maplibrecompose.expressions.value.ImageValue
-import org.maplibre.maplibrecompose.expressions.value.ListValue
-import org.maplibre.maplibrecompose.expressions.value.StringValue
-import org.maplibre.maplibrecompose.expressions.value.SymbolAnchor
-import org.maplibre.maplibrecompose.expressions.value.SymbolOverlap
-import org.maplibre.maplibrecompose.expressions.value.SymbolPlacement
-import org.maplibre.maplibrecompose.expressions.value.SymbolZOrder
-import org.maplibre.maplibrecompose.expressions.value.TextJustify
-import org.maplibre.maplibrecompose.expressions.value.TextPitchAlignment
-import org.maplibre.maplibrecompose.expressions.value.TextRotationAlignment
-import org.maplibre.maplibrecompose.expressions.value.TextTransform
-import org.maplibre.maplibrecompose.expressions.value.TextUnitOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.TextUnitValue
-import org.maplibre.maplibrecompose.expressions.value.TextWritingMode
-import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
+import org.maplibre.maplibrecompose.expressions.dsl.*
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /**
  * A symbol layer draws data from the [sourceLayer] in the given [source] as icons and/or text

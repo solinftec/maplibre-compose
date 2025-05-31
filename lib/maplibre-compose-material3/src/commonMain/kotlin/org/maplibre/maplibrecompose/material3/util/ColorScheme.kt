@@ -7,7 +7,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
-import org.maplibre.maplibrecompose.material3.util.backgroundColorFor
 
 // The scalebar uses `LocalContentColor` as its default color to be consistent with other elements
 // shown alongside it, such as the attribution button, static text, etc.. So, usually it is the

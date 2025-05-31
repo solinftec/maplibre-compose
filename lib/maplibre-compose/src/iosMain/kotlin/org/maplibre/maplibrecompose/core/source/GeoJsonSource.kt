@@ -1,15 +1,6 @@
 package org.maplibre.maplibrecompose.core.source
 
-import cocoapods.MapLibre.MLNShapeSource
-import cocoapods.MapLibre.MLNShapeSourceOptionBuffer
-import cocoapods.MapLibre.MLNShapeSourceOptionClusterProperties
-import cocoapods.MapLibre.MLNShapeSourceOptionClusterRadius
-import cocoapods.MapLibre.MLNShapeSourceOptionClustered
-import cocoapods.MapLibre.MLNShapeSourceOptionLineDistanceMetrics
-import cocoapods.MapLibre.MLNShapeSourceOptionMaximumZoomLevel
-import cocoapods.MapLibre.MLNShapeSourceOptionMaximumZoomLevelForClustering
-import cocoapods.MapLibre.MLNShapeSourceOptionMinimumZoomLevel
-import cocoapods.MapLibre.MLNShapeSourceOptionSimplificationTolerance
+import cocoapods.MapLibre.*
 import io.github.dellisd.spatialk.geojson.GeoJson
 import org.maplibre.maplibrecompose.core.util.toMLNShape
 import org.maplibre.maplibrecompose.core.util.toNSExpression

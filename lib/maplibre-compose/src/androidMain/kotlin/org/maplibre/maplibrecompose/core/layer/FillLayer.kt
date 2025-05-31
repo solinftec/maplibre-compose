@@ -6,12 +6,7 @@ import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.core.util.toMLNExpression
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrecompose.expressions.value.ColorValue
-import org.maplibre.maplibrecompose.expressions.value.DpOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.ImageValue
-import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
+import org.maplibre.maplibrecompose.expressions.value.*
 
 internal actual class FillLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

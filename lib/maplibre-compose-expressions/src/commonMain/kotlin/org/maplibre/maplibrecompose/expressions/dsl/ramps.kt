@@ -2,11 +2,7 @@ package org.maplibre.maplibrecompose.expressions.dsl
 
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
-import org.maplibre.maplibrecompose.expressions.value.ColorValue
-import org.maplibre.maplibrecompose.expressions.value.ExpressionValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.InterpolatableValue
-import org.maplibre.maplibrecompose.expressions.value.InterpolationValue
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /**
  * Produces discrete, stepped results by evaluating a piecewise-constant function defined by pairs

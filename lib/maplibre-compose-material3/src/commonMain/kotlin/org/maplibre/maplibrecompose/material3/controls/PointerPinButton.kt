@@ -3,22 +3,9 @@ package org.maplibre.maplibrecompose.material3.controls
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.absoluteOffset
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonElevation
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.ElevatedButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
@@ -32,22 +19,11 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import org.maplibre.maplibrecompose.compose.CameraState
-import org.maplibre.maplibrecompose.material3.util.findEllipsisIntersection
-import org.maplibre.maplibrecompose.material3.util.proportionalAbsoluteOffset
-import org.maplibre.maplibrecompose.material3.util.proportionalPadding
-import org.maplibre.maplibrecompose.material3.util.toDpOffset
-import org.maplibre.maplibrecompose.material3.util.toOffset
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 import org.maplibre.maplibrecompose.compose.CameraState
-import org.maplibre.maplibrecompose.material3.findEllipsisIntersection
-import org.maplibre.maplibrecompose.material3.proportionalAbsoluteOffset
-import org.maplibre.maplibrecompose.material3.proportionalPadding
-import org.maplibre.maplibrecompose.material3.toDpOffset
-import org.maplibre.maplibrecompose.material3.toOffset
 import org.maplibre.maplibrecompose.material3.util.proportionalAbsoluteOffset
 import org.maplibre.maplibrecompose.material3.util.proportionalPadding
 import org.maplibre.maplibrecompose.material3.util.toDpOffset
@@ -101,12 +77,15 @@ public fun PointerPinButton(
   var area by remember { mutableStateOf<Rect?>(null) }
 
   Box(modifier = modifier.fillMaxSize().onGloballyPositioned { area = it.boundsInParent() }) {
-    val intersection = remember(target, area) { area?.let {
-      _root_ide_package_.org.maplibre.maplibrecompose.material3.util.findEllipsisIntersection(
-        it,
-        target
-      )
-    } }
+    val intersection =
+      remember(target, area) {
+        area?.let {
+          _root_ide_package_.org.maplibre.maplibrecompose.material3.util.findEllipsisIntersection(
+            it,
+            target,
+          )
+        }
+      }
 
     intersection?.let { (offset, angle) ->
       val rotation = angle * 180 / PI

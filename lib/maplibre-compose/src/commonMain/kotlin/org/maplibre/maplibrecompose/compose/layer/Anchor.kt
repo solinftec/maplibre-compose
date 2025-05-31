@@ -1,10 +1,6 @@
 package org.maplibre.maplibrecompose.compose.layer
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.*
 import org.maplibre.maplibrecompose.compose.MaplibreComposable
 
 internal val LocalAnchor: ProvidableCompositionLocal<Anchor> = compositionLocalOf { Anchor.Top }

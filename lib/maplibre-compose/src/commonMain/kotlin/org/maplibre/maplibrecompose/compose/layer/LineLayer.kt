@@ -11,16 +11,7 @@ import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.dsl.const
 import org.maplibre.maplibrecompose.expressions.dsl.nil
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrecompose.expressions.value.ColorValue
-import org.maplibre.maplibrecompose.expressions.value.DpOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.DpValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.ImageValue
-import org.maplibre.maplibrecompose.expressions.value.LineCap
-import org.maplibre.maplibrecompose.expressions.value.LineJoin
-import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
-import org.maplibre.maplibrecompose.expressions.value.VectorValue
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /**
  * A line layer draws polylines and polygons from the [sourceLayer] in the given [source] in the

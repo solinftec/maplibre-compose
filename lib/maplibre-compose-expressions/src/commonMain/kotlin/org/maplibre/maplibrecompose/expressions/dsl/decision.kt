@@ -3,15 +3,7 @@ package org.maplibre.maplibrecompose.expressions.dsl
 import kotlin.jvm.JvmName
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrecompose.expressions.value.CollatorValue
-import org.maplibre.maplibrecompose.expressions.value.ComparableValue
-import org.maplibre.maplibrecompose.expressions.value.EquatableValue
-import org.maplibre.maplibrecompose.expressions.value.ExpressionValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.GeoJsonValue
-import org.maplibre.maplibrecompose.expressions.value.MatchableValue
-import org.maplibre.maplibrecompose.expressions.value.StringValue
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /**
  * Selects the first output from the given [conditions] whose corresponding test condition evaluates

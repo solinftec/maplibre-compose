@@ -6,23 +6,7 @@ import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
 import org.maplibre.maplibrecompose.expressions.ast.Options
 import org.maplibre.maplibrecompose.expressions.ast.TextUnitCalculation
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrecompose.expressions.value.CollatorValue
-import org.maplibre.maplibrecompose.expressions.value.ColorValue
-import org.maplibre.maplibrecompose.expressions.value.DpOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.DpPaddingValue
-import org.maplibre.maplibrecompose.expressions.value.DpValue
-import org.maplibre.maplibrecompose.expressions.value.EnumValue
-import org.maplibre.maplibrecompose.expressions.value.ExpressionType
-import org.maplibre.maplibrecompose.expressions.value.FloatOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.IntValue
-import org.maplibre.maplibrecompose.expressions.value.ListValue
-import org.maplibre.maplibrecompose.expressions.value.MapValue
-import org.maplibre.maplibrecompose.expressions.value.MillisecondsValue
-import org.maplibre.maplibrecompose.expressions.value.NumberValue
-import org.maplibre.maplibrecompose.expressions.value.StringValue
-import org.maplibre.maplibrecompose.expressions.value.TextUnitValue
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /** Returns a string describing the type of this expression. */
 public fun Expression<*>.type(): Expression<ExpressionType> = FunctionCall.of("typeof", this).cast()

@@ -2,7 +2,6 @@ package org.maplibre.maplibrecompose.material3.util
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layout
-import org.maplibre.maplibrecompose.material3.util.proportionalPadding
 
 /** set padding proportional to the composable's size */
 internal fun Modifier.proportionalPadding(

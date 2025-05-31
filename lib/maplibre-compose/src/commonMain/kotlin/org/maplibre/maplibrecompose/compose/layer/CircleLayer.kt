@@ -11,14 +11,7 @@ import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.dsl.const
 import org.maplibre.maplibrecompose.expressions.dsl.nil
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import org.maplibre.maplibrecompose.expressions.value.CirclePitchAlignment
-import org.maplibre.maplibrecompose.expressions.value.CirclePitchScale
-import org.maplibre.maplibrecompose.expressions.value.ColorValue
-import org.maplibre.maplibrecompose.expressions.value.DpOffsetValue
-import org.maplibre.maplibrecompose.expressions.value.DpValue
-import org.maplibre.maplibrecompose.expressions.value.FloatValue
-import org.maplibre.maplibrecompose.expressions.value.TranslateAnchor
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /**
  * A circle layer draws points from the [sourceLayer] in the given [source] in the given style as a
