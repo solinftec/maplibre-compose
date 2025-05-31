@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
@@ -150,7 +151,9 @@ fun DemoAppBar(demo: Demo, navigateUp: () -> Unit, alpha: Float = 1f) {
 @Composable
 fun DemoScaffold(demo: Demo, navigateUp: () -> Unit, content: @Composable () -> Unit) {
   Scaffold(topBar = { DemoAppBar(demo, navigateUp) }) { padding ->
-    Box(modifier = Modifier.consumeWindowInsets(padding).padding(padding)) { content() }
+    Box(modifier = Modifier.consumeWindowInsets(padding).padding(padding).safeDrawingPadding()) {
+      content()
+    }
   }
 }
 
@@ -161,9 +164,10 @@ fun DemoMapControls(
   modifier: Modifier = Modifier,
   onCompassClick: () -> Unit = {},
   scaleBarMeasures: ScaleBarMeasures = defaultScaleBarMeasures(),
+  padding: PaddingValues = PaddingValues(8.dp),
 ) {
   if (Platform.supportsBlending) {
-    Box(modifier = modifier.fillMaxSize().padding(8.dp)) {
+    Box(modifier = modifier.fillMaxSize().padding(padding)) {
       DisappearingScaleBar(
         metersPerDp = cameraState.metersPerDpAtTarget,
         zoom = cameraState.position.zoom,
@@ -192,4 +196,4 @@ fun DemoOrnamentSettings(padding: PaddingValues = PaddingValues(0.dp)) =
       isLogoEnabled = true,
       logoAlignment = Alignment.BottomStart,
     )
-  else OrnamentSettings.AllEnabled
+  else OrnamentSettings.AllEnabled.copy(padding = padding)
