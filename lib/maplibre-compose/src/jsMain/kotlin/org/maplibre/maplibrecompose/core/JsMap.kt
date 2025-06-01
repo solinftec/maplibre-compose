@@ -9,14 +9,14 @@ import co.touchlab.kermit.Logger
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
-import kotlin.time.Duration
-import kotlin.time.DurationUnit
-import kotlin.time.TimeSource
 import org.maplibre.maplibrecompose.core.util.*
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
 import org.maplibre.maplibrejs.*
 import org.w3c.dom.HTMLElement
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
+import kotlin.time.TimeSource
 
 internal class JsMap(
   parent: HTMLElement,

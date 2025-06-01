@@ -1,12 +1,12 @@
 package org.maplibre.maplibrecompose.expressions.dsl
 
-import kotlin.jvm.JvmName
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
 import org.maplibre.maplibrecompose.expressions.value.FloatValue
 import org.maplibre.maplibrecompose.expressions.value.GeoJsonValue
 import org.maplibre.maplibrecompose.expressions.value.IntValue
 import org.maplibre.maplibrecompose.expressions.value.NumberValue
+import kotlin.jvm.JvmName
 
 /** Returns mathematical constant ln(2) = natural logarithm of 2. */
 public val LN_2: Expression<FloatValue> = FunctionCall.of("ln2").cast()

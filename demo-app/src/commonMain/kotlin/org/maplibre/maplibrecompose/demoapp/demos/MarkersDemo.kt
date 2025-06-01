@@ -6,11 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.em
 import io.github.dellisd.spatialk.geojson.Feature
@@ -23,20 +19,11 @@ import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource
 import org.maplibre.maplibrecompose.core.CameraPosition
-import org.maplibre.maplibrecompose.demoapp.DEFAULT_STYLE
-import org.maplibre.maplibrecompose.demoapp.Demo
-import org.maplibre.maplibrecompose.demoapp.DemoMapControls
-import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import org.maplibre.maplibrecompose.demoapp.DemoScaffold
+import org.maplibre.maplibrecompose.demoapp.*
 import org.maplibre.maplibrecompose.demoapp.generated.Res
 import org.maplibre.maplibrecompose.demoapp.generated.marker
+import org.maplibre.maplibrecompose.expressions.dsl.*
 import org.maplibre.maplibrecompose.expressions.dsl.Feature.get
-import org.maplibre.maplibrecompose.expressions.dsl.asString
-import org.maplibre.maplibrecompose.expressions.dsl.const
-import org.maplibre.maplibrecompose.expressions.dsl.format
-import org.maplibre.maplibrecompose.expressions.dsl.image
-import org.maplibre.maplibrecompose.expressions.dsl.offset
-import org.maplibre.maplibrecompose.expressions.dsl.span
 
 private val CHICAGO = Position(latitude = 41.878, longitude = -87.626)
 

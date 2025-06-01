@@ -1,4 +1,4 @@
-package dev.sargunv.maplibrecompose.demoapp
+package org.maplibre.maplibrecompose.demoapp
 
 import dev.jordond.compass.geolocation.Geolocator
 import dev.jordond.compass.geolocation.browser

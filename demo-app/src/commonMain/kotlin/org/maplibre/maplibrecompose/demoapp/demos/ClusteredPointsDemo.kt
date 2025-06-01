@@ -3,13 +3,7 @@ package org.maplibre.maplibrecompose.demoapp.demos
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -18,13 +12,7 @@ import io.github.dellisd.spatialk.geojson.FeatureCollection
 import io.github.dellisd.spatialk.geojson.Point
 import io.github.dellisd.spatialk.geojson.Position
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonNull
-import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.double
-import kotlinx.serialization.json.jsonArray
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.*
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.maplibre.maplibrecompose.compose.ClickResult
 import org.maplibre.maplibrecompose.compose.MaplibreMap
@@ -35,20 +23,9 @@ import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource
 import org.maplibre.maplibrecompose.core.CameraPosition
 import org.maplibre.maplibrecompose.core.source.GeoJsonOptions
-import org.maplibre.maplibrecompose.demoapp.DEFAULT_STYLE
-import org.maplibre.maplibrecompose.demoapp.Demo
-import org.maplibre.maplibrecompose.demoapp.DemoMapControls
-import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import org.maplibre.maplibrecompose.demoapp.DemoScaffold
+import org.maplibre.maplibrecompose.demoapp.*
 import org.maplibre.maplibrecompose.demoapp.generated.Res
-import org.maplibre.maplibrecompose.expressions.dsl.asNumber
-import org.maplibre.maplibrecompose.expressions.dsl.asString
-import org.maplibre.maplibrecompose.expressions.dsl.const
-import org.maplibre.maplibrecompose.expressions.dsl.feature
-import org.maplibre.maplibrecompose.expressions.dsl.not
-import org.maplibre.maplibrecompose.expressions.dsl.offset
-import org.maplibre.maplibrecompose.expressions.dsl.plus
-import org.maplibre.maplibrecompose.expressions.dsl.step
+import org.maplibre.maplibrecompose.expressions.dsl.*
 
 private const val GBFS_FILE = "files/data/lime_seattle.gbfs.json"
 

@@ -1,12 +1,12 @@
 package org.maplibre.maplibrecompose.core.layer
 
-import org.maplibre.android.style.expressions.Expression as MLNExpression
 import org.maplibre.android.style.layers.PropertyFactory
-import org.maplibre.android.style.layers.SymbolLayer as MLNSymbolLayer
 import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.core.util.toMLNExpression
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
 import org.maplibre.maplibrecompose.expressions.value.*
+import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.android.style.layers.SymbolLayer as MLNSymbolLayer
 
 internal actual class SymbolLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

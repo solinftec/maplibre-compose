@@ -1,9 +1,9 @@
 package org.maplibre.maplibrecompose.expressions.ast
 
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
 import org.maplibre.maplibrecompose.expressions.ExpressionContext
 import org.maplibre.maplibrecompose.expressions.value.MillisecondsValue
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 /** A [Literal] representing a [Duration] value. */
 public data class MillisecondsLiteral private constructor(override val value: Duration) :

@@ -6,9 +6,9 @@ import androidx.compose.ui.unit.DpRect
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
-import kotlin.time.Duration
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
+import kotlin.time.Duration
 
 internal interface MaplibreMap {
   suspend fun animateCameraPosition(finalPosition: CameraPosition, duration: Duration)

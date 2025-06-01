@@ -20,11 +20,7 @@ import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource
 import org.maplibre.maplibrecompose.core.CameraPosition
-import org.maplibre.maplibrecompose.demoapp.DEFAULT_STYLE
-import org.maplibre.maplibrecompose.demoapp.Demo
-import org.maplibre.maplibrecompose.demoapp.DemoMapControls
-import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import org.maplibre.maplibrecompose.demoapp.DemoScaffold
+import org.maplibre.maplibrecompose.demoapp.*
 import org.maplibre.maplibrecompose.demoapp.generated.Res
 import org.maplibre.maplibrecompose.expressions.dsl.const
 import org.maplibre.maplibrecompose.expressions.dsl.exponential

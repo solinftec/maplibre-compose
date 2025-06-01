@@ -9,11 +9,7 @@ import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.core.MapOptions
-import org.maplibre.maplibrecompose.demoapp.DEFAULT_STYLE
-import org.maplibre.maplibrecompose.demoapp.Demo
-import org.maplibre.maplibrecompose.demoapp.DemoMapControls
-import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import org.maplibre.maplibrecompose.demoapp.DemoScaffold
+import org.maplibre.maplibrecompose.demoapp.*
 
 object TextureModeDemo : Demo {
   override val name = "Texture Mode"

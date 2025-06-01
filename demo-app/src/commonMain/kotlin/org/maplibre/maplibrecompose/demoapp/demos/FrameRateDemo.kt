@@ -6,26 +6,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlin.math.roundToInt
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.core.util.PlatformUtils
-import org.maplibre.maplibrecompose.demoapp.DEFAULT_STYLE
-import org.maplibre.maplibrecompose.demoapp.Demo
-import org.maplibre.maplibrecompose.demoapp.DemoMapControls
-import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import org.maplibre.maplibrecompose.demoapp.DemoScaffold
-import org.maplibre.maplibrecompose.demoapp.FrameRateState
-import org.maplibre.maplibrecompose.demoapp.Platform
-import org.maplibre.maplibrecompose.demoapp.usesMaplibreNative
+import org.maplibre.maplibrecompose.demoapp.*
+import kotlin.math.roundToInt
 
 object FrameRateDemo : Demo {
   override val name = "Frame rate"

@@ -9,39 +9,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.maplibre.maplibrecompose.compose.CameraState
-import org.maplibre.maplibrecompose.compose.MaplibreMap
-import org.maplibre.maplibrecompose.compose.rememberCameraState
-import org.maplibre.maplibrecompose.compose.rememberStyleState
-import org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource
-import org.maplibre.maplibrecompose.core.CameraMoveReason
-import org.maplibre.maplibrecompose.core.CameraPosition
-import org.maplibre.maplibrecompose.demoapp.DEFAULT_STYLE
-import org.maplibre.maplibrecompose.demoapp.Demo
-import org.maplibre.maplibrecompose.demoapp.DemoMapControls
-import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import org.maplibre.maplibrecompose.demoapp.DemoScaffold
-import org.maplibre.maplibrecompose.demoapp.Platform
-import org.maplibre.maplibrecompose.demoapp.PositionVectorConverter
-import org.maplibre.maplibrecompose.demoapp.supportsLayers
-import org.maplibre.maplibrecompose.demoapp.util.LocationPuckLayers
-import org.maplibre.maplibrecompose.material3.controls.PointerPinButton
 import io.github.dellisd.spatialk.geojson.Point
 import io.github.dellisd.spatialk.geojson.Position
-import kotlin.math.roundToInt
 import org.maplibre.maplibrecompose.compose.CameraState
 import org.maplibre.maplibrecompose.compose.MaplibreMap
-import org.maplibre.maplibrecompose.compose.layer.CircleLayer
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource
 import org.maplibre.maplibrecompose.core.CameraMoveReason
 import org.maplibre.maplibrecompose.core.CameraPosition
-import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.demoapp.*
-import org.maplibre.maplibrecompose.expressions.dsl.const
-import org.maplibre.maplibrecompose.expressions.dsl.offset
+import org.maplibre.maplibrecompose.demoapp.util.LocationPuckLayers
 import org.maplibre.maplibrecompose.material3.controls.PointerPinButton
+import kotlin.math.roundToInt
 
 private val START_POINT = Position(longitude = -122.4194, latitude = 37.7749)
 private val END_POINT = Position(longitude = -122.3954, latitude = 37.7939)

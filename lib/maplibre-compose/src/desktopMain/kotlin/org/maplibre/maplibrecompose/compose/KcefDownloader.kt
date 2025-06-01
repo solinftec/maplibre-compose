@@ -2,10 +2,10 @@ package org.maplibre.maplibrecompose.compose
 
 import androidx.compose.runtime.*
 import dev.datlag.kcef.KCEF
-import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.maplibre.maplibrecompose.core.CustomCefAppHandler
+import java.io.File
 
 @Composable
 public fun KcefProvider(loading: @Composable () -> Unit = {}, content: @Composable () -> Unit) {

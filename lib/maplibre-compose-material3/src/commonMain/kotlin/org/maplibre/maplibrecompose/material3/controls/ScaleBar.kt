@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.toSize
 import io.github.kevincianfarini.alchemist.scalar.meters
 import io.github.kevincianfarini.alchemist.type.Length
 import io.github.kevincianfarini.alchemist.unit.LengthUnit
-import kotlin.math.ceil
-import kotlin.math.roundToInt
 import org.maplibre.maplibrecompose.material3.util.drawPathsWithHalo
 import org.maplibre.maplibrecompose.material3.util.drawTextWithHalo
+import kotlin.math.ceil
+import kotlin.math.roundToInt
 
 /** Which measures to show on the scale bar. */
 public data class ScaleBarMeasures(

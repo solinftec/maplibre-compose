@@ -6,12 +6,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import co.touchlab.kermit.Logger
 import io.github.dellisd.spatialk.geojson.Position
-import kotlin.math.roundToInt
 import kotlinx.coroutines.launch
 import org.maplibre.maplibrecompose.compose.engine.LayerNode
 import org.maplibre.maplibrecompose.compose.engine.rememberStyleComposition
 import org.maplibre.maplibrecompose.core.*
 import org.maplibre.maplibrecompose.core.util.PlatformUtils
+import kotlin.math.roundToInt
 
 /**
  * Displays a MapLibre based map.

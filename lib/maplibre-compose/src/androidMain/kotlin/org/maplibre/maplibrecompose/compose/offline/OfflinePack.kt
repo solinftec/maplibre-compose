@@ -1,12 +1,12 @@
 package org.maplibre.maplibrecompose.compose.offline
 
 import androidx.compose.runtime.mutableStateOf
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 import org.maplibre.android.offline.OfflineRegion
 import org.maplibre.android.offline.OfflineRegionError
 import org.maplibre.android.offline.OfflineRegionStatus
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 public actual class OfflinePack private constructor(internal val impl: OfflineRegion) :
   OfflineRegion.OfflineRegionObserver {

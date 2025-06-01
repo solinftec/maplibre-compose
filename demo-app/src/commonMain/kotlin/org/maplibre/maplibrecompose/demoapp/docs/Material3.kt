@@ -13,11 +13,7 @@ import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.core.OrnamentSettings
-import org.maplibre.maplibrecompose.material3.controls.CompassButton
-import org.maplibre.maplibrecompose.material3.controls.DisappearingCompassButton
-import org.maplibre.maplibrecompose.material3.controls.DisappearingScaleBar
-import org.maplibre.maplibrecompose.material3.controls.ExpandingAttributionButton
-import org.maplibre.maplibrecompose.material3.controls.ScaleBar
+import org.maplibre.maplibrecompose.material3.controls.*
 
 @Composable
 fun Material3() {

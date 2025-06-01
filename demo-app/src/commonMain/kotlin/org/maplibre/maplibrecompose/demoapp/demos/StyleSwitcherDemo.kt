@@ -6,11 +6,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SecondaryScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import io.github.dellisd.spatialk.geojson.Position
@@ -18,12 +14,7 @@ import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.core.CameraPosition
-import org.maplibre.maplibrecompose.demoapp.ALL_STYLES
-import org.maplibre.maplibrecompose.demoapp.Demo
-import org.maplibre.maplibrecompose.demoapp.DemoMapControls
-import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
-import org.maplibre.maplibrecompose.demoapp.DemoScaffold
-import org.maplibre.maplibrecompose.demoapp.getDefaultColorScheme
+import org.maplibre.maplibrecompose.demoapp.*
 
 private val NEW_YORK = Position(latitude = 40.744, longitude = -73.981)
 

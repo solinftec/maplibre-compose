@@ -8,12 +8,12 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.*
 import com.google.gson.*
 import io.github.dellisd.spatialk.geojson.*
-import java.net.URI
-import java.net.URISyntaxException
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.geometry.LatLngBounds
-import org.maplibre.android.style.expressions.Expression as MLNExpression
 import org.maplibre.maplibrecompose.expressions.ast.*
+import java.net.URI
+import java.net.URISyntaxException
+import org.maplibre.android.style.expressions.Expression as MLNExpression
 
 internal fun String.correctedAndroidUri(): String {
   return try {

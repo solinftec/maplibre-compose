@@ -1,8 +1,8 @@
 package org.maplibre.maplibrecompose.core.layer
 
-import org.maplibre.android.style.layers.Layer as MlnLayer
 import org.maplibre.android.style.layers.Property
 import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.layers.Layer as MlnLayer
 
 internal actual sealed class Layer {
   abstract val impl: MlnLayer

@@ -1,12 +1,12 @@
 package org.maplibre.maplibrecompose.core.source
 
 import io.github.dellisd.spatialk.geojson.GeoJson
-import java.net.URI
-import org.maplibre.android.style.sources.GeoJsonOptions as MLNGeoJsonOptions
-import org.maplibre.android.style.sources.GeoJsonSource as MLNGeoJsonSource
 import org.maplibre.maplibrecompose.core.util.correctedAndroidUri
 import org.maplibre.maplibrecompose.core.util.toMLNExpression
 import org.maplibre.maplibrecompose.expressions.ExpressionContext
+import java.net.URI
+import org.maplibre.android.style.sources.GeoJsonOptions as MLNGeoJsonOptions
+import org.maplibre.android.style.sources.GeoJsonSource as MLNGeoJsonSource
 
 public actual class GeoJsonSource : Source {
   override val impl: MLNGeoJsonSource

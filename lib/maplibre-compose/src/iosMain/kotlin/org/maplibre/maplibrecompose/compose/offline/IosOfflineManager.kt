@@ -2,9 +2,6 @@ package org.maplibre.maplibrecompose.compose.offline
 
 import androidx.compose.runtime.*
 import cocoapods.MapLibre.*
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCAction
 import kotlinx.cinterop.StableRef
@@ -14,6 +11,9 @@ import org.maplibre.maplibrecompose.core.util.toNSData
 import platform.Foundation.*
 import platform.darwin.NSObject
 import platform.darwin.sel_registerName
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 @Composable
 public actual fun rememberOfflineManager(): OfflineManager = remember { getOfflineManager() }

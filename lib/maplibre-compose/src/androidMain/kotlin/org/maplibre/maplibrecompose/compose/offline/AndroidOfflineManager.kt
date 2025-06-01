@@ -6,12 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import org.maplibre.android.MapLibre
+import org.maplibre.android.offline.OfflineRegion
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-import org.maplibre.android.MapLibre
 import org.maplibre.android.offline.OfflineManager as MLNOfflineManager
-import org.maplibre.android.offline.OfflineRegion
 
 @Composable
 public actual fun rememberOfflineManager(): OfflineManager {
