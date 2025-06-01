@@ -9,12 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.github.dellisd.spatialk.geojson.Position
+import kotlin.math.roundToInt
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.core.CameraPosition
 import org.maplibre.maplibrecompose.demoapp.*
-import kotlin.math.roundToInt
 
 private val CHICAGO = Position(latitude = 41.878, longitude = -87.626)
 

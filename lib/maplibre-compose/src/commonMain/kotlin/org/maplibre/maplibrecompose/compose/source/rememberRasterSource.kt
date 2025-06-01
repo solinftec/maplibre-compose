@@ -1,10 +1,10 @@
 package org.maplibre.maplibrecompose.compose.source
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key as composeKey
 import org.maplibre.maplibrecompose.core.source.Defaults
 import org.maplibre.maplibrecompose.core.source.RasterSource
 import org.maplibre.maplibrecompose.core.source.TileSetOptions
-import androidx.compose.runtime.key as composeKey
 
 /**
  * Remember a new [RasterSource] with the given [id] and [tileSize] from the given [uri].

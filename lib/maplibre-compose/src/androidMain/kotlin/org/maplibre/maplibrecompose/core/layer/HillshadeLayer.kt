@@ -1,5 +1,6 @@
 package org.maplibre.maplibrecompose.core.layer
 
+import org.maplibre.android.style.layers.HillshadeLayer as MLNHillshadeLayer
 import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.maplibrecompose.core.source.Source
 import org.maplibre.maplibrecompose.core.util.toMLNExpression
@@ -7,7 +8,6 @@ import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
 import org.maplibre.maplibrecompose.expressions.value.ColorValue
 import org.maplibre.maplibrecompose.expressions.value.FloatValue
 import org.maplibre.maplibrecompose.expressions.value.IlluminationAnchor
-import org.maplibre.android.style.layers.HillshadeLayer as MLNHillshadeLayer
 
 internal actual class HillshadeLayer actual constructor(id: String, actual val source: Source) :
   Layer() {

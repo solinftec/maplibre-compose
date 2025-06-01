@@ -7,6 +7,11 @@ import cocoapods.MapLibre.*
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
+import kotlin.time.TimeSource
 import kotlinx.cinterop.*
 import org.maplibre.maplibrecompose.core.util.*
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
@@ -20,11 +25,6 @@ import platform.UIKit.*
 import platform.darwin.NSObject
 import platform.darwin.NSUInteger
 import platform.darwin.sel_registerName
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
-import kotlin.time.Duration
-import kotlin.time.DurationUnit
-import kotlin.time.TimeSource
 
 internal class IosMap(
   private var mapView: MLNMapView,

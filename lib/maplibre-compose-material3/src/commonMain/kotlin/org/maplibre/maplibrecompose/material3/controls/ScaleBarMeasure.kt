@@ -9,9 +9,9 @@ import io.github.kevincianfarini.alchemist.unit.LengthUnit
 import io.github.kevincianfarini.alchemist.unit.LengthUnit.International.Kilometer
 import io.github.kevincianfarini.alchemist.unit.LengthUnit.International.Meter
 import io.github.kevincianfarini.alchemist.unit.LengthUnit.UnitedStatesCustomary.*
+import kotlin.math.pow
 import org.jetbrains.compose.resources.stringResource
 import org.maplibre.maplibrecompose.material3.generated.*
-import kotlin.math.pow
 
 /** A measurement system to show in the scale bar. */
 public interface ScaleBarMeasure {

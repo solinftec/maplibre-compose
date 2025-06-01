@@ -7,13 +7,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.unit.dp
 import io.github.dellisd.spatialk.geojson.BoundingBox
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.coroutines.flow.first
 import org.maplibre.maplibrecompose.core.CameraMoveReason
 import org.maplibre.maplibrecompose.core.CameraPosition
 import org.maplibre.maplibrecompose.core.MaplibreMap
 import org.maplibre.maplibrecompose.core.StandardMaplibreMap
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
 
 /** Remember a new [CameraState] in the initial state as given in [firstPosition]. */
 @Composable

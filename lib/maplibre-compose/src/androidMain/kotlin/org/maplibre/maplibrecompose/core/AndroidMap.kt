@@ -8,29 +8,29 @@ import co.touchlab.kermit.Logger
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
-import org.maplibre.android.camera.CameraUpdateFactory
-import org.maplibre.android.gestures.MoveGestureDetector
-import org.maplibre.android.gestures.RotateGestureDetector
-import org.maplibre.android.gestures.ShoveGestureDetector
-import org.maplibre.android.gestures.StandardScaleGestureDetector
-import org.maplibre.android.maps.MapLibreMap
-import org.maplibre.android.maps.MapLibreMap.*
-import org.maplibre.android.maps.MapView
-import org.maplibre.maplibrecompose.core.util.*
-import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
-import org.maplibre.maplibrecompose.expressions.value.BooleanValue
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import org.maplibre.android.camera.CameraPosition as MLNCameraPosition
+import org.maplibre.android.camera.CameraUpdateFactory
 import org.maplibre.android.geometry.VisibleRegion as MLNVisibleRegion
+import org.maplibre.android.gestures.MoveGestureDetector
+import org.maplibre.android.gestures.RotateGestureDetector
+import org.maplibre.android.gestures.ShoveGestureDetector
+import org.maplibre.android.gestures.StandardScaleGestureDetector
 import org.maplibre.android.log.Logger as MLNLogger
 import org.maplibre.android.maps.MapLibreMap as MLNMap
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.MapLibreMap.*
+import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style as MlnStyle
 import org.maplibre.android.style.expressions.Expression as MLNExpression
 import org.maplibre.geojson.Feature as MLNFeature
+import org.maplibre.maplibrecompose.core.util.*
+import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
+import org.maplibre.maplibrecompose.expressions.value.BooleanValue
 
 internal class AndroidMap(
   private val mapView: MapView,

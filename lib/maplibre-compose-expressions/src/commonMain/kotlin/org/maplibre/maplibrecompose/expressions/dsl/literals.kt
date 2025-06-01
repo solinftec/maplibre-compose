@@ -7,10 +7,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
-import org.maplibre.maplibrecompose.expressions.ast.*
-import org.maplibre.maplibrecompose.expressions.value.*
 import kotlin.jvm.JvmName
 import kotlin.time.Duration
+import org.maplibre.maplibrecompose.expressions.ast.*
+import org.maplibre.maplibrecompose.expressions.value.*
 
 /** Creates a literal expression for a [String] value. */
 public fun const(string: String): StringLiteral = StringLiteral.of(string)

@@ -20,14 +20,14 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import io.github.dellisd.spatialk.geojson.Position
+import kotlin.math.PI
+import kotlin.math.cos
+import kotlin.math.sin
 import org.maplibre.maplibrecompose.compose.CameraState
 import org.maplibre.maplibrecompose.material3.util.proportionalAbsoluteOffset
 import org.maplibre.maplibrecompose.material3.util.proportionalPadding
 import org.maplibre.maplibrecompose.material3.util.toDpOffset
 import org.maplibre.maplibrecompose.material3.util.toOffset
-import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.sin
 
 /**
  * An elevated button in the shape of a pointer pin on the edge of an ellipsis drawn inside the

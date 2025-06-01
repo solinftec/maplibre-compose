@@ -1,16 +1,16 @@
 package org.maplibre.maplibrecompose.core
 
+import java.io.InputStream
+import java.net.URI
+import java.nio.file.FileSystemNotFoundException
+import java.nio.file.FileSystems
+import java.nio.file.Files
 import org.cef.callback.CefCallback
 import org.cef.handler.CefResourceHandler
 import org.cef.misc.IntRef
 import org.cef.misc.StringRef
 import org.cef.network.CefRequest
 import org.cef.network.CefResponse
-import java.io.InputStream
-import java.net.URI
-import java.nio.file.FileSystemNotFoundException
-import java.nio.file.FileSystems
-import java.nio.file.Files
 
 internal class JarResourceHandler : CefResourceHandler {
   private var inputStream: InputStream? = null

@@ -10,8 +10,8 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import org.maplibre.maplibrecompose.core.util.toImageBitmap
 import kotlin.math.ceil
+import org.maplibre.maplibrecompose.core.util.toImageBitmap
 
 internal class ImageManager(private val node: StyleNode) {
   private val bitmapIds = IncrementingIdMap<BitmapKey>("bitmap")

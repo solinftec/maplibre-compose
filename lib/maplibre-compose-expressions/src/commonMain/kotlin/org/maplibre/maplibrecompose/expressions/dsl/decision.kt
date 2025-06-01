@@ -1,9 +1,9 @@
 package org.maplibre.maplibrecompose.expressions.dsl
 
+import kotlin.jvm.JvmName
 import org.maplibre.maplibrecompose.expressions.ast.Expression
 import org.maplibre.maplibrecompose.expressions.ast.FunctionCall
 import org.maplibre.maplibrecompose.expressions.value.*
-import kotlin.jvm.JvmName
 
 /**
  * Selects the first output from the given [conditions] whose corresponding test condition evaluates

@@ -16,6 +16,8 @@ import dev.jordond.compass.geolocation.LocationRequest
 import dev.jordond.compass.geolocation.TrackingStatus
 import io.github.dellisd.spatialk.geojson.Point
 import io.github.dellisd.spatialk.geojson.Position
+import kotlin.math.max
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.CoroutineScope
 import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.maplibrecompose.compose.CameraState
@@ -31,8 +33,6 @@ import org.maplibre.maplibrecompose.demoapp.generated.my_location_filled
 import org.maplibre.maplibrecompose.demoapp.generated.navigation_filled
 import org.maplibre.maplibrecompose.demoapp.util.LocationPuckLayers
 import org.maplibre.maplibrecompose.material3.controls.PointerPinButton
-import kotlin.math.max
-import kotlin.time.Duration.Companion.seconds
 
 object UserLocationDemo : Demo {
   override val name = "User location"

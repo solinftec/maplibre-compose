@@ -7,9 +7,9 @@ import androidx.compose.ui.unit.LayoutDirection
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
+import kotlin.time.Duration
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
 import org.maplibre.maplibrecompose.expressions.value.BooleanValue
-import kotlin.time.Duration
 
 internal class WebviewMap(private val bridge: WebviewBridge) : MaplibreMap {
   suspend fun init() {

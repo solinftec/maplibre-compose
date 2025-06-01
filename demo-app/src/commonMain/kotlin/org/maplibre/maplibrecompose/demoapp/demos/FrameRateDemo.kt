@@ -9,12 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
 import org.maplibre.maplibrecompose.compose.rememberStyleState
 import org.maplibre.maplibrecompose.core.util.PlatformUtils
 import org.maplibre.maplibrecompose.demoapp.*
-import kotlin.math.roundToInt
 
 object FrameRateDemo : Demo {
   override val name = "Frame rate"

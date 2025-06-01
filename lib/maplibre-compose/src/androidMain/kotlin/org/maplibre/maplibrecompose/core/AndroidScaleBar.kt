@@ -5,11 +5,11 @@ import android.view.View
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.*
+import kotlin.math.roundToInt
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.plugins.scalebar.ScaleBarOptions
 import org.maplibre.android.plugins.scalebar.ScaleBarPlugin
-import kotlin.math.roundToInt
 
 internal class AndroidScaleBar(ctx: Context, private val mapView: MapView, map: MapLibreMap) {
   private val plugin = ScaleBarPlugin(mapView, map)

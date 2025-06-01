@@ -3,6 +3,7 @@ package org.maplibre.maplibrecompose.compose
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest
 import io.github.dellisd.spatialk.geojson.FeatureCollection
+import kotlin.test.*
 import org.maplibre.maplibrecompose.compose.engine.LayerNode
 import org.maplibre.maplibrecompose.compose.engine.StyleNode
 import org.maplibre.maplibrecompose.compose.layer.Anchor
@@ -12,7 +13,6 @@ import org.maplibre.maplibrecompose.core.layer.LineLayer
 import org.maplibre.maplibrecompose.core.source.GeoJsonOptions
 import org.maplibre.maplibrecompose.core.source.GeoJsonSource
 import org.maplibre.maplibrecompose.core.source.VectorSource
-import kotlin.test.*
 
 @OptIn(ExperimentalTestApi::class)
 abstract class StyleNodeTest {

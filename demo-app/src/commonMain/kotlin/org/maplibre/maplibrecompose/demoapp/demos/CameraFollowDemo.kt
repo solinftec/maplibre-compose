@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.dellisd.spatialk.geojson.Point
 import io.github.dellisd.spatialk.geojson.Position
+import kotlin.math.roundToInt
 import org.maplibre.maplibrecompose.compose.CameraState
 import org.maplibre.maplibrecompose.compose.MaplibreMap
 import org.maplibre.maplibrecompose.compose.rememberCameraState
@@ -21,7 +22,6 @@ import org.maplibre.maplibrecompose.core.CameraPosition
 import org.maplibre.maplibrecompose.demoapp.*
 import org.maplibre.maplibrecompose.demoapp.util.LocationPuckLayers
 import org.maplibre.maplibrecompose.material3.controls.PointerPinButton
-import kotlin.math.roundToInt
 
 private val START_POINT = Position(longitude = -122.4194, latitude = 37.7749)
 private val END_POINT = Position(longitude = -122.3954, latitude = 37.7939)

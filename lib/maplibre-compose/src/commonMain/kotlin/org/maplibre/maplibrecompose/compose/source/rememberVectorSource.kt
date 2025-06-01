@@ -1,9 +1,9 @@
 package org.maplibre.maplibrecompose.compose.source
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key as composeKey
 import org.maplibre.maplibrecompose.core.source.TileSetOptions
 import org.maplibre.maplibrecompose.core.source.VectorSource
-import androidx.compose.runtime.key as composeKey
 
 /**
  * Remember a new [VectorSource] with the given [id] from the given [uri].

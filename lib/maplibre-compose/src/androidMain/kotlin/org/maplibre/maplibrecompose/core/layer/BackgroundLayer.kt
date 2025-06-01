@@ -1,12 +1,12 @@
 package org.maplibre.maplibrecompose.core.layer
 
+import org.maplibre.android.style.layers.BackgroundLayer as MLNBackgroundLayer
 import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.maplibrecompose.core.util.toMLNExpression
 import org.maplibre.maplibrecompose.expressions.ast.CompiledExpression
 import org.maplibre.maplibrecompose.expressions.value.ColorValue
 import org.maplibre.maplibrecompose.expressions.value.FloatValue
 import org.maplibre.maplibrecompose.expressions.value.ImageValue
-import org.maplibre.android.style.layers.BackgroundLayer as MLNBackgroundLayer
 
 internal actual class BackgroundLayer actual constructor(id: String) : Layer() {
 
