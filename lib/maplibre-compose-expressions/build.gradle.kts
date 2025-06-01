@@ -14,7 +14,7 @@ plugins {
   id(libs.plugins.mavenPublish.get().pluginId)
 }
 
-android { namespace = "org.maplibre.maplibrecompose.expressions" }
+android { namespace = "org.maplibre.compose.expressions" }
 
 mavenPublishing {
   pom {

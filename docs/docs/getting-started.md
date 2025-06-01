@@ -164,7 +164,7 @@ Wrap your app with `KcefProvider` to download KCEF on first lanch, and
 is running in:
 
 ```kotlin title="Main.kt"
--8 < -"demo-app/src/desktopMain/kotlin/org/maplibre/maplibrecompose/demoapp/Main.kt:main"
+-8 < -"demo-app/src/desktopMain/kotlin/org/maplibre/compose/demoapp/Main.kt:main"
 ```
 
 ## Display your first map
@@ -172,7 +172,7 @@ is running in:
 In your Composable UI, add a map:
 
 ```kotlin title="App.kt"
--8 < -"demo-app/src/commonMain/kotlin/org/maplibre/maplibrecompose/demoapp/docs/GettingStarted.kt:app"
+-8 < -"demo-app/src/commonMain/kotlin/org/maplibre/compose/demoapp/docs/GettingStarted.kt:app"
 ```
 
 When you run your app, you should see the default [demotiles] map. To learn how

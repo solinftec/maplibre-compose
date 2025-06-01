@@ -16,7 +16,7 @@ plugins {
   id(libs.plugins.mavenPublish.get().pluginId)
 }
 
-android { namespace = "org.maplibre.maplibrecompose" }
+android { namespace = "org.maplibre.compose" }
 
 mavenPublishing {
   pom {
@@ -57,7 +57,7 @@ kotlin {
       cinterops {
         val observer by creating {
           defFile(project.file("src/nativeInterop/cinterop/observer.def"))
-          packageName("org.maplibre.maplibrecompose.core.util")
+          packageName("org.maplibre.compose.core.util")
         }
       }
     }
@@ -150,7 +150,7 @@ kotlin {
 }
 
 compose.resources {
-  packageOfResClass = "org.maplibre.maplibrecompose.generated"
+  packageOfResClass = "org.maplibre.compose.generated"
 
   customDirectory(
     sourceSetName = "desktopMain",

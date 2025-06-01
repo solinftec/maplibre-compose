@@ -15,7 +15,7 @@ plugins {
   id(libs.plugins.mavenPublish.get().pluginId)
 }
 
-android { namespace = "org.maplibre.maplibrecompose.material3" }
+android { namespace = "org.maplibre.compose.material3" }
 
 mavenPublishing {
   pom {
@@ -76,4 +76,4 @@ kotlin {
   }
 }
 
-compose.resources { packageOfResClass = "org.maplibre.maplibrecompose.material3.generated" }
+compose.resources { packageOfResClass = "org.maplibre.compose.material3.generated" }
