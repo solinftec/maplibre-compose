@@ -8,6 +8,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.util.fastRoundToInt
+import dev.jordond.compass.geolocation.Geolocator
+import org.maplibre.maplibrecompose.demoapp.generated.Res
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -94,3 +96,5 @@ val Platform.supportsBlending: Boolean
 
 val Platform.usesMaplibreNative: Boolean
   get() = isAndroid || isIos
+
+expect fun getGeolocator(): Geolocator

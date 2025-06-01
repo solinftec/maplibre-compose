@@ -3,14 +3,29 @@ package org.maplibre.maplibrecompose.demoapp.demos
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.maplibre.maplibrecompose.compose.CameraState
+import org.maplibre.maplibrecompose.compose.MaplibreMap
+import org.maplibre.maplibrecompose.compose.rememberCameraState
+import org.maplibre.maplibrecompose.compose.rememberStyleState
+import org.maplibre.maplibrecompose.compose.source.rememberGeoJsonSource
+import org.maplibre.maplibrecompose.core.CameraMoveReason
+import org.maplibre.maplibrecompose.core.CameraPosition
+import org.maplibre.maplibrecompose.demoapp.DEFAULT_STYLE
+import org.maplibre.maplibrecompose.demoapp.Demo
+import org.maplibre.maplibrecompose.demoapp.DemoMapControls
+import org.maplibre.maplibrecompose.demoapp.DemoOrnamentSettings
+import org.maplibre.maplibrecompose.demoapp.DemoScaffold
+import org.maplibre.maplibrecompose.demoapp.Platform
+import org.maplibre.maplibrecompose.demoapp.PositionVectorConverter
+import org.maplibre.maplibrecompose.demoapp.supportsLayers
+import org.maplibre.maplibrecompose.demoapp.util.LocationPuckLayers
+import org.maplibre.maplibrecompose.material3.controls.PointerPinButton
 import io.github.dellisd.spatialk.geojson.Point
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.math.roundToInt
@@ -68,8 +83,9 @@ object CameraFollowDemo : Demo {
             ornamentSettings = DemoOrnamentSettings(),
           ) {
             if (Platform.supportsLayers) {
-              LocationPuck(
-                locationSource = rememberGeoJsonSource("target", Point(animatedPosition))
+              LocationPuckLayers(
+                idPrefix = "target",
+                locationSource = rememberGeoJsonSource("target", Point(animatedPosition)),
               )
             }
           }
@@ -148,27 +164,6 @@ private fun rememberAnimatedFollowCamera(
   }
 
   return cameraState
-}
-
-@Composable
-private fun LocationPuck(locationSource: Source) {
-  CircleLayer(
-    id = "target-shadow",
-    source = locationSource,
-    radius = const(13.dp),
-    color = const(Color.Black),
-    blur = const(1f),
-    translate = offset(0.dp, 1.dp),
-  )
-
-  CircleLayer(
-    id = "target-circle",
-    source = locationSource,
-    radius = const(7.dp),
-    color = const(MaterialTheme.colorScheme.primary),
-    strokeColor = const(Color.White),
-    strokeWidth = const(3.dp),
-  )
 }
 
 @Composable
