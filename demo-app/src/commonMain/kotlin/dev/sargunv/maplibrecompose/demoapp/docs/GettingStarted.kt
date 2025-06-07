@@ -10,4 +10,4 @@ import dev.sargunv.maplibrecompose.compose.MaplibreMap
 fun MyApp() {
   MaplibreMap()
 }
-// -8<- [end:simple-app]
+// -8<- [end:app]
