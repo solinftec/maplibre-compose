@@ -20,7 +20,13 @@ import org.maplibre.compose.compose.rememberCameraState
 import org.maplibre.compose.compose.rememberStyleState
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
 import org.maplibre.compose.core.CameraPosition
+import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.*
+import org.maplibre.compose.demoapp.DEFAULT_STYLE
+import org.maplibre.compose.demoapp.Demo
+import org.maplibre.compose.demoapp.DemoMapControls
+import org.maplibre.compose.demoapp.DemoOrnamentSettings
+import org.maplibre.compose.demoapp.DemoScaffold
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.exponential
@@ -52,7 +58,10 @@ object AnimatedLayerDemo : Demo {
           ornamentSettings = DemoOrnamentSettings(),
         ) {
           val routeSource =
-            rememberGeoJsonSource(id = "amtrak-routes", uri = Res.getUri(ROUTES_FILE))
+            rememberGeoJsonSource(
+              id = "amtrak-routes",
+              data = GeoJsonData.Uri(Res.getUri(ROUTES_FILE)),
+            )
 
           val infiniteTransition = rememberInfiniteTransition()
           val animatedColor by

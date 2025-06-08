@@ -7,6 +7,7 @@ import io.github.dellisd.spatialk.geojson.Position
 import io.github.dellisd.spatialk.geojson.dsl.PropertiesBuilder
 import io.github.dellisd.spatialk.geojson.dsl.featureCollection
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
+import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.core.source.GeoJsonOptions
 import org.maplibre.compose.core.source.Source
 
@@ -32,14 +33,16 @@ public fun rememberOfflinePacksSource(
     id = id,
     options = options,
     data =
-      featureCollection {
-        offlinePacks.forEach { pack ->
-          feature(pack.definition.geometry) {
-            putDownloadProgressProperties(pack.downloadProgress)
-            putExtraProperties(pack)
+      GeoJsonData.Features(
+        featureCollection {
+          offlinePacks.forEach { pack ->
+            feature(pack.definition.geometry) {
+              putDownloadProgressProperties(pack.downloadProgress)
+              putExtraProperties(pack)
+            }
           }
         }
-      },
+      ),
   )
 }
 

@@ -10,6 +10,7 @@ import org.maplibre.compose.compose.layer.Anchor
 import org.maplibre.compose.core.SafeStyle
 import org.maplibre.compose.core.layer.Layer
 import org.maplibre.compose.core.layer.LineLayer
+import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.core.source.GeoJsonOptions
 import org.maplibre.compose.core.source.GeoJsonSource
 import org.maplibre.compose.core.source.VectorSource
@@ -19,8 +20,8 @@ abstract class StyleNodeTest {
   private val testSources by lazy {
     listOf(
       VectorSource("foo", "https://example.com/{z}/{x}/{y}.pbf"),
-      GeoJsonSource("bar", FeatureCollection(), GeoJsonOptions()),
-      GeoJsonSource("baz", FeatureCollection(), GeoJsonOptions()),
+      GeoJsonSource("bar", GeoJsonData.Features(FeatureCollection()), GeoJsonOptions()),
+      GeoJsonSource("baz", GeoJsonData.Features(FeatureCollection()), GeoJsonOptions()),
     )
   }
 
@@ -51,7 +52,8 @@ abstract class StyleNodeTest {
   fun shouldAddUserSource() = runComposeUiTest {
     runOnUiThread {
       val s = makeStyleNode()
-      val newSource = GeoJsonSource("new", FeatureCollection(), GeoJsonOptions())
+      val newSource =
+        GeoJsonSource("new", GeoJsonData.Features(FeatureCollection()), GeoJsonOptions())
       s.sourceManager.addReference(newSource)
       s.onEndChanges()
       assertEquals(4, s.style.getSources().size)
@@ -63,7 +65,8 @@ abstract class StyleNodeTest {
   fun shouldRemoveUserSource() = runComposeUiTest {
     runOnUiThread {
       val s = makeStyleNode()
-      val newSource = GeoJsonSource("new", FeatureCollection(), GeoJsonOptions())
+      val newSource =
+        GeoJsonSource("new", GeoJsonData.Features(FeatureCollection()), GeoJsonOptions())
       s.sourceManager.addReference(newSource)
       s.onEndChanges()
       s.sourceManager.removeReference(newSource)
@@ -77,7 +80,9 @@ abstract class StyleNodeTest {
     runOnUiThread {
       val s = makeStyleNode()
       assertFails {
-        s.sourceManager.addReference(GeoJsonSource("foo", FeatureCollection(), GeoJsonOptions()))
+        s.sourceManager.addReference(
+          GeoJsonSource("foo", GeoJsonData.Features(FeatureCollection()), GeoJsonOptions())
+        )
       }
     }
   }
@@ -94,8 +99,8 @@ abstract class StyleNodeTest {
   fun shouldAllowAddSourceBeforeRemove() = runComposeUiTest {
     runOnUiThread {
       val s = makeStyleNode()
-      val s1 = GeoJsonSource("new", FeatureCollection(), GeoJsonOptions())
-      val s2 = GeoJsonSource("new", FeatureCollection(), GeoJsonOptions())
+      val s1 = GeoJsonSource("new", GeoJsonData.Features(FeatureCollection()), GeoJsonOptions())
+      val s2 = GeoJsonSource("new", GeoJsonData.Features(FeatureCollection()), GeoJsonOptions())
 
       s.sourceManager.addReference(s1)
       s.onEndChanges()

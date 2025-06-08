@@ -13,6 +13,7 @@ import org.maplibre.compose.compose.layer.CircleLayer
 import org.maplibre.compose.compose.layer.LineLayer
 import org.maplibre.compose.compose.source.getBaseSource
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
+import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.exponential
@@ -35,14 +36,14 @@ fun Layers() {
     val amtrakStations =
       rememberGeoJsonSource(
         id = "amtrak-stations",
-        uri = Res.getUri("files/data/amtrak_stations.geojson"),
+        data = GeoJsonData.Uri(Res.getUri("files/data/amtrak_stations.geojson")),
       )
 
     // -8<- [start:amtrak-1]
     val amtrakRoutes =
       rememberGeoJsonSource(
         id = "amtrak-routes",
-        uri = Res.getUri("files/data/amtrak_routes.geojson"),
+        data = GeoJsonData.Uri(Res.getUri("files/data/amtrak_routes.geojson")),
       )
     LineLayer(
       id = "amtrak-routes-casing",

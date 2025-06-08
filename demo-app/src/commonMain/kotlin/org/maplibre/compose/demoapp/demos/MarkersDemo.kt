@@ -19,6 +19,7 @@ import org.maplibre.compose.compose.rememberCameraState
 import org.maplibre.compose.compose.rememberStyleState
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
 import org.maplibre.compose.core.CameraPosition
+import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.*
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.demoapp.generated.marker
@@ -50,8 +51,10 @@ object MarkersDemo : Demo {
           val amtrakStations =
             rememberGeoJsonSource(
               id = "amtrak-stations",
-              uri =
-                "https://raw.githubusercontent.com/datanews/amtrak-geojson/refs/heads/master/amtrak-stations.geojson",
+              data =
+                GeoJsonData.Uri(
+                  "https://raw.githubusercontent.com/datanews/amtrak-geojson/refs/heads/master/amtrak-stations.geojson"
+                ),
             )
           SymbolLayer(
             id = "amtrak-stations",

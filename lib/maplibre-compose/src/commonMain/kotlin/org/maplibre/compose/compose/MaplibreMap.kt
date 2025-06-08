@@ -203,7 +203,7 @@ public fun MaplibreMap(
             map.asyncSetMaxPitch(pitchRange.endInclusive.toDouble())
             map.asyncSetGestureSettings(gestureSettings)
             map.asyncSetOrnamentSettings(ornamentSettings)
-            map.asyngSetMaximumFps(maximumFps)
+            map.asyncSetMaximumFps(maximumFps)
           }
       }
     },

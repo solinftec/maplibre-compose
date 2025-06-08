@@ -26,6 +26,7 @@ import org.maplibre.compose.compose.rememberCameraState
 import org.maplibre.compose.compose.rememberStyleState
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
 import org.maplibre.compose.core.CameraMoveReason
+import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.*
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.demoapp.generated.location_searching
@@ -174,7 +175,8 @@ private fun rememberLocationStatusState(): State<TrackingStatus> {
 
 @Composable
 private fun LocationPuck(location: Location) {
-  val locationSource = rememberGeoJsonSource(id = "location", data = Point(location.position))
+  val locationSource =
+    rememberGeoJsonSource(id = "location", data = GeoJsonData.Features(Point(location.position)))
   LocationPuckLayers(idPrefix = "user-location", locationSource = locationSource)
 }
 

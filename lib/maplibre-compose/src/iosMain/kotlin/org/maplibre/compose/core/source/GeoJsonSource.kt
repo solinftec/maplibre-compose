@@ -1,7 +1,6 @@
 package org.maplibre.compose.core.source
 
 import cocoapods.MapLibre.*
-import io.github.dellisd.spatialk.geojson.GeoJson
 import org.maplibre.compose.core.util.toMLNShape
 import org.maplibre.compose.core.util.toNSExpression
 import org.maplibre.compose.expressions.ExpressionContext
@@ -15,14 +14,28 @@ public actual class GeoJsonSource : Source {
     impl = source
   }
 
-  public actual constructor(id: String, uri: String, options: GeoJsonOptions) {
+  public actual constructor(id: String, data: GeoJsonData, options: GeoJsonOptions) {
     impl =
-      MLNShapeSource(identifier = id, URL = NSURL(string = uri), options = buildOptionMap(options))
-  }
-
-  public actual constructor(id: String, data: GeoJson, options: GeoJsonOptions) {
-    impl =
-      MLNShapeSource(identifier = id, shape = data.toMLNShape(), options = buildOptionMap(options))
+      when (data) {
+        is GeoJsonData.Features ->
+          MLNShapeSource(
+            identifier = id,
+            shape = data.geoJson.toMLNShape(),
+            options = buildOptionMap(options),
+          )
+        is GeoJsonData.JsonString ->
+          MLNShapeSource(
+            identifier = id,
+            shape = data.json.toMLNShape(),
+            options = buildOptionMap(options),
+          )
+        is GeoJsonData.Uri ->
+          MLNShapeSource(
+            identifier = id,
+            URL = NSURL(string = data.uri),
+            options = buildOptionMap(options),
+          )
+      }
   }
 
   private fun buildOptionMap(options: GeoJsonOptions) =
@@ -46,11 +59,11 @@ public actual class GeoJsonSource : Source {
       )
     }
 
-  public actual fun setUri(uri: String) {
-    impl.setURL(NSURL(string = uri))
-  }
-
-  public actual fun setData(geoJson: GeoJson) {
-    impl.setShape(geoJson.toMLNShape())
+  public actual fun setData(data: GeoJsonData) {
+    when (data) {
+      is GeoJsonData.Uri -> impl.setURL(NSURL(string = data.uri))
+      is GeoJsonData.Features -> impl.setShape(data.geoJson.toMLNShape())
+      is GeoJsonData.JsonString -> impl.setShape(data.json.toMLNShape())
+    }
   }
 }

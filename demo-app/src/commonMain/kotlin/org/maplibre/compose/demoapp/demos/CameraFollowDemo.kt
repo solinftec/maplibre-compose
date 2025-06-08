@@ -19,6 +19,7 @@ import org.maplibre.compose.compose.rememberStyleState
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
 import org.maplibre.compose.core.CameraMoveReason
 import org.maplibre.compose.core.CameraPosition
+import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.*
 import org.maplibre.compose.demoapp.util.LocationPuckLayers
 import org.maplibre.compose.material3.controls.PointerPinButton
@@ -65,7 +66,8 @@ object CameraFollowDemo : Demo {
             if (Platform.supportsLayers) {
               LocationPuckLayers(
                 idPrefix = "target",
-                locationSource = rememberGeoJsonSource("target", Point(animatedPosition)),
+                locationSource =
+                  rememberGeoJsonSource("target", GeoJsonData.Features(Point(animatedPosition))),
               )
             }
           }
