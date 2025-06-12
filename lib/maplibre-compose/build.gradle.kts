@@ -3,17 +3,17 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
   id("library-conventions")
   id("android-library-conventions")
+  id("spm-maplibre")
   id(libs.plugins.kotlin.multiplatform.get().pluginId)
-  id(libs.plugins.kotlin.cocoapods.get().pluginId)
   id(libs.plugins.kotlin.composeCompiler.get().pluginId)
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.compose.get().pluginId)
   id(libs.plugins.mavenPublish.get().pluginId)
+  id(libs.plugins.spmForKmp.get().pluginId)
 }
 
 android { namespace = "dev.sargunv.maplibrecompose" }
@@ -52,31 +52,23 @@ kotlin {
     publishLibraryVariants("release", "debug")
   }
 
-  fun KotlinNativeTarget.configureIos() {
-    compilations.getByName("main") {
+  listOf(iosArm64(), iosSimulatorArm64(), iosX64()).forEach {
+    it.compilations.getByName("main") {
       cinterops {
-        val observer by creating {
+        create("observer") {
           defFile(project.file("src/nativeInterop/cinterop/observer.def"))
           packageName("dev.sargunv.maplibrecompose.core.util")
         }
       }
     }
+    it.configureSpmMaplibre(project)
   }
 
-  iosArm64 { configureIos() }
-  iosSimulatorArm64 { configureIos() }
-  iosX64 { configureIos() }
-
   jvm("desktop") { compilerOptions { jvmTarget = project.getJvmTarget() } }
+
   js(IR) { browser() }
 
   applyDefaultHierarchyTemplate()
-
-  cocoapods {
-    noPodspec()
-    ios.deploymentTarget = project.properties["iosDeploymentTarget"]!!.toString()
-    pod("MapLibre", libs.versions.maplibre.ios.get())
-  }
 
   sourceSets {
     val desktopMain by getting

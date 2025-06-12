@@ -7,8 +7,8 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 plugins {
   id("library-conventions")
   id("android-library-conventions")
+  id("spm-maplibre")
   id(libs.plugins.kotlin.multiplatform.get().pluginId)
-  id(libs.plugins.kotlin.cocoapods.get().pluginId)
   id(libs.plugins.kotlin.composeCompiler.get().pluginId)
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.compose.get().pluginId)
@@ -31,19 +31,14 @@ kotlin {
     instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
     publishLibraryVariants("release", "debug")
   }
-  iosArm64()
-  iosSimulatorArm64()
-  iosX64()
+
+  listOf(iosArm64(), iosSimulatorArm64(), iosX64()).forEach { it.configureSpmMaplibre(project) }
+
   jvm("desktop") { compilerOptions { jvmTarget = project.getJvmTarget() } }
+
   js(IR) { browser() }
 
   applyDefaultHierarchyTemplate()
-
-  cocoapods {
-    noPodspec()
-    ios.deploymentTarget = project.properties["iosDeploymentTarget"]!!.toString()
-    pod("MapLibre", libs.versions.maplibre.ios.get())
-  }
 
   sourceSets {
     commonMain.dependencies {
