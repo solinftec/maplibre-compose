@@ -92,6 +92,24 @@ jobs:
           os_version: "${{ matrix.os_version }}"
       - run: "./gradlew iosSimulatorArm64Test -- --device ${{ steps.setup-simulator.outputs.udid }}"
 
+  test-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+        with:
+          fetch-depth: 0
+      - uses: "./.github/actions/setup"
+      - run: "./gradlew jsBrowserTest"
+
+  test-desktop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+        with:
+          fetch-depth: 0
+      - uses: "./.github/actions/setup"
+      - run: "./gradlew desktopTest"
+
   build-docs:
     runs-on: "macos-latest"
     steps:
@@ -125,6 +143,8 @@ jobs:
       - "lint-android"
       - "test-android"
       - "test-ios"
+      - "test-desktop"
+      - "test-js"
       - "build-docs"
       - "build-android-app"
     runs-on: "ubuntu-latest"
