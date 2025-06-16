@@ -1,5 +1,6 @@
-@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalSpmForKmpFeature::class)
 
+import io.github.frankois944.spmForKmp.utils.ExperimentalSpmForKmpFeature
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -7,11 +8,11 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
   id("module-conventions")
+  id("spm-maplibre")
   id(libs.plugins.kotlin.multiplatform.get().pluginId)
   id(libs.plugins.android.application.get().pluginId)
   id(libs.plugins.kotlin.composeCompiler.get().pluginId)
   id(libs.plugins.compose.get().pluginId)
-  id(libs.plugins.kotlin.cocoapods.get().pluginId)
   id(libs.plugins.kotlin.serialization.get().pluginId)
 }
 
@@ -42,28 +43,23 @@ kotlin {
     compilerOptions { jvmTarget = project.getJvmTarget() }
     instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
   }
-  iosArm64()
-  iosSimulatorArm64()
-  iosX64()
+
+  listOf(iosArm64(), iosSimulatorArm64(), iosX64()).forEach {
+    it.binaries.framework {
+      baseName = "DemoApp"
+      isStatic = true
+    }
+    it.configureSpmMaplibre(project)
+  }
+
   jvm("desktop") { compilerOptions { jvmTarget = project.getJvmTarget() } }
+
   js(IR) {
     browser { commonWebpackConfig { outputFileName = "app.js" } }
     binaries.executable()
   }
 
   applyDefaultHierarchyTemplate()
-
-  cocoapods {
-    summary = "MapLibre Compose demo app"
-    homepage = "https://github.com/maplibre/maplibre-compose"
-    ios.deploymentTarget = "15.3" // TODO reduce this to same as library target?
-    podfile = project.file("../iosApp/Podfile")
-    framework {
-      baseName = "DemoApp"
-      version = "0.0.0" // not using real version here because it'll pollute the git diff
-    }
-    pod("MapLibre", libs.versions.maplibre.ios.get())
-  }
 
   compilerOptions {
     allWarningsAsErrors = false // TODO re-enable after Compose 1.8.1
@@ -86,8 +82,15 @@ kotlin {
       implementation(libs.ktor.client.core)
       implementation(libs.ktor.client.contentNegotiation)
       implementation(libs.ktor.serialization.kotlinxJson)
-      implementation(project(":lib:maplibre-compose"))
-      implementation(project(":lib:maplibre-compose-material3"))
+
+      // we exclude the android sdk here so we can select a variant via gradle property
+      // see androidMain below
+      implementation(project(":lib:maplibre-compose")) {
+        exclude(group = "org.maplibre.gl", module = "android-sdk")
+      }
+      implementation(project(":lib:maplibre-compose-material3")) {
+        exclude(group = "org.maplibre.gl", module = "android-sdk")
+      }
     }
 
     val mobileMain by creating {
@@ -101,6 +104,17 @@ kotlin {
         implementation(libs.androidx.activity.compose)
         implementation(libs.kotlinx.coroutines.android)
         implementation(libs.ktor.client.okhttp)
+
+        project.properties["demoAppMaplibreAndroidFlavor"].let { flavor ->
+          when (flavor) {
+            null,
+            "default" -> implementation(libs.maplibre.android)
+            "opengl" -> implementation(libs.maplibre.androidOpenGL)
+            "vulkan" -> implementation(libs.maplibre.androidVulkan)
+            "debug" -> implementation(libs.maplibre.androidDebug)
+            else -> error("Unknown maplibre android flavor: $flavor")
+          }
+        }
       }
     }
 

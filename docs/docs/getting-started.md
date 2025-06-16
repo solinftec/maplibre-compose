@@ -59,14 +59,51 @@ commonMain.dependencies {
 ## Set up iOS
 
 For iOS, you'll additionally need to add the MapLibre framework to your build.
-The easiest way to do this in Kotlin Multiplatform is with the [CocoaPods Gradle
-plugin][kotlin-cocoapods]:
+The easiest way is to select one of these two Gradle plugins:
+
+- JetBrains's [CocoaPods plugin][gradle-cocoapods]
+- Third party [Swift Package Manager plugin][gradle-spm4kmp]
+
+### Cocoapods
+
+!!! info
+
+    CocoaPods will stop receiving new versions of packages in late 2026. See the [official announcement][cocoapods-support].
+
+Follow the [official setup documentation][gradle-cocoapods], and add the below
+to include MapLibre in your build:
 
 ```kotlin title="build.gradle.kts"
 cocoapods {
   pod("MapLibre", "{{ gradle.maplibre_ios_version }}")
 }
 ```
+
+### Swift Package Manager
+
+!!! info
+
+    The [MapLibre Compose repository][repo] uses this plugin for development, so a working example of this configuration
+    can be found there.
+
+Follow the [official setup documentation][gradle-spm4kmp], and add the below to
+include MapLibre in your build:
+
+```kotlin title="build.gradle.kts"
+swiftPackageConfig {
+  create("[cinteropName]") { // (1)!
+    dependency {
+      remotePackageVersion(
+        url = URI("https://github.com/maplibre/maplibre-gl-native-distribution.git"),
+        products = { add("MapLibre") },
+        version = "{{ gradle.maplibre_ios_version }}",
+      )
+    }
+  }
+}
+```
+
+1. This name must match with `cinterops.create` name.
 
 ## Set up Vulkan on Android (Optional)
 
@@ -90,8 +127,7 @@ Vulkan build to your Android dependencies:
 
 ```kotlin title="build.gradle.kts"
 commonMain.dependencies {
-  // Note the .get().toString()! This is needed to work around a limitation in the Kotlin Gradle plugin.
-  implementation(libs.maplibre.compose.get().toString()) {
+  implementation(libs.maplibre.compose.get().toString()) { // (1)!
     exclude(group = "org.maplibre.gl", module = "android-sdk")
   }
 }
@@ -100,6 +136,9 @@ androidMain.dependencies {
   implementation(libs.maplibre.android.vulkan)
 }
 ```
+
+1. The `.get().toString()` is needed to work around a limitation in the Kotlin
+   Gradle plugin.
 
 ## Set up Web (JS)
 
@@ -164,7 +203,7 @@ Wrap your app with `KcefProvider` to download KCEF on first lanch, and
 is running in:
 
 ```kotlin title="Main.kt"
--8 < -"demo-app/src/desktopMain/kotlin/dev/sargunv/maplibrecompose/demoapp/Main.kt:main"
+-8<- "demo-app/src/desktopMain/kotlin/dev/sargunv/maplibrecompose/demoapp/Main.kt:main"
 ```
 
 ## Display your first map
@@ -172,7 +211,7 @@ is running in:
 In your Composable UI, add a map:
 
 ```kotlin title="App.kt"
--8 < -"demo-app/src/commonMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/GettingStarted.kt:app"
+-8<- "demo-app/src/commonMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/GettingStarted.kt:app"
 ```
 
 When you run your app, you should see the default [demotiles] map. To learn how
@@ -186,7 +225,9 @@ to get a detailed map with all the features you'd expect, proceed to
   https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry
 [gh-packages-guide]:
   https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry#using-a-published-package
-[kotlin-cocoapods]: https://kotlinlang.org/docs/native-cocoapods.html
+[gradle-cocoapods]: https://kotlinlang.org/docs/native-cocoapods.html
+[gradle-spm4kmp]: https://frankois944.github.io/spm4Kmp/
+[cocoapods-support]: https://blog.cocoapods.org/CocoaPods-Support-Plans/
 [repo]: https://github.com/maplibre/maplibre-compose
 [demotiles]: https://demotiles.maplibre.org/
 [kcef]: https://github.com/DatL4g/KCEF

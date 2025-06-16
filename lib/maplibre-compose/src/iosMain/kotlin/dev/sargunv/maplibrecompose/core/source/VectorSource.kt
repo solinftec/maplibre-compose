@@ -1,14 +1,14 @@
 package dev.sargunv.maplibrecompose.core.source
 
-import cocoapods.MapLibre.MLNFeatureProtocol
-import cocoapods.MapLibre.MLNTileCoordinateSystemTMS
-import cocoapods.MapLibre.MLNTileCoordinateSystemXYZ
-import cocoapods.MapLibre.MLNTileSourceOptionAttributionHTMLString
-import cocoapods.MapLibre.MLNTileSourceOptionCoordinateBounds
-import cocoapods.MapLibre.MLNTileSourceOptionMaximumZoomLevel
-import cocoapods.MapLibre.MLNTileSourceOptionMinimumZoomLevel
-import cocoapods.MapLibre.MLNTileSourceOptionTileCoordinateSystem
-import cocoapods.MapLibre.MLNVectorTileSource
+import MapLibre.MLNFeatureProtocol
+import MapLibre.MLNTileCoordinateSystemTMS
+import MapLibre.MLNTileCoordinateSystemXYZ
+import MapLibre.MLNTileSourceOptionAttributionHTMLString
+import MapLibre.MLNTileSourceOptionCoordinateBounds
+import MapLibre.MLNTileSourceOptionMaximumZoomLevel
+import MapLibre.MLNTileSourceOptionMinimumZoomLevel
+import MapLibre.MLNTileSourceOptionTileCoordinateSystem
+import MapLibre.MLNVectorTileSource
 import dev.sargunv.maplibrecompose.core.util.toFeature
 import dev.sargunv.maplibrecompose.core.util.toMLNCoordinateBounds
 import dev.sargunv.maplibrecompose.core.util.toNSPredicate
@@ -36,17 +36,21 @@ public actual class VectorSource : Source {
         identifier = id,
         tileURLTemplates = tiles,
         options =
-          mapOf(
-            MLNTileSourceOptionMinimumZoomLevel to options.minZoom.toDouble(),
-            MLNTileSourceOptionMaximumZoomLevel to options.maxZoom.toDouble(),
-            MLNTileSourceOptionTileCoordinateSystem to
+          buildMap {
+            put(MLNTileSourceOptionMinimumZoomLevel, options.minZoom.toDouble())
+            put(MLNTileSourceOptionMaximumZoomLevel, options.maxZoom.toDouble())
+            put(
+              MLNTileSourceOptionTileCoordinateSystem,
               when (options.tileCoordinateSystem) {
                 TileCoordinateSystem.XYZ -> MLNTileCoordinateSystemXYZ
                 TileCoordinateSystem.TMS -> MLNTileCoordinateSystemTMS
               },
-            MLNTileSourceOptionCoordinateBounds to options.boundingBox?.toMLNCoordinateBounds(),
-            MLNTileSourceOptionAttributionHTMLString to options.attributionHtml,
-          ),
+            )
+            if (options.boundingBox != null)
+              put(MLNTileSourceOptionCoordinateBounds, options.boundingBox.toMLNCoordinateBounds())
+            if (options.attributionHtml != null)
+              put(MLNTileSourceOptionAttributionHTMLString, options.attributionHtml)
+          },
       )
   }
 

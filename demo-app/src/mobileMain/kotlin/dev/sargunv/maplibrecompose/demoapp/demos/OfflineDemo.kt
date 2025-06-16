@@ -3,7 +3,10 @@ package dev.sargunv.maplibrecompose.demoapp.demos
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -43,7 +46,7 @@ import dev.sargunv.maplibrecompose.core.CameraPosition
 import dev.sargunv.maplibrecompose.demoapp.DEFAULT_STYLE
 import dev.sargunv.maplibrecompose.demoapp.Demo
 import dev.sargunv.maplibrecompose.demoapp.DemoMapControls
-import dev.sargunv.maplibrecompose.demoapp.DemoOrnamentSettings
+import dev.sargunv.maplibrecompose.demoapp.DemoMapOptions
 import dev.sargunv.maplibrecompose.demoapp.DemoScaffold
 import dev.sargunv.maplibrecompose.demoapp.MINIMAL_STYLE
 import dev.sargunv.maplibrecompose.demoapp.generated.Res
@@ -84,27 +87,28 @@ object OfflineDemo : Demo {
         scaffoldState = scaffoldState,
         sheetPeekHeight = sheetPeekHeight,
         sheetContent = { OfflinePackControls(offlineManager, cameraState) },
-      ) {
-        MaplibreMap(
-          styleUri = MINIMAL_STYLE,
-          cameraState = cameraState,
-          styleState = styleState,
-          ornamentSettings =
-            DemoOrnamentSettings(padding = PaddingValues(bottom = sheetPeekHeight)),
-          onMapClick = { _, _ ->
-            keyboard?.hide()
-            ClickResult.Pass
-          },
-        ) {
-          OfflinePacksLayers(offlineManager)
+      ) { padding ->
+        Box(modifier = Modifier.fillMaxSize()) {
+          MaplibreMap(
+            styleUri = MINIMAL_STYLE,
+            cameraState = cameraState,
+            styleState = styleState,
+            options = DemoMapOptions(PaddingValues(bottom = sheetPeekHeight)),
+            onMapClick = { _, _ ->
+              keyboard?.hide()
+              ClickResult.Pass
+            },
+          ) {
+            OfflinePacksLayers(offlineManager)
+          }
+          DemoMapControls(
+            cameraState = cameraState,
+            styleState = styleState,
+            modifier =
+              Modifier.padding(bottom = sheetPeekHeight)
+                .consumeWindowInsets(PaddingValues(bottom = sheetPeekHeight)),
+          )
         }
-
-        DemoMapControls(
-          cameraState = cameraState,
-          styleState = styleState,
-          padding =
-            PaddingValues(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 8.dp + sheetPeekHeight),
-        )
       }
     }
   }

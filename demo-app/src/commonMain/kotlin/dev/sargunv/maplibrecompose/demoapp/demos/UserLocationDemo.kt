@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
@@ -33,10 +32,11 @@ import dev.sargunv.maplibrecompose.compose.rememberCameraState
 import dev.sargunv.maplibrecompose.compose.rememberStyleState
 import dev.sargunv.maplibrecompose.compose.source.rememberGeoJsonSource
 import dev.sargunv.maplibrecompose.core.CameraMoveReason
+import dev.sargunv.maplibrecompose.core.source.GeoJsonData
 import dev.sargunv.maplibrecompose.demoapp.DEFAULT_STYLE
 import dev.sargunv.maplibrecompose.demoapp.Demo
 import dev.sargunv.maplibrecompose.demoapp.DemoMapControls
-import dev.sargunv.maplibrecompose.demoapp.DemoOrnamentSettings
+import dev.sargunv.maplibrecompose.demoapp.DemoMapOptions
 import dev.sargunv.maplibrecompose.demoapp.DemoScaffold
 import dev.sargunv.maplibrecompose.demoapp.generated.Res
 import dev.sargunv.maplibrecompose.demoapp.generated.location_searching
@@ -107,7 +107,7 @@ object UserLocationDemo : Demo {
             styleUri = DEFAULT_STYLE,
             cameraState = cameraState,
             styleState = styleState,
-            ornamentSettings = DemoOrnamentSettings(),
+            options = DemoMapOptions(),
           ) {
             location?.let { LocationPuck(it) }
           }
@@ -192,7 +192,8 @@ private fun rememberLocationStatusState(): State<TrackingStatus> {
 
 @Composable
 private fun LocationPuck(location: Location) {
-  val locationSource = rememberGeoJsonSource(id = "location", data = Point(location.position))
+  val locationSource =
+    rememberGeoJsonSource(id = "location", data = GeoJsonData.Features(Point(location.position)))
   LocationPuckLayers(idPrefix = "user-location", locationSource = locationSource)
 }
 

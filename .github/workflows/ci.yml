@@ -27,17 +27,6 @@ jobs:
           cleanup: false
       - run: "git diff --exit-code"
 
-  check-podspec:
-    runs-on: "macos-latest"
-    steps:
-      - uses: "actions/checkout@v4"
-        with:
-          fetch-depth: 0
-      - uses: "./.github/actions/setup"
-      - run: "./gradlew podInstall"
-      - run: |
-          git diff -I '^COCOAPODS: [0-9]+\.[0-9]+\.[0-9]+$' --exit-code
-
   lint-android:
     runs-on: "ubuntu-latest"
     steps:
@@ -76,7 +65,7 @@ jobs:
           - runner: "macos-15"
             os_version: "^18"
           # the oldest on GH Actions (supports back to ~iPhone XS from 2018)
-          - runner: "macos-15"
+          - runner: "macos-14"
             os_version: "^17"
     name: "test-ios (${{ matrix.os_version }})"
     runs-on: "${{ matrix.runner }}"
@@ -91,6 +80,24 @@ jobs:
           os: "iOS"
           os_version: "${{ matrix.os_version }}"
       - run: "./gradlew iosSimulatorArm64Test -- --device ${{ steps.setup-simulator.outputs.udid }}"
+
+  test-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+        with:
+          fetch-depth: 0
+      - uses: "./.github/actions/setup"
+      - run: "./gradlew jsBrowserTest"
+
+  test-desktop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+        with:
+          fetch-depth: 0
+      - uses: "./.github/actions/setup"
+      - run: "./gradlew desktopTest"
 
   build-docs:
     runs-on: "macos-latest"
@@ -121,10 +128,11 @@ jobs:
   all-good:
     needs:
       - "check-format"
-      - "check-podspec"
       - "lint-android"
       - "test-android"
       - "test-ios"
+      - "test-desktop"
+      - "test-js"
       - "build-docs"
       - "build-android-app"
     runs-on: "ubuntu-latest"

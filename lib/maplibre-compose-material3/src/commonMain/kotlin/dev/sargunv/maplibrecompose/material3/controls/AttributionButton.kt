@@ -8,11 +8,13 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.expandIn
 import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,21 +38,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.text.LinkAnnotation.Url
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withLink
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import dev.sargunv.maplibrecompose.compose.CameraState
 import dev.sargunv.maplibrecompose.compose.StyleState
 import dev.sargunv.maplibrecompose.core.CameraMoveReason
-import dev.sargunv.maplibrecompose.core.source.AttributionLink
 import dev.sargunv.maplibrecompose.material3.generated.Res
 import dev.sargunv.maplibrecompose.material3.generated.attribution
 import dev.sargunv.maplibrecompose.material3.generated.info
 import dev.sargunv.maplibrecompose.material3.util.horizontal
+import dev.sargunv.maplibrecompose.material3.util.htmlToAnnotatedString
 import dev.sargunv.maplibrecompose.material3.util.reverse
 import dev.sargunv.maplibrecompose.material3.util.toArrangement
 import dev.sargunv.maplibrecompose.material3.util.vertical
@@ -67,7 +68,7 @@ import org.jetbrains.compose.resources.vectorResource
  * @param toggleButton Composable that defines the button used to toggle the attribution display.
  *   Takes an onClick function parameter that should be called to switch states.
  * @param expandedContent Composable that defines how the attribution content is displayed when
- *   expanded. Takes a list of AttributionLink as parameter.
+ *   expanded. Takes a list of HTML strings as a parameter.
  * @param expandedStyle Style of the attribution [Surface] when it is expanded
  * @param collapsedStyle Style of the attribution [Surface] when it is collapsed
  * @param expand Function that returns an [EnterTransition] for the expanding animation based on the
@@ -82,7 +83,7 @@ public fun ExpandingAttributionButton(
   modifier: Modifier = Modifier,
   contentAlignment: Alignment = Alignment.BottomEnd,
   toggleButton: @Composable (onClick: () -> Unit) -> Unit = AttributionButtonDefaults.button,
-  expandedContent: @Composable (List<AttributionLink>) -> Unit = AttributionButtonDefaults.content,
+  expandedContent: @Composable (List<String>) -> Unit = AttributionButtonDefaults.content,
   expandedStyle: AttributionButtonStyle = AttributionButtonDefaults.expandedStyle(),
   collapsedStyle: AttributionButtonStyle = AttributionButtonDefaults.collapsedStyle(),
   expand: (Alignment) -> EnterTransition = AttributionButtonDefaults.expand,
@@ -120,7 +121,7 @@ public fun ExpandingAttributionButton(
  * @param toggleButton Composable that defines the button used to toggle the attribution display.
  *   Takes an onClick function parameter that should be called to switch states.
  * @param expandedContent Composable that defines how the attribution content is displayed when
- *   expanded. Takes a list of AttributionLink as parameter.
+ *   expanded. Takes a list of HTML strings as a parameter.
  * @param expandedStyle Style of the attribution [Surface] when it is expanded
  * @param collapsedStyle Style of the attribution [Surface] when it is collapsed
  * @param expand Function that returns an [EnterTransition] for the expanding animation based on the
@@ -136,14 +137,16 @@ public fun ExpandingAttributionButton(
   modifier: Modifier = Modifier,
   contentAlignment: Alignment = Alignment.BottomEnd,
   toggleButton: @Composable (onClick: () -> Unit) -> Unit = AttributionButtonDefaults.button,
-  expandedContent: @Composable (List<AttributionLink>) -> Unit = AttributionButtonDefaults.content,
+  expandedContent: @Composable (List<String>) -> Unit = AttributionButtonDefaults.content,
   expandedStyle: AttributionButtonStyle = AttributionButtonDefaults.expandedStyle(),
   collapsedStyle: AttributionButtonStyle = AttributionButtonDefaults.collapsedStyle(),
   expand: (Alignment) -> EnterTransition = AttributionButtonDefaults.expand,
   collapse: (Alignment) -> ExitTransition = AttributionButtonDefaults.collapse,
 ) {
   val attributions by remember {
-    derivedStateOf { styleState.sources.values.flatMap { it.attributionLinks }.distinct() }
+    derivedStateOf {
+      styleState.sources.values.map { it.attributionHtml }.filter { it.isNotEmpty() }.distinct()
+    }
   }
   if (attributions.isEmpty()) return
 
@@ -193,7 +196,9 @@ public fun ExpandingAttributionButton(
           exit = collapse(animationAlignment),
         ) {
           Box(Modifier.padding(start = 0.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)) {
-            expandedContent(attributions)
+            CompositionLocalProvider(LocalLayoutDirection provides layoutDir) {
+              expandedContent(attributions)
+            }
           }
         }
       }
@@ -201,20 +206,30 @@ public fun ExpandingAttributionButton(
   }
 }
 
+/**
+ * A composable function that displays a collection of attribution links as a flow layout.
+ *
+ * @param attributions A list of HTML strings representing the attributions that need to be
+ *   displayed as links. See: [dev.sargunv.maplibrecompose.core.source.Source.attributionHtml].
+ * @param linkStyles Optional style for hyperlinks. Default is primary color and underlined.
+ * @param spacing The horizontal spacing between items in the flow layout.
+ * @param breakWithinAttribution Whether the text within an individual attribution should break
+ *   lines or scroll horizontally. Line breaks may still be inserted between attributions even when
+ *   this is `true`.
+ */
 @Composable
 public fun AttributionLinks(
-  attributions: List<AttributionLink>,
-  linkStyles: TextLinkStyles? = null,
+  attributions: List<String>,
+  linkStyles: TextLinkStyles? = AttributionButtonDefaults.linkStyles(),
   spacing: Dp = 8.dp,
+  breakWithinAttribution: Boolean = false,
   modifier: Modifier = Modifier,
 ) {
+  val texts = remember(attributions) { attributions.map { htmlToAnnotatedString(it, linkStyles) } }
   FlowRow(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(spacing)) {
-    attributions.forEachIndexed { i, attr ->
-      val attributionString = buildAnnotatedString {
-        val link = Url(url = attr.url, styles = linkStyles)
-        withLink(link) { this.append(attr.title) }
-      }
-      Text(attributionString)
+    texts.forEach {
+      if (breakWithinAttribution) Text(it)
+      else Text(it, maxLines = 1, modifier = Modifier.horizontalScroll(rememberScrollState()))
     }
   }
 }
@@ -234,7 +249,7 @@ public object AttributionButtonDefaults {
     }
   }
 
-  public val content: @Composable (List<AttributionLink>) -> Unit = {
+  public val content: @Composable (List<String>) -> Unit = {
     ProvideTextStyle(MaterialTheme.typography.bodyMedium) { AttributionLinks(it) }
   }
 
@@ -250,6 +265,16 @@ public object AttributionButtonDefaults {
     AttributionButtonStyle(
       containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f),
       contentColor = contentColorFor(MaterialTheme.colorScheme.surface).copy(alpha = 0f),
+    )
+
+  @Composable
+  public fun linkStyles(): TextLinkStyles =
+    TextLinkStyles(
+      style =
+        SpanStyle(
+          color = MaterialTheme.colorScheme.primary,
+          textDecoration = TextDecoration.Underline,
+        )
     )
 
   public val expand: (Alignment) -> EnterTransition = { expandIn(expandFrom = it) }

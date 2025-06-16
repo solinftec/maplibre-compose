@@ -1,5 +1,40 @@
 package dev.sargunv.maplibrecompose.core
 
+import MapLibre.MLNAltitudeForZoomLevel
+import MapLibre.MLNCameraChangeReason
+import MapLibre.MLNCameraChangeReasonGestureOneFingerZoom
+import MapLibre.MLNCameraChangeReasonGesturePan
+import MapLibre.MLNCameraChangeReasonGesturePinch
+import MapLibre.MLNCameraChangeReasonGestureRotate
+import MapLibre.MLNCameraChangeReasonGestureTilt
+import MapLibre.MLNCameraChangeReasonGestureZoomIn
+import MapLibre.MLNCameraChangeReasonGestureZoomOut
+import MapLibre.MLNCameraChangeReasonProgrammatic
+import MapLibre.MLNFeatureProtocol
+import MapLibre.MLNLoggingBlockHandler
+import MapLibre.MLNLoggingConfiguration
+import MapLibre.MLNLoggingLevel
+import MapLibre.MLNLoggingLevelDebug
+import MapLibre.MLNLoggingLevelError
+import MapLibre.MLNLoggingLevelFault
+import MapLibre.MLNLoggingLevelInfo
+import MapLibre.MLNLoggingLevelVerbose
+import MapLibre.MLNLoggingLevelWarning
+import MapLibre.MLNMapCamera
+import MapLibre.MLNMapDebugCollisionBoxesMask
+import MapLibre.MLNMapDebugOverdrawVisualizationMask
+import MapLibre.MLNMapDebugTileBoundariesMask
+import MapLibre.MLNMapDebugTileInfoMask
+import MapLibre.MLNMapDebugTimestampsMask
+import MapLibre.MLNMapView
+import MapLibre.MLNMapViewDelegateProtocol
+import MapLibre.MLNOrnamentPosition
+import MapLibre.MLNOrnamentPositionBottomLeft
+import MapLibre.MLNOrnamentPositionBottomRight
+import MapLibre.MLNOrnamentPositionTopLeft
+import MapLibre.MLNOrnamentPositionTopRight
+import MapLibre.MLNStyle
+import MapLibre.allowsTilting
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.DpOffset
@@ -7,40 +42,7 @@ import androidx.compose.ui.unit.DpRect
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
-import cocoapods.MapLibre.MLNAltitudeForZoomLevel
-import cocoapods.MapLibre.MLNCameraChangeReason
-import cocoapods.MapLibre.MLNCameraChangeReasonGestureOneFingerZoom
-import cocoapods.MapLibre.MLNCameraChangeReasonGesturePan
-import cocoapods.MapLibre.MLNCameraChangeReasonGesturePinch
-import cocoapods.MapLibre.MLNCameraChangeReasonGestureRotate
-import cocoapods.MapLibre.MLNCameraChangeReasonGestureTilt
-import cocoapods.MapLibre.MLNCameraChangeReasonGestureZoomIn
-import cocoapods.MapLibre.MLNCameraChangeReasonGestureZoomOut
-import cocoapods.MapLibre.MLNCameraChangeReasonProgrammatic
-import cocoapods.MapLibre.MLNFeatureProtocol
-import cocoapods.MapLibre.MLNLoggingBlockHandler
-import cocoapods.MapLibre.MLNLoggingConfiguration
-import cocoapods.MapLibre.MLNLoggingLevel
-import cocoapods.MapLibre.MLNLoggingLevelDebug
-import cocoapods.MapLibre.MLNLoggingLevelError
-import cocoapods.MapLibre.MLNLoggingLevelFault
-import cocoapods.MapLibre.MLNLoggingLevelInfo
-import cocoapods.MapLibre.MLNLoggingLevelVerbose
-import cocoapods.MapLibre.MLNLoggingLevelWarning
-import cocoapods.MapLibre.MLNMapCamera
-import cocoapods.MapLibre.MLNMapDebugCollisionBoxesMask
-import cocoapods.MapLibre.MLNMapDebugTileBoundariesMask
-import cocoapods.MapLibre.MLNMapDebugTileInfoMask
-import cocoapods.MapLibre.MLNMapDebugTimestampsMask
-import cocoapods.MapLibre.MLNMapView
-import cocoapods.MapLibre.MLNMapViewDelegateProtocol
-import cocoapods.MapLibre.MLNOrnamentPosition
-import cocoapods.MapLibre.MLNOrnamentPositionBottomLeft
-import cocoapods.MapLibre.MLNOrnamentPositionBottomRight
-import cocoapods.MapLibre.MLNOrnamentPositionTopLeft
-import cocoapods.MapLibre.MLNOrnamentPositionTopRight
-import cocoapods.MapLibre.MLNStyle
-import cocoapods.MapLibre.allowsTilting
+import dev.sargunv.maplibrecompose.core.util.getSystemRefreshRate
 import dev.sargunv.maplibrecompose.core.util.toBoundingBox
 import dev.sargunv.maplibrecompose.core.util.toCGPoint
 import dev.sargunv.maplibrecompose.core.util.toCGRect
@@ -249,16 +251,6 @@ internal class IosMap(
     }
   }
 
-  override fun setDebugEnabled(enabled: Boolean) {
-    mapView.debugMask =
-      if (enabled)
-        MLNMapDebugTileBoundariesMask or
-          MLNMapDebugTileInfoMask or
-          MLNMapDebugTimestampsMask or
-          MLNMapDebugCollisionBoxesMask
-      else 0uL
-  }
-
   override fun setMinPitch(minPitch: Double) {
     mapView.minimumPitch = minPitch
   }
@@ -290,15 +282,27 @@ internal class IosMap(
     }
   }
 
-  override fun setMaximumFps(maximumFps: Int) {
-    mapView.preferredFramesPerSecond = maximumFps.toLong()
+  override fun setRenderSettings(value: RenderOptions) {
+    mapView.preferredFramesPerSecond = value.maximumFps?.toLong() ?: getSystemRefreshRate(mapView)
+
+    var debugMask = 0uL
+    with(value.debugSettings) {
+      if (isTileBoundariesEnabled) debugMask = debugMask or MLNMapDebugTileBoundariesMask
+      if (isTileInfoEnabled) debugMask = debugMask or MLNMapDebugTileInfoMask
+      if (isTimestampsEnabled) debugMask = debugMask or MLNMapDebugTimestampsMask
+      if (isCollisionBoxesEnabled) debugMask = debugMask or MLNMapDebugCollisionBoxesMask
+      if (isOverdrawVisualizationEnabled)
+        debugMask = debugMask or MLNMapDebugOverdrawVisualizationMask
+    }
+    mapView.debugMask = debugMask
   }
 
-  override fun setGestureSettings(value: GestureSettings) {
-    mapView.rotateEnabled = value.isRotateGesturesEnabled
-    mapView.scrollEnabled = value.isScrollGesturesEnabled
-    mapView.allowsTilting = value.isTiltGesturesEnabled
-    mapView.zoomEnabled = value.isZoomGesturesEnabled
+  override fun setGestureSettings(value: GestureOptions) {
+    mapView.rotateEnabled = value.isRotateEnabled
+    mapView.scrollEnabled = value.isScrollEnabled
+    mapView.allowsTilting = value.isTiltEnabled
+    mapView.zoomEnabled = value.isZoomEnabled
+    mapView.hapticFeedbackEnabled = value.isHapticFeedbackEnabled
   }
 
   private fun calculateMargins(
@@ -328,7 +332,7 @@ internal class IosMap(
             .coerceAtLeast(0.0) + 8.0,
         )
 
-      MLNOrnamentPositionBottomLeft ->
+      MLNOrnamentPositionBottomLeft -> {
         CGPointMake(
           (uiPadding.calculateLeftPadding(layoutDir).value -
               insetPadding.calculateLeftPadding(layoutDir).value)
@@ -338,6 +342,7 @@ internal class IosMap(
             .toDouble()
             .coerceAtLeast(0.0) + 8.0,
         )
+      }
 
       MLNOrnamentPositionBottomRight ->
         CGPointMake(
@@ -354,7 +359,7 @@ internal class IosMap(
     }
   }
 
-  override fun setOrnamentSettings(value: OrnamentSettings) {
+  override fun setOrnamentSettings(value: OrnamentOptions) {
     mapView.logoView.hidden = !value.isLogoEnabled
     mapView.logoViewPosition = value.logoAlignment.toMLNOrnamentPosition(layoutDir)
     mapView.logoViewMargins = calculateMargins(mapView.logoViewPosition, value.padding)

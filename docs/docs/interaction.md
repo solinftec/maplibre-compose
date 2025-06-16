@@ -1,17 +1,23 @@
 # Interacting with the map
 
-## Gestures
+## Gestures and ornaments
 
-The map supports pan, zoom, rotate, and tilt gestures. Each of these can be
-enabled or disabled individually:
+Configuraton options for interaction vary significantly by platform. We provide
+some presets in common code, but if you're working with multiple platforms and
+you want to configure these in detail, you'll need to use expect/actual code.
 
-```kotlin
--8<- "demo-app/src/commonMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:gesture-settings"
+```kotlin title="map.common.kt"
+-8<- "demo-app/src/androidMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:common-gesture-ornament"
 ```
 
-1. Includes pinch, double-tap, and double-tap-and-drag.
+### Gestures
 
-## Overlays
+The map supports pan, zoom, rotate, and tilt gestures. Each of these can be
+enabled or disabled individually.
+
+```kotlin title="map.android.kt"
+-8<- "demo-app/src/androidMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:gesture-settings"
+```
 
 ### Ornaments
 
@@ -21,12 +27,13 @@ enabled or disabled individually:
     section](./material3.md) for more information.
 
 Ornaments are built in UI elements that are displayed on the map, such as a
-compass or attribution button. They're implemented by the underlying MapLibre
-SDK, so may render differently on different platforms. You can control the
-visibility and position of these ornaments:
+compass or attribution button. You can control the visibility and position of
+these ornaments. They're implemented by the underlying MapLibre SDK, so may
+render differently on different platforms and the available options vary by
+platform.
 
-```kotlin
--8<- "demo-app/src/commonMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:ornament-settings"
+```kotlin title="map.android.kt"
+-8<- "demo-app/src/androidMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:ornament-settings"
 ```
 
 1. Insets the ornaments; useful if you have an edge-to-edge map or some UI
@@ -45,7 +52,7 @@ If you want to read or mutate the camera state, use `rememberCameraState()`. You
 can use this to set the start position of the map:
 
 ```kotlin
--8<- "demo-app/src/commonMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:camera"
+-8<- "demo-app/src/androidMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:camera"
 ```
 
 You can now use the `camera` reference to move the camera. For example,
@@ -53,7 +60,7 @@ You can now use the `camera` reference to move the camera. For example,
 position:
 
 ```kotlin
--8<- "demo-app/src/commonMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:camera-animate"
+-8<- "demo-app/src/androidMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:camera-animate"
 ```
 
 ## Click listeners
@@ -62,7 +69,7 @@ You can listen for clicks on the map. Given a click location, you can use camera
 state to query which features are present at that location:
 
 ```kotlin
--8<- "demo-app/src/commonMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:click-listeners"
+-8<- "demo-app/src/androidMain/kotlin/dev/sargunv/maplibrecompose/demoapp/docs/Interaction.kt:click-listeners"
 ```
 
 1. Consumes the click event, preventing it from propagating to the individual
