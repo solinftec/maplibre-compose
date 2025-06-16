@@ -1,10 +1,10 @@
 package org.maplibre.compose.core.util
 
+import MapLibre.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asSkiaBitmap
 import androidx.compose.ui.unit.*
-import cocoapods.MapLibre.*
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.GeoJson

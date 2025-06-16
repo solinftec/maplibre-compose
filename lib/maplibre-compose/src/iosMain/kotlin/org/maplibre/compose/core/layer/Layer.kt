@@ -1,6 +1,6 @@
 package org.maplibre.compose.core.layer
 
-import cocoapods.MapLibre.MLNStyleLayer
+import MapLibre.MLNStyleLayer
 
 internal actual sealed class Layer {
   abstract val impl: MLNStyleLayer

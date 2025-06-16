@@ -38,7 +38,7 @@ object StyleSwitcherDemo : Demo {
               styleUri = ALL_STYLES[selectedIndex].uri,
               cameraState = cameraState,
               styleState = styleState,
-              ornamentSettings = DemoOrnamentSettings(),
+              options = DemoMapOptions(),
             )
             DemoMapControls(cameraState, styleState)
           }

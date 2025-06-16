@@ -90,7 +90,7 @@ object UserLocationDemo : Demo {
             styleUri = DEFAULT_STYLE,
             cameraState = cameraState,
             styleState = styleState,
-            ornamentSettings = DemoOrnamentSettings(),
+            options = DemoMapOptions(),
           ) {
             location?.let { LocationPuck(it) }
           }

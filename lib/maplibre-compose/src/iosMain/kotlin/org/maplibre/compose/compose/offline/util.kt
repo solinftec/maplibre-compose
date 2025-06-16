@@ -1,6 +1,6 @@
 package org.maplibre.compose.compose.offline
 
-import cocoapods.MapLibre.*
+import MapLibre.*
 import io.github.dellisd.spatialk.geojson.Geometry
 import org.maplibre.compose.core.util.toBoundingBox
 import org.maplibre.compose.core.util.toByteArray

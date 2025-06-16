@@ -1,7 +1,7 @@
 package org.maplibre.compose.compose.offline
 
+import MapLibre.MLNOfflinePack
 import androidx.compose.runtime.mutableStateOf
-import cocoapods.MapLibre.MLNOfflinePack
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine

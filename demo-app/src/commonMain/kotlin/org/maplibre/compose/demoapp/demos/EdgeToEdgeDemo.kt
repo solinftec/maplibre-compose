@@ -1,6 +1,9 @@
 package org.maplibre.compose.demoapp.demos
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,14 +27,18 @@ object EdgeToEdgeDemo : Demo {
     val styleState = rememberStyleState()
 
     Scaffold(topBar = { DemoAppBar(this, navigateUp, alpha = 0.5f) }) { padding ->
-      Box(modifier = Modifier.consumeWindowInsets(WindowInsets.safeContent).fillMaxSize()) {
+      Box(modifier = Modifier.fillMaxSize()) {
         MaplibreMap(
           styleUri = DEFAULT_STYLE,
           cameraState = cameraState,
           styleState = styleState,
-          ornamentSettings = DemoOrnamentSettings(padding),
+          options = DemoMapOptions(padding),
         )
-        DemoMapControls(cameraState, styleState, modifier = Modifier.padding(padding))
+        DemoMapControls(
+          cameraState,
+          styleState,
+          modifier = Modifier.padding(padding).consumeWindowInsets(padding),
+        )
       }
     }
   }

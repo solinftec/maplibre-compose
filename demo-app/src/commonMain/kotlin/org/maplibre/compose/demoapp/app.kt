@@ -17,7 +17,8 @@ import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.compose.compose.CameraState
 import org.maplibre.compose.compose.StyleState
-import org.maplibre.compose.core.OrnamentSettings
+import org.maplibre.compose.core.MapOptions
+import org.maplibre.compose.core.OrnamentOptions
 import org.maplibre.compose.demoapp.demos.*
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.demoapp.generated.arrow_back
@@ -136,11 +137,10 @@ fun DemoMapControls(
   onCompassClick: () -> Unit = {},
   scaleBarMeasures: ScaleBarMeasures =
     _root_ide_package_.org.maplibre.compose.material3.util.defaultScaleBarMeasures(),
-  padding: PaddingValues = PaddingValues(8.dp),
   extraButtons: @Composable ColumnScope.() -> Unit = {},
 ) {
   if (Platform.supportsBlending) {
-    Box(modifier = modifier.fillMaxSize().padding(padding)) {
+    Box(modifier = modifier.fillMaxSize().padding(8.dp)) {
       DisappearingScaleBar(
         metersPerDp = cameraState.metersPerDpAtTarget,
         zoom = cameraState.position.zoom,
@@ -164,11 +164,10 @@ fun DemoMapControls(
   }
 }
 
-fun DemoOrnamentSettings(padding: PaddingValues = PaddingValues(0.dp)) =
-  if (Platform.supportsBlending)
-    OrnamentSettings.AllDisabled.copy(
-      padding = padding,
-      isLogoEnabled = true,
-      logoAlignment = Alignment.BottomStart,
-    )
-  else OrnamentSettings.AllEnabled.copy(padding = padding)
+fun DemoMapOptions(padding: PaddingValues = PaddingValues(0.dp)): MapOptions {
+  return if (Platform.supportsBlending) {
+    MapOptions(ornamentOptions = OrnamentOptions.OnlyLogo.withPadding(padding))
+  } else {
+    MapOptions(ornamentOptions = OrnamentOptions.AllEnabled.withPadding(padding))
+  }
+}

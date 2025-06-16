@@ -1,6 +1,6 @@
 package org.maplibre.compose.core.layer
 
-import cocoapods.MapLibre.MLNHeatmapStyleLayer
+import MapLibre.MLNHeatmapStyleLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toNSExpression
 import org.maplibre.compose.core.util.toNSPredicate

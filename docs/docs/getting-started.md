@@ -81,6 +81,11 @@ cocoapods {
 
 ### Swift Package Manager
 
+!!! info
+
+    The [MapLibre Compose repository][repo] uses this plugin for development, so a working example of this configuration
+    can be found there.
+
 Follow the [official setup documentation][gradle-spm4kmp], and add the below to
 include MapLibre in your build:
 

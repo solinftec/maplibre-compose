@@ -57,7 +57,7 @@ object ClusteredPointsDemo : Demo {
           styleUri = DEFAULT_STYLE,
           cameraState = cameraState,
           styleState = styleState,
-          ornamentSettings = DemoOrnamentSettings(),
+          options = DemoMapOptions(),
         ) {
           val gbfsData by rememberGbfsFeatureState(GBFS_FILE, isLoading)
 

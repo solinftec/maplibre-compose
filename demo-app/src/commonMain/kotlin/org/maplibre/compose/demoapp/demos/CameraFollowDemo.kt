@@ -61,7 +61,7 @@ object CameraFollowDemo : Demo {
             styleUri = DEFAULT_STYLE,
             cameraState = cameraState,
             styleState = styleState,
-            ornamentSettings = DemoOrnamentSettings(),
+            options = DemoMapOptions(),
           ) {
             if (Platform.supportsLayers) {
               LocationPuckLayers(

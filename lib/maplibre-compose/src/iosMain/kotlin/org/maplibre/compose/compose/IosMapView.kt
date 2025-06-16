@@ -1,9 +1,7 @@
 package org.maplibre.compose.compose
 
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeDrawing
+import MapLibre.MLNMapView
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -13,11 +11,11 @@ import androidx.compose.ui.viewinterop.UIKitInteropInteractionMode
 import androidx.compose.ui.viewinterop.UIKitInteropProperties
 import androidx.compose.ui.viewinterop.UIKitView
 import co.touchlab.kermit.Logger
-import cocoapods.MapLibre.MLNMapView
 import org.maplibre.compose.core.IosMap
 import org.maplibre.compose.core.MapOptions
 import org.maplibre.compose.core.MaplibreMap
 import org.maplibre.compose.core.SafeStyle
+import org.maplibre.compose.core.util.afterConsuming
 import platform.CoreGraphics.CGRectMake
 import platform.CoreGraphics.CGSizeMake
 import platform.Foundation.NSURL
@@ -31,7 +29,7 @@ internal actual fun ComposableMapView(
   onReset: () -> Unit,
   logger: Logger?,
   callbacks: MaplibreMap.Callbacks,
-  platformOptions: MapOptions,
+  options: MapOptions,
 ) {
   IosMapView(
     modifier = modifier,
@@ -53,11 +51,13 @@ internal fun IosMapView(
   logger: Logger?,
   callbacks: MaplibreMap.Callbacks,
 ) {
-  MeasuredBox(modifier = modifier.fillMaxSize()) { x, y, width, height ->
+  var consumedInsets by remember { mutableStateOf(WindowInsets(0, 0, 0, 0)) }
+  val insetPadding = WindowInsets.safeDrawing.afterConsuming(consumedInsets).asPaddingValues()
+  MeasuredBox(
+    modifier = modifier.fillMaxSize().onConsumedWindowInsetsChanged { consumedInsets = it }
+  ) { x, y, width, height ->
     val layoutDir = LocalLayoutDirection.current
     val density = LocalDensity.current
-    val insetPadding = WindowInsets.safeDrawing.asPaddingValues()
-
     val currentOnReset by rememberUpdatedState(onReset)
     var currentMap by remember { mutableStateOf<IosMap?>(null) }
 

@@ -13,7 +13,7 @@ import kotlin.math.roundToInt
 import org.maplibre.compose.compose.MaplibreMap
 import org.maplibre.compose.compose.rememberCameraState
 import org.maplibre.compose.compose.rememberStyleState
-import org.maplibre.compose.core.util.PlatformUtils
+import org.maplibre.compose.core.RenderOptions
 import org.maplibre.compose.demoapp.*
 
 object FrameRateDemo : Demo {
@@ -24,8 +24,7 @@ object FrameRateDemo : Demo {
   override fun Component(navigateUp: () -> Unit) {
     DemoScaffold(this, navigateUp) {
       Column {
-        val systemRefreshRate = PlatformUtils.getSystemRefreshRate().roundToInt()
-        var maximumFps by remember { mutableStateOf(systemRefreshRate) }
+        var maximumFps by remember { mutableStateOf(120) }
         val fpsState = remember { FrameRateState() }
 
         val cameraState = rememberCameraState()
@@ -34,26 +33,33 @@ object FrameRateDemo : Demo {
         Box(modifier = Modifier.weight(1f)) {
           MaplibreMap(
             styleUri = DEFAULT_STYLE,
-            maximumFps = maximumFps,
             onFrame = fpsState::recordFps,
             cameraState = cameraState,
             styleState = styleState,
-            ornamentSettings = DemoOrnamentSettings(),
+            options =
+              DemoMapOptions().copy(renderOptions = RenderOptions.Standard.withMaxFps(maximumFps)),
           )
           DemoMapControls(cameraState, styleState)
         }
 
         Column(modifier = Modifier.padding(16.dp)) {
-          Slider(
-            value = maximumFps.toFloat(),
-            onValueChange = { maximumFps = it.roundToInt() },
-            valueRange = 15f..systemRefreshRate.toFloat().coerceAtLeast(15f),
-            enabled = Platform.usesMaplibreNative,
-          )
-          Text(
-            "Target: $maximumFps ${fpsState.spinChar} Actual: ${fpsState.avgFps}",
-            style = MaterialTheme.typography.labelMedium,
-          )
+          if (Platform.usesMaplibreNative) {
+            Slider(
+              value = maximumFps.toFloat(),
+              onValueChange = { maximumFps = it.roundToInt() },
+              valueRange = 15f..120f,
+              enabled = Platform.usesMaplibreNative,
+            )
+            Text(
+              "Target: $maximumFps ${fpsState.spinChar} Actual: ${fpsState.avgFps}",
+              style = MaterialTheme.typography.labelMedium,
+            )
+          } else {
+            Text(
+              "${fpsState.spinChar} ${fpsState.avgFps}",
+              style = MaterialTheme.typography.labelMedium,
+            )
+          }
         }
       }
     }

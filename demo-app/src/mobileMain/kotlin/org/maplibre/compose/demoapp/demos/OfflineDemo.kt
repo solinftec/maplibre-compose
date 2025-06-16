@@ -3,9 +3,7 @@ package org.maplibre.compose.demoapp.demos
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
@@ -59,33 +57,29 @@ object OfflineDemo : Demo {
       BottomSheetScaffold(
         scaffoldState = scaffoldState,
         sheetPeekHeight = sheetPeekHeight,
-        sheetContent = {
-          _root_ide_package_.org.maplibre.compose.demoapp.demos.OfflinePackControls(
-            offlineManager,
-            cameraState,
+        sheetContent = { OfflinePackControls(offlineManager, cameraState) },
+      ) { padding ->
+        Box(modifier = Modifier.fillMaxSize()) {
+          MaplibreMap(
+            styleUri = MINIMAL_STYLE,
+            cameraState = cameraState,
+            styleState = styleState,
+            options = DemoMapOptions(PaddingValues(bottom = sheetPeekHeight)),
+            onMapClick = { _, _ ->
+              keyboard?.hide()
+              ClickResult.Pass
+            },
+          ) {
+            OfflinePacksLayers(offlineManager)
+          }
+          DemoMapControls(
+            cameraState = cameraState,
+            styleState = styleState,
+            modifier =
+              Modifier.padding(bottom = sheetPeekHeight)
+                .consumeWindowInsets(PaddingValues(bottom = sheetPeekHeight)),
           )
-        },
-      ) {
-        MaplibreMap(
-          styleUri = MINIMAL_STYLE,
-          cameraState = cameraState,
-          styleState = styleState,
-          ornamentSettings =
-            DemoOrnamentSettings(padding = PaddingValues(bottom = sheetPeekHeight)),
-          onMapClick = { _, _ ->
-            keyboard?.hide()
-            ClickResult.Pass
-          },
-        ) {
-          _root_ide_package_.org.maplibre.compose.demoapp.demos.OfflinePacksLayers(offlineManager)
         }
-
-        DemoMapControls(
-          cameraState = cameraState,
-          styleState = styleState,
-          padding =
-            PaddingValues(start = 8.dp, end = 8.dp, top = 8.dp, bottom = 8.dp + sheetPeekHeight),
-        )
       }
     }
   }

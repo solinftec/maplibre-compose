@@ -46,7 +46,7 @@ object MarkersDemo : Demo {
           styleUri = DEFAULT_STYLE,
           cameraState = cameraState,
           styleState = styleState,
-          ornamentSettings = DemoOrnamentSettings(),
+          options = DemoMapOptions(),
         ) {
           val amtrakStations =
             rememberGeoJsonSource(

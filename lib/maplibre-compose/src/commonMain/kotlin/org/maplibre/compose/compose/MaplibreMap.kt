@@ -6,12 +6,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import co.touchlab.kermit.Logger
 import io.github.dellisd.spatialk.geojson.Position
-import kotlin.math.roundToInt
 import kotlinx.coroutines.launch
 import org.maplibre.compose.compose.engine.LayerNode
 import org.maplibre.compose.compose.engine.rememberStyleComposition
 import org.maplibre.compose.core.*
-import org.maplibre.compose.core.util.PlatformUtils
 
 /**
  * Displays a MapLibre based map.
@@ -21,8 +19,6 @@ import org.maplibre.compose.core.util.PlatformUtils
  *   [MapLibre Style](https://maplibre.org/maplibre-style-spec/).
  * @param zoomRange The allowable bounds for the camera zoom level.
  * @param pitchRange The allowable bounds for the camera pitch.
- * @param gestureSettings Defines which user map gestures are enabled.
- * @param ornamentSettings Defines which additional UI elements are displayed on top of the map.
  * @param cameraState The camera state specifies what position of the map is rendered, at what zoom,
  *   at what tilt, etc.
  * @param onMapClick Invoked when the map is clicked. A click callback can be defined per layer,
@@ -31,13 +27,7 @@ import org.maplibre.compose.core.util.PlatformUtils
  *   called first and can thus prevent subsequent callbacks to be invoked by consuming the event.
  * @param onMapLongClick Invoked when the map is long-clicked. See [onMapClick].
  * @param onFrame Invoked on every rendered frame.
- * @param isDebugEnabled Whether the map debug information is shown.
- * @param maximumFps The maximum frame rate at which the map view is rendered, but it can't exceed
- *   the ability of device hardware.
- *
- * Note: This parameter does not take effect on web and desktop.
- *
- * @param logger kermit logger to use
+ * @param logger kermit logger to use.
  * @param content The map content additional to what is already part of the map as defined in the
  *   base map style linked in [styleUri].
  *
@@ -82,17 +72,13 @@ public fun MaplibreMap(
   styleUri: String = "https://demotiles.maplibre.org/style.json",
   zoomRange: ClosedRange<Float> = 0f..20f,
   pitchRange: ClosedRange<Float> = 0f..60f,
-  gestureSettings: GestureSettings = GestureSettings.AllEnabled,
-  ornamentSettings: OrnamentSettings = OrnamentSettings.AllEnabled,
   cameraState: CameraState = rememberCameraState(),
   styleState: StyleState = rememberStyleState(),
   onMapClick: MapClickHandler = { _, _ -> ClickResult.Pass },
   onMapLongClick: MapClickHandler = { _, _ -> ClickResult.Pass },
   onFrame: (framesPerSecond: Double) -> Unit = {},
-  isDebugEnabled: Boolean = false,
-  maximumFps: Int = PlatformUtils.getSystemRefreshRate().roundToInt(),
+  options: MapOptions = MapOptions(),
   logger: Logger? = remember { Logger.withTag("maplibre-compose") },
-  platformOptions: MapOptions = defaultMapOptions(),
   content: @Composable @MaplibreComposable () -> Unit = {},
 ) {
   var rememberedStyle by remember { mutableStateOf<SafeStyle?>(null) }
@@ -184,26 +170,24 @@ public fun MaplibreMap(
       when (map) {
         is StandardMaplibreMap -> {
           cameraState.map = map
-          map.setDebugEnabled(isDebugEnabled)
           map.setMinZoom(zoomRange.start.toDouble())
           map.setMaxZoom(zoomRange.endInclusive.toDouble())
           map.setMinPitch(pitchRange.start.toDouble())
           map.setMaxPitch(pitchRange.endInclusive.toDouble())
-          map.setGestureSettings(gestureSettings)
-          map.setOrnamentSettings(ornamentSettings)
-          map.setMaximumFps(maximumFps)
+          map.setRenderSettings(options.renderOptions)
+          map.setGestureSettings(options.gestureOptions)
+          map.setOrnamentSettings(options.ornamentOptions)
         }
 
         else ->
           scope.launch {
-            map.asyncSetDebugEnabled(isDebugEnabled)
             map.asyncSetMinZoom(zoomRange.start.toDouble())
             map.asyncSetMaxZoom(zoomRange.endInclusive.toDouble())
             map.asyncSetMinPitch(pitchRange.start.toDouble())
             map.asyncSetMaxPitch(pitchRange.endInclusive.toDouble())
-            map.asyncSetGestureSettings(gestureSettings)
-            map.asyncSetOrnamentSettings(ornamentSettings)
-            map.asyncSetMaximumFps(maximumFps)
+            map.asyncSetRenderSettings(options.renderOptions)
+            map.asyncSetGestureSettings(options.gestureOptions)
+            map.asyncSetOrnamentSettings(options.ornamentOptions)
           }
       }
     },
@@ -214,6 +198,6 @@ public fun MaplibreMap(
     logger = logger,
     callbacks = callbacks,
     rememberedStyle = rememberedStyle,
-    platformOptions = platformOptions,
+    options = options,
   )
 }

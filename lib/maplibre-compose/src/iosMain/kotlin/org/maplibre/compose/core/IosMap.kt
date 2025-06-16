@@ -1,9 +1,9 @@
 package org.maplibre.compose.core
 
+import MapLibre.*
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.*
 import co.touchlab.kermit.Logger
-import cocoapods.MapLibre.*
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
@@ -193,16 +193,6 @@ internal class IosMap(
     }
   }
 
-  override fun setDebugEnabled(enabled: Boolean) {
-    mapView.debugMask =
-      if (enabled)
-        MLNMapDebugTileBoundariesMask or
-          MLNMapDebugTileInfoMask or
-          MLNMapDebugTimestampsMask or
-          MLNMapDebugCollisionBoxesMask
-      else 0uL
-  }
-
   override fun setMinPitch(minPitch: Double) {
     mapView.minimumPitch = minPitch
   }
@@ -234,15 +224,27 @@ internal class IosMap(
     }
   }
 
-  override fun setMaximumFps(maximumFps: Int) {
-    mapView.preferredFramesPerSecond = maximumFps.toLong()
+  override fun setRenderSettings(value: RenderOptions) {
+    mapView.preferredFramesPerSecond = value.maximumFps?.toLong() ?: getSystemRefreshRate(mapView)
+
+    var debugMask = 0uL
+    with(value.debugSettings) {
+      if (isTileBoundariesEnabled) debugMask = debugMask or MLNMapDebugTileBoundariesMask
+      if (isTileInfoEnabled) debugMask = debugMask or MLNMapDebugTileInfoMask
+      if (isTimestampsEnabled) debugMask = debugMask or MLNMapDebugTimestampsMask
+      if (isCollisionBoxesEnabled) debugMask = debugMask or MLNMapDebugCollisionBoxesMask
+      if (isOverdrawVisualizationEnabled)
+        debugMask = debugMask or MLNMapDebugOverdrawVisualizationMask
+    }
+    mapView.debugMask = debugMask
   }
 
-  override fun setGestureSettings(value: GestureSettings) {
-    mapView.rotateEnabled = value.isRotateGesturesEnabled
-    mapView.scrollEnabled = value.isScrollGesturesEnabled
-    mapView.allowsTilting = value.isTiltGesturesEnabled
-    mapView.zoomEnabled = value.isZoomGesturesEnabled
+  override fun setGestureSettings(value: GestureOptions) {
+    mapView.rotateEnabled = value.isRotateEnabled
+    mapView.scrollEnabled = value.isScrollEnabled
+    mapView.allowsTilting = value.isTiltEnabled
+    mapView.zoomEnabled = value.isZoomEnabled
+    mapView.hapticFeedbackEnabled = value.isHapticFeedbackEnabled
   }
 
   private fun calculateMargins(
@@ -272,7 +274,7 @@ internal class IosMap(
             .coerceAtLeast(0.0) + 8.0,
         )
 
-      MLNOrnamentPositionBottomLeft ->
+      MLNOrnamentPositionBottomLeft -> {
         CGPointMake(
           (uiPadding.calculateLeftPadding(layoutDir).value -
               insetPadding.calculateLeftPadding(layoutDir).value)
@@ -282,6 +284,7 @@ internal class IosMap(
             .toDouble()
             .coerceAtLeast(0.0) + 8.0,
         )
+      }
 
       MLNOrnamentPositionBottomRight ->
         CGPointMake(
@@ -298,7 +301,7 @@ internal class IosMap(
     }
   }
 
-  override fun setOrnamentSettings(value: OrnamentSettings) {
+  override fun setOrnamentSettings(value: OrnamentOptions) {
     mapView.logoView.hidden = !value.isLogoEnabled
     mapView.logoViewPosition = value.logoAlignment.toMLNOrnamentPosition(layoutDir)
     mapView.logoViewMargins = calculateMargins(mapView.logoViewPosition, value.padding)

@@ -14,7 +14,7 @@ import org.maplibre.compose.compose.source.rememberRasterSource
 import org.maplibre.compose.core.source.TileSetOptions
 import org.maplibre.compose.demoapp.Demo
 import org.maplibre.compose.demoapp.DemoMapControls
-import org.maplibre.compose.demoapp.DemoOrnamentSettings
+import org.maplibre.compose.demoapp.DemoMapOptions
 import org.maplibre.compose.demoapp.DemoScaffold
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.material3.controls.ScaleBarMeasure
@@ -37,7 +37,7 @@ object LocalTilesDemo : Demo {
             zoomRange = 0f..4f,
             cameraState = cameraState,
             styleState = styleState,
-            ornamentSettings = DemoOrnamentSettings(),
+            options = DemoMapOptions(),
           ) {
             val tiles =
               rememberRasterSource(

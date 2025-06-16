@@ -2,6 +2,7 @@ package org.maplibre.compose.demoapp
 
 import androidx.compose.animation.core.AnimationVector2D
 import androidx.compose.animation.core.TwoWayConverter
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,6 +14,8 @@ import io.github.dellisd.spatialk.geojson.Position
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.maplibre.compose.core.OrnamentOptions
+import org.maplibre.compose.core.RenderOptions
 import org.maplibre.compose.demoapp.generated.Res
 
 interface Demo {
@@ -97,3 +100,7 @@ val Platform.usesMaplibreNative: Boolean
   get() = isAndroid || isIos
 
 expect fun getGeolocator(): Geolocator
+
+expect fun RenderOptions.withMaxFps(maxFps: Int): RenderOptions
+
+expect fun OrnamentOptions.withPadding(padding: PaddingValues): OrnamentOptions

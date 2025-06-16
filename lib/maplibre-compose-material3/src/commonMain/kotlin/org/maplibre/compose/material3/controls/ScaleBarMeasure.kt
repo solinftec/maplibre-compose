@@ -1,6 +1,7 @@
 package org.maplibre.compose.material3.controls
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.intl.Locale
 import io.github.kevincianfarini.alchemist.scalar.centimeters
 import io.github.kevincianfarini.alchemist.scalar.kilometers
 import io.github.kevincianfarini.alchemist.scalar.toLength
@@ -12,6 +13,7 @@ import io.github.kevincianfarini.alchemist.unit.LengthUnit.UnitedStatesCustomary
 import kotlin.math.pow
 import org.jetbrains.compose.resources.stringResource
 import org.maplibre.compose.material3.generated.*
+import org.maplibre.compose.material3.util.rememberNumberFormatter
 
 /** A measurement system to show in the scale bar. */
 public interface ScaleBarMeasure {
@@ -86,50 +88,51 @@ public interface ScaleBarMeasure {
 
     /** Get the formatted text to show for a given generated stop and length. */
     @Composable
-    protected open fun getText(stop: Double, unit: LengthUnit): String =
-      "${stop.toShortString()}\u202F${unit.symbol}"
-
-    /** Stringify a [Double], removing the decimal point if it's a whole number. */
-    protected fun Double.toShortString(): String =
-      if (this % 1.0 == 0.0) this.toLong().toString() else this.toString()
+    protected open fun getText(stop: Double, unit: LengthUnit): String {
+      val formatter = rememberNumberFormatter(Locale.current)
+      return "${formatter.format(stop)}\u202F${unit.symbol}"
+    }
   }
 
   public data object Metric : Default(Meter, Kilometer) {
     @Composable
     override fun getText(stop: Double, unit: LengthUnit): String {
+      val formatter = rememberNumberFormatter(Locale.current)
       val symbol =
         when (unit) {
           Meter -> stringResource(Res.string.meters_symbol)
           Kilometer -> stringResource(Res.string.kilometers_symbol)
           else -> error("impossible")
         }
-      return "${stop.toShortString()}\u202F$symbol"
+      return "${formatter.format(stop)}\u202F$symbol"
     }
   }
 
   public data object FeetAndMiles : Default(Foot, Mile) {
     @Composable
     override fun getText(stop: Double, unit: LengthUnit): String {
+      val formatter = rememberNumberFormatter(Locale.current)
       val symbol =
         when (unit) {
           Foot -> stringResource(Res.string.feet_symbol)
           Mile -> stringResource(Res.string.miles_symbol)
           else -> error("impossible")
         }
-      return "${stop.toShortString()}\u202F$symbol"
+      return "${formatter.format(stop)}\u202F$symbol"
     }
   }
 
   public data object YardsAndMiles : Default(Yard, Mile) {
     @Composable
     override fun getText(stop: Double, unit: LengthUnit): String {
+      val formatter = rememberNumberFormatter(Locale.current)
       val symbol =
         when (unit) {
           Yard -> stringResource(Res.string.yards_symbol)
           Mile -> stringResource(Res.string.miles_symbol)
           else -> error("impossible")
         }
-      return "${stop.toShortString()}\u202F$symbol"
+      return "${formatter.format(stop)}\u202F$symbol"
     }
   }
 }

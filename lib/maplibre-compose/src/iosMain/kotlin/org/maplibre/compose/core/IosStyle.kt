@@ -1,7 +1,7 @@
 package org.maplibre.compose.core
 
+import MapLibre.*
 import androidx.compose.ui.graphics.ImageBitmap
-import cocoapods.MapLibre.*
 import org.maplibre.compose.core.layer.Layer
 import org.maplibre.compose.core.layer.UnknownLayer
 import org.maplibre.compose.core.source.*

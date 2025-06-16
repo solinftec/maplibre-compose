@@ -11,6 +11,7 @@ import io.github.dellisd.spatialk.geojson.Position
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
+import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import org.maplibre.android.camera.CameraPosition as MLNCameraPosition
@@ -169,10 +170,6 @@ internal class AndroidMap(
     this.setStyleUri(styleUri)
   }
 
-  override fun setDebugEnabled(enabled: Boolean) {
-    map.isDebugActive = enabled
-  }
-
   override fun setMinPitch(minPitch: Double) {
     map.setMinPitchPreference(minPitch)
   }
@@ -197,21 +194,21 @@ internal class AndroidMap(
     return map.projection.visibleRegion.toVisibleRegion()
   }
 
-  override fun setMaximumFps(maximumFps: Int) = mapView.setMaximumFps(maximumFps)
-
-  override fun setGestureSettings(value: GestureSettings) {
-    map.uiSettings.isRotateGesturesEnabled = value.isRotateGesturesEnabled
-    map.uiSettings.isScrollGesturesEnabled = value.isScrollGesturesEnabled
-    map.uiSettings.isTiltGesturesEnabled = value.isTiltGesturesEnabled
-    map.uiSettings.isZoomGesturesEnabled = value.isZoomGesturesEnabled
-    // on iOS, there is no setting for enabling quick zoom (=double-tap, hold and move up or down)
-    // and zoom in by a double tap separately, so isZoomGesturesEnabled turns on or off ALL zoom
-    // gestures
-    map.uiSettings.isQuickZoomGesturesEnabled = value.isZoomGesturesEnabled
-    map.uiSettings.isDoubleTapGesturesEnabled = value.isZoomGesturesEnabled
+  override fun setRenderSettings(value: RenderOptions) {
+    mapView.setMaximumFps(value.maximumFps ?: getSystemRefreshRate(mapView.context).roundToInt())
+    map.isDebugActive = value.isDebugEnabled
   }
 
-  override fun setOrnamentSettings(value: OrnamentSettings) {
+  override fun setGestureSettings(value: GestureOptions) {
+    map.uiSettings.isRotateGesturesEnabled = value.isRotateEnabled
+    map.uiSettings.isScrollGesturesEnabled = value.isScrollEnabled
+    map.uiSettings.isTiltGesturesEnabled = value.isTiltEnabled
+    map.uiSettings.isZoomGesturesEnabled = value.isZoomEnabled
+    map.uiSettings.isQuickZoomGesturesEnabled = value.isQuickZoomEnabled
+    map.uiSettings.isDoubleTapGesturesEnabled = value.isDoubleTapEnabled
+  }
+
+  override fun setOrnamentSettings(value: OrnamentOptions) {
     map.uiSettings.isLogoEnabled = value.isLogoEnabled
     map.uiSettings.logoGravity = value.logoAlignment.toGravity(layoutDir)
 

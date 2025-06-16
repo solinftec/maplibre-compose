@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -27,6 +28,7 @@ import kotlin.math.ceil
 import kotlin.math.roundToInt
 import org.maplibre.compose.material3.util.drawPathsWithHalo
 import org.maplibre.compose.material3.util.drawTextWithHalo
+import org.maplibre.compose.material3.util.rememberNumberFormatter
 
 /** Which measures to show on the scale bar. */
 public data class ScaleBarMeasures(
@@ -70,9 +72,13 @@ public fun ScaleBar(
   if (metersPerDp == 0.0) return
 
   val textMeasurer = rememberTextMeasurer()
+
   // longest possible text
+  val formatter = rememberNumberFormatter(Locale.current)
   val maxTextSizePx =
-    remember(textMeasurer, textStyle) { textMeasurer.measure("5000 km", textStyle).size }
+    remember(textMeasurer, textStyle, formatter) {
+      textMeasurer.measure("${formatter.format(50000)}\u202Fkm", textStyle).size
+    }
   val maxTextSize = with(LocalDensity.current) { maxTextSizePx.toSize().toDpSize() }
 
   // padding of text to bar stroke

@@ -2,6 +2,7 @@ package org.maplibre.compose.compose
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.viewinterop.AndroidView
@@ -20,7 +21,7 @@ internal actual fun ComposableMapView(
   onReset: () -> Unit,
   logger: Logger?,
   callbacks: MaplibreMap.Callbacks,
-  platformOptions: MapOptions,
+  options: MapOptions,
 ) {
   AndroidMapView(
     modifier = modifier,
@@ -30,7 +31,7 @@ internal actual fun ComposableMapView(
     onReset = onReset,
     logger = logger,
     callbacks = callbacks,
-    platformOptions = platformOptions,
+    options = options,
   )
 }
 
@@ -43,7 +44,7 @@ internal fun AndroidMapView(
   onReset: () -> Unit,
   logger: Logger?,
   callbacks: MaplibreMap.Callbacks,
-  platformOptions: MapOptions,
+  options: MapOptions,
 ) {
   val layoutDir = LocalLayoutDirection.current
   val density = LocalDensity.current
@@ -54,13 +55,19 @@ internal fun AndroidMapView(
 
   MapViewLifecycleEffect(currentMapView, rememberedStyle)
 
+  // load these ahead of time so the factory doesn't capture the entire options object
+  val foregroundLoadColor = options.renderOptions.foregroundLoadColor
+  val renderMode = options.renderOptions.renderMode
+
   AndroidView(
     modifier = modifier,
     factory = { context ->
       MapLibre.getInstance(context)
       MapView(
           context,
-          MapLibreMapOptions.createFromAttributes(context).textureMode(platformOptions.textureMode),
+          MapLibreMapOptions.createFromAttributes(context)
+            .foregroundLoadColor(foregroundLoadColor.toArgb())
+            .textureMode(renderMode == RenderOptions.RenderMode.TextureView),
         )
         .also { mapView ->
           currentMapView = mapView

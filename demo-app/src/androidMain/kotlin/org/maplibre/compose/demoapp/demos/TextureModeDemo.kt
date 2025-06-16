@@ -8,7 +8,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.maplibre.compose.compose.MaplibreMap
 import org.maplibre.compose.compose.rememberCameraState
 import org.maplibre.compose.compose.rememberStyleState
-import org.maplibre.compose.core.MapOptions
+import org.maplibre.compose.core.RenderOptions
 import org.maplibre.compose.demoapp.*
 
 object TextureModeDemo : Demo {
@@ -27,8 +27,11 @@ object TextureModeDemo : Demo {
           styleUri = DEFAULT_STYLE,
           cameraState = cameraState,
           styleState = styleState,
-          ornamentSettings = DemoOrnamentSettings(),
-          platformOptions = MapOptions(textureMode = true),
+          options =
+            DemoMapOptions()
+              .copy(
+                renderOptions = RenderOptions(renderMode = RenderOptions.RenderMode.TextureView)
+              ),
         )
         DemoMapControls(cameraState, styleState)
       }

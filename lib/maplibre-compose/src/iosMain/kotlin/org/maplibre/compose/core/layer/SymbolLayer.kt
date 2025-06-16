@@ -1,6 +1,6 @@
 package org.maplibre.compose.core.layer
 
-import cocoapods.MapLibre.MLNSymbolStyleLayer
+import MapLibre.MLNSymbolStyleLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toNSExpression
 import org.maplibre.compose.core.util.toNSPredicate

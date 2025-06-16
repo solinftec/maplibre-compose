@@ -3,17 +3,17 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
   id("library-conventions")
   id("android-library-conventions")
+  id("spm-maplibre")
   id(libs.plugins.kotlin.multiplatform.get().pluginId)
-  id(libs.plugins.kotlin.cocoapods.get().pluginId)
   id(libs.plugins.kotlin.composeCompiler.get().pluginId)
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.compose.get().pluginId)
   id(libs.plugins.mavenPublish.get().pluginId)
+  id(libs.plugins.spmForKmp.get().pluginId)
 }
 
 android { namespace = "org.maplibre.compose" }
@@ -52,31 +52,23 @@ kotlin {
     publishLibraryVariants("release", "debug")
   }
 
-  fun KotlinNativeTarget.configureIos() {
-    compilations.getByName("main") {
+  listOf(iosArm64(), iosSimulatorArm64(), iosX64()).forEach {
+    it.compilations.getByName("main") {
       cinterops {
-        val observer by creating {
+        create("observer") {
           defFile(project.file("src/nativeInterop/cinterop/observer.def"))
           packageName("org.maplibre.compose.core.util")
         }
       }
     }
+    it.configureSpmMaplibre(project)
   }
 
-  iosArm64 { configureIos() }
-  iosSimulatorArm64 { configureIos() }
-  iosX64 { configureIos() }
-
   jvm("desktop") { compilerOptions { jvmTarget = project.getJvmTarget() } }
+
   js(IR) { browser() }
 
   applyDefaultHierarchyTemplate()
-
-  cocoapods {
-    noPodspec()
-    ios.deploymentTarget = project.properties["iosDeploymentTarget"]!!.toString()
-    pod("MapLibre", libs.versions.maplibre.ios.get())
-  }
 
   sourceSets {
     val desktopMain by getting
@@ -101,6 +93,10 @@ kotlin {
     // (e.g. Android and iOS, and maybe someday Desktop)
     val maplibreNativeMain by creating { dependsOn(commonMain.get()) }
 
+    // used to expose APIs only available on platforms backed by MapLibre JS
+    // (e.g. JS, Desktop for now, and someday WASM)
+    val maplibreJsMain by creating { dependsOn(commonMain.get()) }
+
     iosMain {
       dependsOn(skiaMain)
       dependsOn(maplibreNativeMain)
@@ -114,9 +110,9 @@ kotlin {
       }
     }
 
-    // no idea why this is differently typed from the others
     desktopMain.apply {
       dependsOn(skiaMain)
+      dependsOn(maplibreJsMain)
       dependencies {
         implementation(compose.desktop.currentOs)
         implementation(libs.kotlinx.coroutines.swing)
@@ -126,6 +122,7 @@ kotlin {
 
     jsMain {
       dependsOn(skiaMain)
+      dependsOn(maplibreJsMain)
       dependencies {
         implementation(project(":lib:kotlin-maplibre-js"))
         implementation(project(":lib:compose-html-interop"))

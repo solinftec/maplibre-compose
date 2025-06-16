@@ -1,6 +1,6 @@
 package org.maplibre.compose.core.layer
 
-import cocoapods.MapLibre.MLNBackgroundStyleLayer
+import MapLibre.MLNBackgroundStyleLayer
 import org.maplibre.compose.core.util.toNSExpression
 import org.maplibre.compose.expressions.ast.CompiledExpression
 import org.maplibre.compose.expressions.ast.NullLiteral

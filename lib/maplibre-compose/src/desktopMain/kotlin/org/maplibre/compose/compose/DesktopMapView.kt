@@ -24,7 +24,7 @@ internal actual fun ComposableMapView(
   onReset: () -> Unit,
   logger: Logger?,
   callbacks: MaplibreMap.Callbacks,
-  platformOptions: MapOptions,
+  options: MapOptions,
 ) =
   DesktopMapView(
     modifier = modifier,

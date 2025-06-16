@@ -12,7 +12,8 @@ import androidx.compose.ui.unit.dp
 import org.maplibre.compose.compose.MaplibreMap
 import org.maplibre.compose.compose.rememberCameraState
 import org.maplibre.compose.compose.rememberStyleState
-import org.maplibre.compose.core.OrnamentSettings
+import org.maplibre.compose.core.MapOptions
+import org.maplibre.compose.core.OrnamentOptions
 import org.maplibre.compose.material3.controls.*
 
 @Composable
@@ -25,7 +26,7 @@ fun Material3() {
     MaplibreMap(
       cameraState = cameraState,
       styleState = styleState,
-      ornamentSettings = OrnamentSettings.AllDisabled,
+      options = MapOptions(ornamentOptions = OrnamentOptions.OnlyLogo),
     )
 
     Box(modifier = Modifier.fillMaxSize().padding(8.dp)) {
@@ -46,7 +47,7 @@ fun Material3() {
     MaplibreMap(
       cameraState = cameraState,
       styleState = styleState,
-      ornamentSettings = OrnamentSettings.AllDisabled,
+      options = MapOptions(ornamentOptions = OrnamentOptions.OnlyLogo),
     )
 
     Box(modifier = Modifier.fillMaxSize().padding(8.dp)) {

@@ -1,6 +1,6 @@
 package org.maplibre.compose.core.source
 
-import cocoapods.MapLibre.*
+import MapLibre.*
 import org.maplibre.compose.core.util.toMLNCoordinateBounds
 import platform.Foundation.NSURL
 
