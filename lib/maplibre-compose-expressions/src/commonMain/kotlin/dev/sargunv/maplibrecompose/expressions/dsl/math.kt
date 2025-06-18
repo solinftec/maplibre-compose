@@ -3,7 +3,6 @@ package dev.sargunv.maplibrecompose.expressions.dsl
 import dev.sargunv.maplibrecompose.expressions.ast.Expression
 import dev.sargunv.maplibrecompose.expressions.ast.FunctionCall
 import dev.sargunv.maplibrecompose.expressions.value.FloatValue
-import dev.sargunv.maplibrecompose.expressions.value.GeoJsonValue
 import dev.sargunv.maplibrecompose.expressions.value.IntValue
 import dev.sargunv.maplibrecompose.expressions.value.NumberValue
 import kotlin.jvm.JvmName
@@ -145,7 +144,3 @@ public fun ceil(value: Expression<FloatValue>): Expression<IntValue> =
 /** Returns the largest integer that is less than or equal to [value]. */
 public fun floor(value: Expression<FloatValue>): Expression<IntValue> =
   FunctionCall.of("floor", value).cast()
-
-/** Returns the shortest distance in meters between the evaluated feature and [geometry]. */
-public fun distance(geometry: Expression<GeoJsonValue>): Expression<FloatValue> =
-  FunctionCall.of("distance", geometry).cast()
