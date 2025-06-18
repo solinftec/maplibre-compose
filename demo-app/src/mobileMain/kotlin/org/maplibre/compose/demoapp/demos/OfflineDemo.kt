@@ -99,7 +99,7 @@ private fun OfflinePacksLayers(
     opacity = const(0.5f),
     color =
       switch(
-        feature.get("status").asString(),
+        feature["status"].asString(),
         case(label = "Complete", output = const(Color.Green)),
         case(label = "Downloading", output = const(Color.Blue)),
         case(label = "Paused", output = const(Color.Yellow)),

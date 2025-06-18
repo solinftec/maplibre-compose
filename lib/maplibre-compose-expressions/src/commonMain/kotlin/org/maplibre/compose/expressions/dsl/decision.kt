@@ -17,13 +17,13 @@ import org.maplibre.compose.expressions.value.*
  *     output = interpolate(
  *       linear(),
  *       zoom(),
- *       1 to feature.get("color1").convertToColor(),
- *       20 to feature.get("color2").convertToColor()
+ *       1 to feature["color1"].convertToColor(),
+ *       20 to feature["color2"].convertToColor()
  *     ),
  *   ),
  *   condition(
  *     test = feature.has("color"),
- *     output = feature.get("color").convertToColor(),
+ *     output = feature["color"].convertToColor(),
  *   ),
  *   fallback = const(Color.Red),
  * )
@@ -78,7 +78,7 @@ public fun <T : ExpressionValue> condition(
  * Example:
  * ```kt
  * switch(
- *   input = feature.get("building_type").asString(),
+ *   input = feature["building_type"].asString(),
  *   case(
  *     label = "residential",
  *     output = const(Color.Cyan),
@@ -124,6 +124,12 @@ public fun <O : ExpressionValue> case(label: String, output: Expression<O>): Cas
   Case(const(label), output)
 
 /** Create a [Case], see [switch] */
+public fun <O : ExpressionValue, E : EnumValue<E>> case(
+  label: E,
+  output: Expression<O>,
+): Case<EnumValue<E>, O> = Case(const(label), output)
+
+/** Create a [Case], see [switch] */
 public fun <O : ExpressionValue> case(label: Number, output: Expression<O>): Case<FloatValue, O> =
   Case(const(label.toFloat()), output)
 
@@ -131,6 +137,13 @@ public fun <O : ExpressionValue> case(label: Number, output: Expression<O>): Cas
 @JvmName("stringsCase")
 public fun <O : ExpressionValue> case(
   label: List<String>,
+  output: Expression<O>,
+): Case<StringValue, O> = Case(const(label), output)
+
+/** Create a [Case], see [switch] */
+@JvmName("enumsCase")
+public fun <O : ExpressionValue, E : EnumValue<E>> case(
+  label: List<E>,
   output: Expression<O>,
 ): Case<StringValue, O> = Case(const(label), output)
 
