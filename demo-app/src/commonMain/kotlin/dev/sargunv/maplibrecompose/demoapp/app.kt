@@ -46,6 +46,7 @@ import dev.sargunv.maplibrecompose.demoapp.demos.CameraStateDemo
 import dev.sargunv.maplibrecompose.demoapp.demos.ClusteredPointsDemo
 import dev.sargunv.maplibrecompose.demoapp.demos.EdgeToEdgeDemo
 import dev.sargunv.maplibrecompose.demoapp.demos.FrameRateDemo
+import dev.sargunv.maplibrecompose.demoapp.demos.ImageSourceDemo
 import dev.sargunv.maplibrecompose.demoapp.demos.LocalTilesDemo
 import dev.sargunv.maplibrecompose.demoapp.demos.MarkersDemo
 import dev.sargunv.maplibrecompose.demoapp.demos.StyleSwitcherDemo
@@ -64,12 +65,13 @@ import org.jetbrains.compose.resources.vectorResource
 private val DEMOS = buildList {
   add(StyleSwitcherDemo)
   if (Platform.supportsBlending) add(EdgeToEdgeDemo)
-  if (Platform.supportsLayers) {
+  if (Platform.supportsStyling) {
     add(UserLocationDemo)
     add(MarkersDemo)
     add(ClusteredPointsDemo)
     add(AnimatedLayerDemo)
     add(LocalTilesDemo)
+    add(ImageSourceDemo)
   }
   if (!Platform.isDesktop) add(CameraStateDemo)
   if (Platform.usesMaplibreNative) add(CameraFollowDemo)
