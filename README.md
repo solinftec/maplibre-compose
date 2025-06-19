@@ -25,12 +25,14 @@ maps to your Compose UIs across Android, iOS, Desktop, and Web.
 - [API Reference](https://maplibre.org/maplibre-compose/api/)
 - [Demo App](./demo-app)
 
-## Status
+## API Completion
 
-A large subset of MapLibre's features are already supported, but the full
-breadth of the MapLibre SDKs is not yet covered. What is already supported may
-have bugs. API stability is not yet guaranteed; we're still exploring how best
-to express an interactive map API in Compose.
+| Target  | Progress                                                   |
+| ------- | ---------------------------------------------------------- |
+| Android | ![90%](https://progress-bar.xyz/90/?progress_color=3DDC84) |
+| iOS     | ![90%](https://progress-bar.xyz/90/?progress_color=147efb) |
+| JS      | ![20%](https://progress-bar.xyz/20/?progress_color=FF9500) |
+| Desktop | ![5%](https://progress-bar.xyz/5/?progress_color=CE0000)   |
 
 See [the status table][status] for a breakdown of supported features on each
 platform. Android and iOS have the most complete support, while Desktop and Web
