@@ -6,31 +6,19 @@
 
 ## Test plan
 
-<!-- Please describe how to test the changes. -->
+<!-- Please describe how you tested the changes. -->
 
 ## Checklist
 
-This pull request primarily:
+**To your knowledge, are you making any breaking changes?**
 
-- [ ] Updates documentation.
-- [ ] Fixes a bug. (please link to the issue)
-- [ ] Adds a feature. (please link to the issue or discussion)
+<!-- If yes, please describe -->
 
-<!-- If you're just updating documentation, delete the rest of this checklist. -->
+**Have you tested the changes? On which platforms?**
 
-To your knowledge, are you making any breaking changes?
+<!-- Delete any entries you haven't tested -->
 
-- [ ] Yes (please describe)
-- [ ] No
-
-Do you have access to a macOS device to develop and test iOS changes?
-
-- [ ] Yes
-- [ ] No
-
-Have you tested the changes, if applicable? On which platforms?
-
-- [ ] Android (describe the device and OS version)
-- [ ] iOS (describe the device and OS version)
-- [ ] Desktop (describe the device and OS version)
-- [ ] Web (describe the browser version)
+- Android: <!-- describe the device and OS version -->
+- iOS: <!-- describe the device and OS version -->
+- Desktop: <!-- describe the OS -->
+- Web: <!-- describe the browser and version -->
