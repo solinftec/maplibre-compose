@@ -20,9 +20,9 @@ body:
       label: MapLibre Support
       description: Which MapLibre SDKs support this feature
       options:
-        - MapLibre Native for Android
-        - MapLibre Native for iOS
-        - MapLibre GL JS
+        - label: MapLibre Native for Android
+        - label: MapLibre Native for iOS
+        - label: MapLibre GL JS
   - type: textarea
     id: maplibre_docs
     attributes:
@@ -38,20 +38,20 @@ body:
       label: Implementation
       description: Would you be willing to implement this feature and submit a PR?
       options:
-        - "Yes"
-        - "No"
+        - Yes
+        - No
   - type: checkboxes
     id: development_platforms
     attributes:
       label: Development Platforms
       description: If you're willing to implement this, which platforms can you develop for?
       options:
-        - Android
-        - iOS
-        - Browser
-        - Linux (x86_64)
-        - Linux (aarch64)
-        - macOS (x86_64)
-        - macOS (aarch64)
-        - Windows (x86_64)
-        - Windows (aarch64)
+        - label: Android
+        - label: iOS
+        - label: Browser
+        - label: Linux (x86_64)
+        - label: Linux (aarch64)
+        - label: macOS (x86_64)
+        - label: macOS (aarch64)
+        - label: Windows (x86_64)
+        - label: Windows (aarch64)
