@@ -18,7 +18,7 @@ body:
     id: maplibre_support
     attributes:
       label: MapLibre Support
-      description: Which MapLibre SDKs support this feature
+      description: Which MapLibre SDKs support this feature?
       options:
         - label: MapLibre Native for Android
         - label: MapLibre Native for iOS
@@ -27,7 +27,7 @@ body:
     id: maplibre_docs
     attributes:
       label: MapLibre Documentation Links
-      description: Please provide links to relevant MapLibre documentation
+      description: Please provide links to relevant MapLibre documentation.
       placeholder: |
         - Android: https://maplibre.org/maplibre-native/android/api/...
         - iOS: https://maplibre.org/maplibre-native/ios/latest/documentation/maplibre/...
