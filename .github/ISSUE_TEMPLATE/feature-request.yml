@@ -14,36 +14,20 @@ body:
       placeholder: Describe the feature and its use case
     validations:
       required: true
-  - type: dropdown
-    id: platform
-    attributes:
-      label: Target Platforms
-      description: Which platforms should support this feature?
-      multiple: true
-      options:
-        - MapLibre Native - Android
-        - MapLibre Native - iOS
-        - MapLibre Native - Desktop (JVM)
-        - MapLibre JS - Browser (JS)
-        - MapLibre JS - Browser (WASM)
-    validations:
-      required: true
-  - type: dropdown
+  - type: checkboxes
     id: maplibre_support
     attributes:
-      label: MapLibre Native/JS Support
-      description: Is this feature already supported by MapLibre Native or JS?
+      label: MapLibre Support
+      description: Which MapLibre SDKs support this feature
       options:
-        - "Yes"
-        - "No"
-        - "Not sure"
-    validations:
-      required: true
+        - MapLibre Native for Android
+        - MapLibre Native for iOS
+        - MapLibre GL JS
   - type: textarea
     id: maplibre_docs
     attributes:
       label: MapLibre Documentation Links
-      description: If the feature exists in MapLibre, please provide links to relevant documentation
+      description: Please provide links to relevant MapLibre documentation
       placeholder: |
         - Android: https://maplibre.org/maplibre-native/android/api/...
         - iOS: https://maplibre.org/maplibre-native/ios/latest/documentation/maplibre/...
@@ -56,14 +40,11 @@ body:
       options:
         - "Yes"
         - "No"
-    validations:
-      required: true
-  - type: dropdown
+  - type: checkboxes
     id: development_platforms
     attributes:
       label: Development Platforms
       description: If you're willing to implement this, which platforms can you develop for?
-      multiple: true
       options:
         - Android
         - iOS
@@ -74,5 +55,3 @@ body:
         - macOS (aarch64)
         - Windows (x86_64)
         - Windows (aarch64)
-    validations:
-      required: false
