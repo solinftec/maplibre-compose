@@ -85,12 +85,15 @@ internal class JsMap(
     impl.resize()
   }
 
-  private var lastStyleUri: String = ""
+  private var lastBaseStyle: BaseStyle? = null
 
-  override fun setStyleUri(styleUri: String) {
-    if (styleUri == lastStyleUri) return
-    lastStyleUri = styleUri
-    impl.setStyle(styleUri)
+  override fun setBaseStyle(style: BaseStyle) {
+    if (style == lastBaseStyle) return
+    lastBaseStyle = style
+    when (style) {
+      is BaseStyle.Json -> impl.setStyle(JSON.parse(style.json))
+      is BaseStyle.Uri -> impl.setStyle(style.uri)
+    }
     callbacks.onStyleChanged(this, JsStyle(impl))
   }
 
