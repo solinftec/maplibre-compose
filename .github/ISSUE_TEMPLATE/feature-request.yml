@@ -38,8 +38,8 @@ body:
       label: Implementation
       description: Would you be willing to implement this feature and submit a PR?
       options:
-        - Yes
-        - No
+        - "Yes"
+        - "No"
   - type: checkboxes
     id: development_platforms
     attributes:
