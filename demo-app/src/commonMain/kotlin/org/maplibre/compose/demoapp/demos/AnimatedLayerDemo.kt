@@ -21,16 +21,14 @@ import org.maplibre.compose.compose.rememberStyleState
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
 import org.maplibre.compose.core.CameraPosition
 import org.maplibre.compose.core.source.GeoJsonData
+import org.maplibre.compose.core.source.GeoJsonOptions
 import org.maplibre.compose.demoapp.*
-import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.exponential
 import org.maplibre.compose.expressions.dsl.interpolate
 import org.maplibre.compose.expressions.dsl.zoom
 import org.maplibre.compose.expressions.value.LineCap
 import org.maplibre.compose.expressions.value.LineJoin
-
-private const val ROUTES_FILE = "files/data/amtrak_routes.geojson"
 
 private val US = Position(latitude = 46.336, longitude = -96.205)
 
@@ -47,7 +45,7 @@ object AnimatedLayerDemo : Demo {
 
       Box(modifier = Modifier.fillMaxSize()) {
         MaplibreMap(
-          styleUri = DEFAULT_STYLE,
+          baseStyle = DEFAULT_STYLE,
           cameraState = cameraState,
           styleState = styleState,
           options = DemoMapOptions(),
@@ -55,7 +53,11 @@ object AnimatedLayerDemo : Demo {
           val routeSource =
             rememberGeoJsonSource(
               id = "amtrak-routes",
-              data = GeoJsonData.Uri(Res.getUri(ROUTES_FILE)),
+              data =
+                GeoJsonData.Uri(
+                  "https://raw.githubusercontent.com/datanews/amtrak-geojson/refs/heads/master/amtrak-combined.geojson"
+                ),
+              options = GeoJsonOptions(tolerance = 0.1f),
             )
 
           val infiniteTransition = rememberInfiniteTransition()

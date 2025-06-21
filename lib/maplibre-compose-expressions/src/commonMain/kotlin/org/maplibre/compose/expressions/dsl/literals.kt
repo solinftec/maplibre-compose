@@ -7,10 +7,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
-import kotlin.jvm.JvmName
-import kotlin.time.Duration
 import org.maplibre.compose.expressions.ast.*
 import org.maplibre.compose.expressions.value.*
+import kotlin.jvm.JvmName
+import kotlin.time.Duration
 
 /** Creates a literal expression for a [String] value. */
 public fun const(string: String): StringLiteral = StringLiteral.of(string)
@@ -106,6 +106,12 @@ public fun offset(x: Dp, y: Dp): DpOffsetLiteral = DpOffsetLiteral.of(DpOffset(x
  */
 public fun offset(x: TextUnit, y: TextUnit): Expression<TextUnitOffsetValue> =
   TextUnitOffsetCalculation.of(x, y)
+
+/** Creates a literal expression for a [PaddingValues.Absolute] value. */
+public fun padding(left: Dp, top: Dp, right: Dp, bottom: Dp): Expression<DpPaddingValue> =
+  DpPaddingLiteral.of(
+    PaddingValues.Absolute(left = left, top = top, right = right, bottom = bottom)
+  )
 
 /**
  * Creates a literal expression for a `null` value.

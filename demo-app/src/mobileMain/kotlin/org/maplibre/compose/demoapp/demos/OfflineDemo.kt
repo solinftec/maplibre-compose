@@ -21,6 +21,7 @@ import org.maplibre.compose.compose.*
 import org.maplibre.compose.compose.layer.FillLayer
 import org.maplibre.compose.compose.offline.OfflinePack
 import org.maplibre.compose.compose.offline.rememberOfflineManager
+import org.maplibre.compose.core.BaseStyle
 import org.maplibre.compose.core.CameraPosition
 import org.maplibre.compose.demoapp.*
 import org.maplibre.compose.demoapp.generated.Res
@@ -61,7 +62,7 @@ object OfflineDemo : Demo {
       ) { padding ->
         Box(modifier = Modifier.fillMaxSize()) {
           MaplibreMap(
-            styleUri = MINIMAL_STYLE,
+            baseStyle = MINIMAL_STYLE,
             cameraState = cameraState,
             styleState = styleState,
             options = DemoMapOptions(PaddingValues(bottom = sheetPeekHeight)),
@@ -214,7 +215,7 @@ private suspend fun org.maplibre.compose.compose.offline.OfflineManager.createNa
 ): OfflinePack {
   return create(
     _root_ide_package_.org.maplibre.compose.compose.offline.OfflinePackDefinition.TilePyramid(
-      styleUrl = DEFAULT_STYLE,
+      styleUrl = (DEFAULT_STYLE as BaseStyle.Uri).uri,
       bounds = bounds,
     ),
     name.encodeToByteArray(),

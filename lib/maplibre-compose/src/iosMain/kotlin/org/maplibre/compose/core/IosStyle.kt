@@ -1,10 +1,16 @@
 package org.maplibre.compose.core
 
+import MapLibre.MLNComputedShapeSource
 import MapLibre.*
 import androidx.compose.ui.graphics.ImageBitmap
 import org.maplibre.compose.core.layer.Layer
 import org.maplibre.compose.core.layer.UnknownLayer
-import org.maplibre.compose.core.source.*
+import org.maplibre.compose.core.source.ComputedSource
+import org.maplibre.compose.core.source.GeoJsonSource
+import org.maplibre.compose.core.source.RasterSource
+import org.maplibre.compose.core.source.Source
+import org.maplibre.compose.core.source.UnknownSource
+import org.maplibre.compose.core.source.VectorSource
 import org.maplibre.compose.core.util.toUIImage
 
 internal class IosStyle(style: MLNStyle, private val getScale: () -> Float) : Style {
@@ -23,6 +29,7 @@ internal class IosStyle(style: MLNStyle, private val getScale: () -> Float) : St
       is MLNVectorTileSource -> VectorSource(this)
       is MLNShapeSource -> GeoJsonSource(this)
       is MLNRasterTileSource -> RasterSource(this)
+      is MLNComputedShapeSource -> ComputedSource(this)
       else -> UnknownSource(this)
     }
 

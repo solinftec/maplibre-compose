@@ -6,7 +6,7 @@ bytesize = "2.0.0-beta04"
 compass = "2.3.1"
 htmlConverterCompose = "1.0.4"
 kermit = "2.0.6"
-kotlin-wrappers = "2025.6.4"
+kotlin-wrappers = "2025.6.5"
 kotlinx-browser = "0.3"
 kotlinx-coroutines = "1.10.2"
 ktor = "3.1.3"
@@ -29,11 +29,11 @@ tool-prettier = "3.5.3"
 
 # Libraries coupled to Compose: keep Compose up to date and set others accordingly.
 # https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-compatibility-and-versioning.html#jetpack-compose-artifacts-used
-gradle-compose = "1.8.1"
+gradle-compose = "1.8.2"
 #noinspection GradleDependency: follow version matrix above
 androidx-composeUi = "1.8.1"
 #noinspection GradleDependency: follow version matrix above
-androidx-navigation = "2.9.0-beta02"
+androidx-navigation = "2.9.0-beta03"
 
 # Android and Kotlin: Keep Kotlin up to date and set Android accordingly.
 # Also note the Gradle and XCode versions in the matrix!

@@ -15,7 +15,7 @@ import org.maplibre.compose.core.*
  * Displays a MapLibre based map.
  *
  * @param modifier The modifier to be applied to the layout.
- * @param styleUri The URI of the map style specification JSON to use, see
+ * @param baseStyle The URI or JSON of the map style to use. See
  *   [MapLibre Style](https://maplibre.org/maplibre-style-spec/).
  * @param zoomRange The allowable bounds for the camera zoom level.
  * @param pitchRange The allowable bounds for the camera pitch.
@@ -28,8 +28,10 @@ import org.maplibre.compose.core.*
  * @param onMapLongClick Invoked when the map is long-clicked. See [onMapClick].
  * @param onFrame Invoked on every rendered frame.
  * @param logger kermit logger to use.
+ * @param onMapLoadFailed Invoked when the map failed to load.
+ * @param onMapLoadFinished Invoked when the map finished loading.
  * @param content The map content additional to what is already part of the map as defined in the
- *   base map style linked in [styleUri].
+ *   base map style linked in [baseStyle].
  *
  * Additional [sources](https://maplibre.org/maplibre-style-spec/sources/) can be added via:
  * - [rememberGeoJsonSource][org.maplibre.compose.compose.source.rememberGeoJsonSource] (see
@@ -69,7 +71,7 @@ import org.maplibre.compose.core.*
 @Composable
 public fun MaplibreMap(
   modifier: Modifier = Modifier,
-  styleUri: String = "https://demotiles.maplibre.org/style.json",
+  baseStyle: BaseStyle = BaseStyle.Demo,
   zoomRange: ClosedRange<Float> = 0f..20f,
   pitchRange: ClosedRange<Float> = 0f..60f,
   cameraState: CameraState = rememberCameraState(),
@@ -79,6 +81,8 @@ public fun MaplibreMap(
   onFrame: (framesPerSecond: Double) -> Unit = {},
   options: MapOptions = MapOptions(),
   logger: Logger? = remember { Logger.withTag("maplibre-compose") },
+  onMapLoadFailed: (reason: String?) -> Unit = {},
+  onMapLoadFinished: () -> Unit = {},
   content: @Composable @MaplibreComposable () -> Unit = {},
 ) {
   var rememberedStyle by remember { mutableStateOf<SafeStyle?>(null) }
@@ -96,9 +100,14 @@ public fun MaplibreMap(
             map.metersPerDpAtLatitude(map.getCameraPosition().target.latitude)
         }
 
+        override fun onMapFailLoading(reason: String?) {
+          onMapLoadFailed(reason)
+        }
+
         override fun onMapFinishedLoading(map: MaplibreMap) {
           map as StandardMaplibreMap
           styleState.reloadSources()
+          onMapLoadFinished()
         }
 
         override fun onCameraMoveStarted(map: MaplibreMap, reason: CameraMoveReason) {
@@ -165,7 +174,7 @@ public fun MaplibreMap(
 
   ComposableMapView(
     modifier = modifier.fillMaxSize(),
-    styleUri = styleUri,
+    style = baseStyle,
     update = { map ->
       when (map) {
         is StandardMaplibreMap -> {

@@ -33,6 +33,10 @@ object WebviewMapBridge {
     map.setStyle(styleUri)
   }
 
+  fun setStyleJson(styleJson: String) {
+    map.setStyle(JSON.parse(styleJson))
+  }
+
   fun setShowCollisionBoxes(enabled: Boolean) {
     map.showCollisionBoxes = enabled
   }

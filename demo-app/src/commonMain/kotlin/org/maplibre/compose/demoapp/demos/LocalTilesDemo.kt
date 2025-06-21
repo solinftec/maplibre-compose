@@ -11,6 +11,7 @@ import org.maplibre.compose.compose.layer.RasterLayer
 import org.maplibre.compose.compose.rememberCameraState
 import org.maplibre.compose.compose.rememberStyleState
 import org.maplibre.compose.compose.source.rememberRasterSource
+import org.maplibre.compose.core.BaseStyle
 import org.maplibre.compose.core.source.TileSetOptions
 import org.maplibre.compose.demoapp.Demo
 import org.maplibre.compose.demoapp.DemoMapControls
@@ -33,7 +34,7 @@ object LocalTilesDemo : Demo {
 
         Box(modifier = Modifier.Companion.weight(1f)) {
           MaplibreMap(
-            styleUri = Res.getUri("files/styles/empty.json"),
+            baseStyle = BaseStyle.Empty,
             zoomRange = 0f..4f,
             cameraState = cameraState,
             styleState = styleState,

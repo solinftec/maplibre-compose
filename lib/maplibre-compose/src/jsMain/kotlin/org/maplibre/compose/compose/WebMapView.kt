@@ -7,17 +7,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import co.touchlab.kermit.Logger
 import kotlinx.browser.document
-import org.maplibre.compose.core.JsMap
-import org.maplibre.compose.core.MapOptions
-import org.maplibre.compose.core.MaplibreMap
-import org.maplibre.compose.core.SafeStyle
+import org.maplibre.compose.core.*
 import org.maplibre.composehtmlinterop.HtmlElement
 import org.w3c.dom.HTMLElement
 
 @Composable
 internal actual fun ComposableMapView(
   modifier: Modifier,
-  styleUri: String,
+  style: BaseStyle,
   rememberedStyle: SafeStyle?,
   update: (map: MaplibreMap) -> Unit,
   onReset: () -> Unit,
@@ -27,7 +24,7 @@ internal actual fun ComposableMapView(
 ) =
   WebMapView(
     modifier = modifier,
-    styleUri = styleUri,
+    style = style,
     update = update,
     onReset = onReset,
     logger = logger,
@@ -37,7 +34,7 @@ internal actual fun ComposableMapView(
 @Composable
 internal fun WebMapView(
   modifier: Modifier,
-  styleUri: String,
+  style: BaseStyle,
   update: (map: MaplibreMap) -> Unit,
   onReset: () -> Unit,
   logger: Logger?,
@@ -53,7 +50,7 @@ internal fun WebMapView(
     // zIndex = "-1", // TODO figure out pointer interop
     factory = {
       document.createElement("div").unsafeCast<HTMLElement>().apply {
-        style.apply {
+        this.style.apply {
           width = "100%"
           height = "100%"
         }
@@ -62,7 +59,7 @@ internal fun WebMapView(
     update = { element ->
       val map =
         maybeMap ?: JsMap(element, layoutDir, density, callbacks, logger).also { maybeMap = it }
-      map.setStyleUri(styleUri)
+      map.setBaseStyle(style)
       map.layoutDir = layoutDir
       map.density = density
       map.callbacks = callbacks

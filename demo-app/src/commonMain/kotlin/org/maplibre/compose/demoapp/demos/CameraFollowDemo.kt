@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.dellisd.spatialk.geojson.Point
 import io.github.dellisd.spatialk.geojson.Position
-import kotlin.math.roundToInt
 import org.maplibre.compose.compose.CameraState
 import org.maplibre.compose.compose.MaplibreMap
 import org.maplibre.compose.compose.rememberCameraState
@@ -23,6 +22,7 @@ import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.*
 import org.maplibre.compose.demoapp.util.LocationPuckLayers
 import org.maplibre.compose.material3.controls.PointerPinButton
+import kotlin.math.roundToInt
 
 private val START_POINT = Position(longitude = -122.4194, latitude = 37.7749)
 private val END_POINT = Position(longitude = -122.3954, latitude = 37.7939)
@@ -58,12 +58,12 @@ object CameraFollowDemo : Demo {
 
         Box(modifier = Modifier.weight(1f)) {
           MaplibreMap(
-            styleUri = DEFAULT_STYLE,
+            baseStyle = DEFAULT_STYLE,
             cameraState = cameraState,
             styleState = styleState,
             options = DemoMapOptions(),
           ) {
-            if (Platform.supportsLayers) {
+            if (Platform.supportsStyling) {
               LocationPuckLayers(
                 idPrefix = "target",
                 locationSource =

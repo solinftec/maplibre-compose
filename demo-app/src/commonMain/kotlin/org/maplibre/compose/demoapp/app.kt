@@ -20,6 +20,7 @@ import org.maplibre.compose.compose.StyleState
 import org.maplibre.compose.core.MapOptions
 import org.maplibre.compose.core.OrnamentOptions
 import org.maplibre.compose.demoapp.demos.*
+import org.maplibre.compose.demoapp.demos.ImageSourceDemo
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.demoapp.generated.arrow_back
 import org.maplibre.compose.demoapp.generated.info
@@ -31,12 +32,13 @@ import org.maplibre.compose.material3.controls.ScaleBarMeasures
 private val DEMOS = buildList {
   add(StyleSwitcherDemo)
   if (Platform.supportsBlending) add(EdgeToEdgeDemo)
-  if (Platform.supportsLayers) {
+  if (Platform.supportsStyling) {
     add(UserLocationDemo)
     add(MarkersDemo)
     add(ClusteredPointsDemo)
     add(AnimatedLayerDemo)
     add(LocalTilesDemo)
+    add(ImageSourceDemo)
   }
   if (!Platform.isDesktop) add(CameraStateDemo)
   if (Platform.usesMaplibreNative) add(CameraFollowDemo)

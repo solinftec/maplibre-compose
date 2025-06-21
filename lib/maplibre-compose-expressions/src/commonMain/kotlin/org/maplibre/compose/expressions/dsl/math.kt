@@ -1,12 +1,11 @@
 package org.maplibre.compose.expressions.dsl
 
-import kotlin.jvm.JvmName
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.FunctionCall
 import org.maplibre.compose.expressions.value.FloatValue
-import org.maplibre.compose.expressions.value.GeoJsonValue
 import org.maplibre.compose.expressions.value.IntValue
 import org.maplibre.compose.expressions.value.NumberValue
+import kotlin.jvm.JvmName
 
 /** Returns mathematical constant ln(2) = natural logarithm of 2. */
 public val LN_2: Expression<FloatValue> = FunctionCall.of("ln2").cast()
@@ -145,7 +144,3 @@ public fun ceil(value: Expression<FloatValue>): Expression<IntValue> =
 /** Returns the largest integer that is less than or equal to [value]. */
 public fun floor(value: Expression<FloatValue>): Expression<IntValue> =
   FunctionCall.of("floor", value).cast()
-
-/** Returns the shortest distance in meters between the evaluated feature and [geometry]. */
-public fun distance(geometry: Expression<GeoJsonValue>): Expression<FloatValue> =
-  FunctionCall.of("distance", geometry).cast()

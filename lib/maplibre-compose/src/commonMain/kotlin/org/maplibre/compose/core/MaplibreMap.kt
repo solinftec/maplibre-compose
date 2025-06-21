@@ -21,7 +21,7 @@ internal interface MaplibreMap {
     duration: Duration,
   )
 
-  suspend fun asyncSetStyleUri(styleUri: String)
+  suspend fun asyncSetBaseStyle(style: BaseStyle)
 
   suspend fun asyncGetCameraPosition(): CameraPosition
 
@@ -68,6 +68,8 @@ internal interface MaplibreMap {
 
     fun onMapFinishedLoading(map: MaplibreMap)
 
+    fun onMapFailLoading(reason: String?)
+
     fun onCameraMoveStarted(map: MaplibreMap, reason: CameraMoveReason)
 
     fun onCameraMoved(map: MaplibreMap)
@@ -83,7 +85,7 @@ internal interface MaplibreMap {
 }
 
 internal interface StandardMaplibreMap : MaplibreMap {
-  override suspend fun asyncSetStyleUri(styleUri: String) = setStyleUri(styleUri)
+  override suspend fun asyncSetBaseStyle(style: BaseStyle) = setBaseStyle(style)
 
   override suspend fun asyncGetCameraPosition(): CameraPosition = getCameraPosition()
 
@@ -129,7 +131,7 @@ internal interface StandardMaplibreMap : MaplibreMap {
   override suspend fun asyncMetersPerDpAtLatitude(latitude: Double): Double =
     metersPerDpAtLatitude(latitude)
 
-  fun setStyleUri(styleUri: String)
+  fun setBaseStyle(style: BaseStyle)
 
   fun getCameraPosition(): CameraPosition
 

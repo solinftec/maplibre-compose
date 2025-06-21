@@ -2,9 +2,13 @@ package org.maplibre.compose.expressions.dsl
 
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.FunctionCall
-import org.maplibre.compose.expressions.dsl.Feature.get
-import org.maplibre.compose.expressions.dsl.Feature.state
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.ExpressionValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.GeoJsonValue
+import org.maplibre.compose.expressions.value.GeometryType
+import org.maplibre.compose.expressions.value.MapValue
+import org.maplibre.compose.expressions.value.StringValue
 
 /** Object to access feature-related data, see [feature] */
 public object Feature {
@@ -71,7 +75,7 @@ public object Feature {
   public fun <T : ExpressionValue> state(key: String): Expression<T> = state(const(key))
 
   /** Gets the feature's geometry type. */
-  public fun type(): Expression<GeometryType> = FunctionCall.of("geometry-type").cast()
+  public fun geometryType(): Expression<GeometryType> = FunctionCall.of("geometry-type").cast()
 
   /** Gets the feature's id, if it has one. */
   public fun <T : ExpressionValue> id(): Expression<T> = FunctionCall.of("id").cast()
@@ -95,6 +99,21 @@ public object Feature {
    * [GeoJsonOptions][org.maplibre.compose.core.source.GeoJsonOptions].
    */
   public fun accumulated(): Expression<*> = FunctionCall.of("accumulated")
+
+  /**
+   * Returns true if the evaluated feature is fully contained inside a boundary of the input
+   * geometry, false otherwise. The input value can be a valid GeoJSON of type Polygon,
+   * MultiPolygon, Feature, or FeatureCollection. Supported features for evaluation:
+   * - Point: Returns false if a point is on the boundary or falls outside the boundary.
+   * - LineString: Returns false if any part of a line falls outside the boundary, the line
+   *   intersects the boundary, or a line's endpoint is on the boundary.
+   */
+  public fun within(geometry: Expression<GeoJsonValue>): Expression<BooleanValue> =
+    FunctionCall.of("within", geometry).cast()
+
+  /** Returns the shortest distance in meters between the evaluated feature and [geometry]. */
+  public fun distance(geometry: Expression<GeoJsonValue>): Expression<FloatValue> =
+    FunctionCall.of("distance", geometry).cast()
 }
 
 /** Accesses to feature-related data */

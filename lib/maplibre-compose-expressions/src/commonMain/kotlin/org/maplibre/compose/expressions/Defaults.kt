@@ -12,7 +12,10 @@ import org.maplibre.compose.expressions.value.ColorValue
 import org.maplibre.compose.expressions.value.ListValue
 import org.maplibre.compose.expressions.value.StringValue
 
-public val ZeroPadding: PaddingValues.Absolute = PaddingValues.Absolute(0.dp)
+public val ZeroPadding: PaddingValues.Absolute = PaddingValues.Absolute(0.dp, 0.dp, 0.dp, 0.dp)
+
+public val DefaultIconPadding: PaddingValues.Absolute =
+  PaddingValues.Absolute(2.dp, 2.dp, 2.dp, 2.dp)
 
 public object Defaults {
   public val HeatmapColors: Expression<ColorValue> =

@@ -11,11 +11,41 @@ import org.maplibre.compose.compose.FeaturesClickHandler
 import org.maplibre.compose.compose.MaplibreComposable
 import org.maplibre.compose.core.layer.SymbolLayer
 import org.maplibre.compose.core.source.Source
+import org.maplibre.compose.expressions.DefaultIconPadding
 import org.maplibre.compose.expressions.Defaults
 import org.maplibre.compose.expressions.ZeroPadding
 import org.maplibre.compose.expressions.ast.Expression
-import org.maplibre.compose.expressions.dsl.*
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.dsl.const
+import org.maplibre.compose.expressions.dsl.div
+import org.maplibre.compose.expressions.dsl.nil
+import org.maplibre.compose.expressions.dsl.offset
+import org.maplibre.compose.expressions.dsl.times
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.ColorValue
+import org.maplibre.compose.expressions.value.DpOffsetValue
+import org.maplibre.compose.expressions.value.DpPaddingValue
+import org.maplibre.compose.expressions.value.DpValue
+import org.maplibre.compose.expressions.value.FloatOffsetValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.FormattedValue
+import org.maplibre.compose.expressions.value.IconPitchAlignment
+import org.maplibre.compose.expressions.value.IconRotationAlignment
+import org.maplibre.compose.expressions.value.IconTextFit
+import org.maplibre.compose.expressions.value.ImageValue
+import org.maplibre.compose.expressions.value.ListValue
+import org.maplibre.compose.expressions.value.StringValue
+import org.maplibre.compose.expressions.value.SymbolAnchor
+import org.maplibre.compose.expressions.value.SymbolOverlap
+import org.maplibre.compose.expressions.value.SymbolPlacement
+import org.maplibre.compose.expressions.value.SymbolZOrder
+import org.maplibre.compose.expressions.value.TextJustify
+import org.maplibre.compose.expressions.value.TextPitchAlignment
+import org.maplibre.compose.expressions.value.TextRotationAlignment
+import org.maplibre.compose.expressions.value.TextTransform
+import org.maplibre.compose.expressions.value.TextUnitOffsetValue
+import org.maplibre.compose.expressions.value.TextUnitValue
+import org.maplibre.compose.expressions.value.TextWritingMode
+import org.maplibre.compose.expressions.value.TranslateAnchor
 
 /**
  * A symbol layer draws data from the [sourceLayer] in the given [source] as icons and/or text
@@ -386,7 +416,7 @@ public fun SymbolLayer(
   iconOffset: Expression<DpOffsetValue> = const(DpOffset.Zero),
 
   // icon collision
-  iconPadding: Expression<DpValue> = const(2.dp),
+  iconPadding: Expression<DpPaddingValue> = const(DefaultIconPadding),
   iconAllowOverlap: Expression<BooleanValue> = const(false),
   iconOverlap: Expression<StringValue> = nil(),
   iconIgnorePlacement: Expression<BooleanValue> = const(false),

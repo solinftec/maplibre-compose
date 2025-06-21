@@ -13,6 +13,7 @@ import org.maplibre.compose.compose.layer.CircleLayer
 import org.maplibre.compose.compose.layer.LineLayer
 import org.maplibre.compose.compose.source.getBaseSource
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
+import org.maplibre.compose.core.BaseStyle
 import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.expressions.dsl.const
@@ -26,7 +27,7 @@ import org.maplibre.compose.expressions.value.LineJoin
 @OptIn(ExperimentalResourceApi::class)
 fun Layers() {
   // -8<- [start:simple]
-  MaplibreMap(styleUri = "https://tiles.openfreemap.org/styles/liberty") {
+  MaplibreMap(baseStyle = BaseStyle.Uri("https://tiles.openfreemap.org/styles/liberty")) {
     val tiles = getBaseSource(id = "openmaptiles")
     CircleLayer(id = "example", source = tiles, sourceLayer = "poi")
   }

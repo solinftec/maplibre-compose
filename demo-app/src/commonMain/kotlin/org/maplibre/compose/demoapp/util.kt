@@ -11,12 +11,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.util.fastRoundToInt
 import dev.jordond.compass.geolocation.Geolocator
 import io.github.dellisd.spatialk.geojson.Position
-import kotlin.math.pow
-import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.maplibre.compose.core.BaseStyle
 import org.maplibre.compose.core.OrnamentOptions
 import org.maplibre.compose.core.RenderOptions
 import org.maplibre.compose.demoapp.generated.Res
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 interface Demo {
   val name: String
@@ -25,23 +26,54 @@ interface Demo {
   @Composable fun Component(navigateUp: () -> Unit)
 }
 
-data class StyleInfo(val name: String, val uri: String, val isDark: Boolean)
+data class StyleInfo(val name: String, val style: BaseStyle, val isDark: Boolean)
 
 @OptIn(ExperimentalResourceApi::class)
-val ALL_STYLES =
-  listOf(
-    StyleInfo("Bright", "https://tiles.openfreemap.org/styles/bright", isDark = false),
-    StyleInfo("Liberty", "https://tiles.openfreemap.org/styles/liberty", isDark = false),
-    StyleInfo("Positron", "https://tiles.openfreemap.org/styles/positron", isDark = false),
-    StyleInfo("Fiord", "https://tiles.openfreemap.org/styles/fiord", isDark = true),
-    StyleInfo("Dark", "https://tiles.openfreemap.org/styles/dark", isDark = true),
-    StyleInfo("Colorful", Res.getUri("files/styles/colorful.json"), isDark = false),
-    StyleInfo("Eclipse", Res.getUri("files/styles/eclipse.json"), isDark = true),
-    StyleInfo("OSM Carto", Res.getUri("files/styles/osm-raster.json"), isDark = false),
-  )
+val ALL_STYLES = buildList {
+  listOf("Bright", "Liberty", "Positron", "Fiord", "Dark").forEach { name ->
+    add(
+      StyleInfo(
+        "OpenFreeMap $name",
+        BaseStyle.Uri("https://tiles.openfreemap.org/styles/${name.lowercase()}"),
+        isDark = name == "Dark" || name == "Fiord",
+      )
+    )
+  }
 
-val DEFAULT_STYLE = ALL_STYLES[0].uri
-val MINIMAL_STYLE = ALL_STYLES[2].uri
+  listOf("Light", "Dark", "White", "Grayscale", "Black").forEach { name ->
+    add(
+      StyleInfo(
+        "Protomaps $name",
+        BaseStyle.Uri(
+          // Get your own free key at https://protomaps.com/! This one is just for the demo.
+          "https://api.protomaps.com/styles/v5/${name.lowercase()}/en.json?key=73c45a97eddd43fb"
+        ),
+        isDark = name == "Dark" || name == "Black",
+      )
+    )
+  }
+
+  listOf("Colorful", "Eclipse", "Graybeard", "Neutrino").forEach { name ->
+    add(
+      StyleInfo(
+        "Versatiles $name",
+        BaseStyle.Uri(Res.getUri("files/styles/${name.lowercase()}.json")),
+        isDark = name == "Eclipse",
+      )
+    )
+  }
+
+  add(
+    StyleInfo(
+      "OpenStreetMaps Carto",
+      BaseStyle.Uri(Res.getUri("files/styles/osm-raster.json")),
+      isDark = false,
+    )
+  )
+}
+
+val DEFAULT_STYLE = ALL_STYLES[0].style
+val MINIMAL_STYLE = ALL_STYLES.first { it.name.contains("Positron") }.style
 
 /** Caution: this converter results in a loss of precision far from the origin. */
 class PositionVectorConverter(private val origin: Position) :
@@ -90,7 +122,7 @@ expect object Platform {
   val isWeb: Boolean
 }
 
-val Platform.supportsLayers: Boolean
+val Platform.supportsStyling: Boolean
   get() = isAndroid || isIos
 
 val Platform.supportsBlending: Boolean
