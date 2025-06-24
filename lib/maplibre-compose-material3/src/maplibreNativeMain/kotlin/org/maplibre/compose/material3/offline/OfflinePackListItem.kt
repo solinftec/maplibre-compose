@@ -3,25 +3,48 @@ package org.maplibre.compose.material3.offline
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import org.maplibre.compose.compose.offline.DownloadProgress
+import org.maplibre.compose.compose.offline.DownloadStatus
+import org.maplibre.compose.compose.offline.OfflineManager
+import org.maplibre.compose.compose.offline.OfflinePack
+import org.maplibre.compose.compose.offline.rememberOfflineManager
+import org.maplibre.compose.material3.generated.Res
+import org.maplibre.compose.material3.generated.check_circle_filled
+import org.maplibre.compose.material3.generated.delete
+import org.maplibre.compose.material3.generated.error_filled
+import org.maplibre.compose.material3.generated.pause
+import org.maplibre.compose.material3.generated.pause_circle_filled
+import org.maplibre.compose.material3.generated.resume
+import org.maplibre.compose.material3.generated.sync
+import org.maplibre.compose.material3.generated.warning_filled
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import me.saket.bytesize.binaryBytes
 import org.jetbrains.compose.resources.vectorResource
-import org.maplibre.compose.compose.offline.OfflinePack
-import org.maplibre.compose.compose.offline.rememberOfflineManager
-import org.maplibre.compose.material3.generated.*
 
 /**
- * A [ListItem] to manage an [org.maplibre.compose.compose.offline.OfflinePack].
+ * A [ListItem] to manage an [OfflinePack].
  *
  * By default, it includes controls to pause, resume, invalidate, and delete the pack, and a
  * [CircularProgressIndicator] for download progress.
  *
  * You must supply a [headlineContent] for the list item. Typically, this will be a suitable name
- * for the pack, parsed from [org.maplibre.compose.compose.offline.OfflinePack.metadata].
+ * for the pack, parsed from [OfflinePack.metadata].
  *
  * You can customize each part of the [ListItem] by supplying alternate [leadingContent],
  * [supportingContent], and [trailingContent].
@@ -30,18 +53,15 @@ import org.maplibre.compose.material3.generated.*
 public fun OfflinePackListItem(
   pack: OfflinePack,
   modifier: Modifier = Modifier,
-  offlineManager: org.maplibre.compose.compose.offline.OfflineManager = rememberOfflineManager(),
+  offlineManager: OfflineManager = rememberOfflineManager(),
   leadingContent: @Composable () -> Unit = {
-    _root_ide_package_.org.maplibre.compose.material3.offline.OfflinePackListItemDefaults
-      .LeadingContent(pack, offlineManager)
+    OfflinePackListItemDefaults.LeadingContent(pack, offlineManager)
   },
   supportingContent: @Composable () -> Unit = {
-    _root_ide_package_.org.maplibre.compose.material3.offline.OfflinePackListItemDefaults
-      .SupportingContent(pack.downloadProgress)
+    OfflinePackListItemDefaults.SupportingContent(pack.downloadProgress)
   },
   trailingContent: @Composable () -> Unit = {
-    _root_ide_package_.org.maplibre.compose.material3.offline.OfflinePackListItemDefaults
-      .TrailingContent(pack, offlineManager)
+    OfflinePackListItemDefaults.TrailingContent(pack, offlineManager)
   },
   headlineContent: @Composable () -> Unit,
 ) {
@@ -57,15 +77,14 @@ public fun OfflinePackListItem(
 
 public object OfflinePackListItemDefaults {
   /**
-   * The default leading content for an
-   * [org.maplibre.compose.material3.offline.OfflinePackListItem]. It includes a
+   * The default leading content for an [OfflinePackListItem]. It includes a
    * [CircularProgressIndicator] for in-progress downloads, and otherwise an [Icon] representing the
    * status of the pack.
    */
   @Composable
   public fun LeadingContent(
     pack: OfflinePack,
-    offlineManager: org.maplibre.compose.compose.offline.OfflineManager = rememberOfflineManager(),
+    offlineManager: OfflineManager = rememberOfflineManager(),
     completedIcon: @Composable () -> Unit = {
       Icon(
         imageVector = vectorResource(Res.drawable.check_circle_filled),
@@ -78,9 +97,7 @@ public object OfflinePackListItemDefaults {
         contentDescription = "Paused",
       )
     },
-    downloadingIcon: @Composable () -> Unit = {
-      _root_ide_package_.org.maplibre.compose.material3.offline.DownloadProgressCircle(pack)
-    },
+    downloadingIcon: @Composable () -> Unit = { DownloadProgressCircle(pack) },
     errorIcon: @Composable () -> Unit = {
       Icon(
         imageVector = vectorResource(Res.drawable.error_filled),
@@ -95,114 +112,80 @@ public object OfflinePackListItemDefaults {
       )
     },
   ) {
-    val icon by derivedStateOf {
-      val progress = pack.downloadProgress
-      when (progress) {
-        is org.maplibre.compose.compose.offline.DownloadProgress.Healthy ->
-          when (progress.status) {
-            _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Complete ->
-              completedIcon
-            _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Paused ->
-              pausedIcon
-            _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Downloading ->
-              downloadingIcon
+    val icon by
+      remember(pack) {
+        derivedStateOf {
+          val progress = pack.downloadProgress
+          when (progress) {
+            is DownloadProgress.Healthy ->
+              when (progress.status) {
+                DownloadStatus.Complete -> completedIcon
+                DownloadStatus.Paused -> pausedIcon
+                DownloadStatus.Downloading -> downloadingIcon
+              }
+            is DownloadProgress.Error -> errorIcon
+            is DownloadProgress.TileLimitExceeded,
+            is DownloadProgress.Unknown -> warningIcon
           }
-        is org.maplibre.compose.compose.offline.DownloadProgress.Error -> errorIcon
-        is org.maplibre.compose.compose.offline.DownloadProgress.TileLimitExceeded,
-        is org.maplibre.compose.compose.offline.DownloadProgress.Unknown -> warningIcon
+        }
       }
-    }
     AnimatedContent(icon) { icon -> icon() }
   }
 
   /**
-   * The default trailing content for an
-   * [org.maplibre.compose.material3.offline.OfflinePackListItem]. It includes a button to pause,
+   * The default trailing content for an [OfflinePackListItem]. It includes a button to pause,
    * resume, or update the pack, depending on the pack's current status. It also includes a delete
    * button.
    */
   @Composable
   public fun TrailingContent(
     pack: OfflinePack,
-    offlineManager: org.maplibre.compose.compose.offline.OfflineManager = rememberOfflineManager(),
+    offlineManager: OfflineManager = rememberOfflineManager(),
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
   ): Unit = Row {
-    _root_ide_package_.org.maplibre.compose.material3.offline.PauseResumeUpdateButton(
-      pack,
-      offlineManager,
-    )
-    _root_ide_package_.org.maplibre.compose.material3.offline.DeleteButton(pack, offlineManager)
+    PauseResumeUpdateButton(pack, offlineManager)
+    DeleteButton(pack, offlineManager)
   }
 
   /**
-   * The default supporting content for an
-   * [org.maplibre.compose.material3.offline.OfflinePackListItem]. It includes a [Text] describing
+   * The default supporting content for an [OfflinePackListItem]. It includes a [Text] describing
    * the status of the pack; typically the download status and size. If the pack is in an error or
    * other unhealthy state, it'll be indicated here.
    */
   @Composable
   public fun SupportingContent(
-    progress: org.maplibre.compose.compose.offline.DownloadProgress,
-    completedContent:
-      @Composable
-      (org.maplibre.compose.compose.offline.DownloadProgress.Healthy) -> Unit =
-      {
-        Text(it.completedBytesString())
-      },
-    downloadingContent:
-      @Composable
-      (org.maplibre.compose.compose.offline.DownloadProgress.Healthy) -> Unit =
-      {
-        Text("Downloading: ${it.completedBytesString()}")
-      },
-    pausedContent:
-      @Composable
-      (org.maplibre.compose.compose.offline.DownloadProgress.Healthy) -> Unit =
-      {
-        Text("Paused: ${it.completedBytesString()}")
-      },
-    errorContent:
-      @Composable
-      (org.maplibre.compose.compose.offline.DownloadProgress.Error) -> Unit =
-      {
-        Text("Error: ${it.message}")
-      },
-    tileLimitExceededContent:
-      @Composable
-      (org.maplibre.compose.compose.offline.DownloadProgress.TileLimitExceeded) -> Unit =
-      {
-        Text("Tile limit exceeded: ${it.limit} tiles")
-      },
-    unknownContent:
-      @Composable
-      (org.maplibre.compose.compose.offline.DownloadProgress.Unknown) -> Unit =
-      {
-        Text("Unknown status")
-      },
+    progress: DownloadProgress,
+    completedContent: @Composable (DownloadProgress.Healthy) -> Unit = {
+      Text(it.completedBytesString())
+    },
+    downloadingContent: @Composable (DownloadProgress.Healthy) -> Unit = {
+      Text("Downloading: ${it.completedBytesString()}")
+    },
+    pausedContent: @Composable (DownloadProgress.Healthy) -> Unit = {
+      Text("Paused: ${it.completedBytesString()}")
+    },
+    errorContent: @Composable (DownloadProgress.Error) -> Unit = { Text("Error: ${it.message}") },
+    tileLimitExceededContent: @Composable (DownloadProgress.TileLimitExceeded) -> Unit = {
+      Text("Tile limit exceeded: ${it.limit} tiles")
+    },
+    unknownContent: @Composable (DownloadProgress.Unknown) -> Unit = { Text("Unknown status") },
   ) {
     when (progress) {
-      is org.maplibre.compose.compose.offline.DownloadProgress.Healthy ->
+      is DownloadProgress.Healthy ->
         when (progress.status) {
-          _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Complete ->
-            completedContent(progress)
-          _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Downloading ->
-            downloadingContent(progress)
-          _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Paused ->
-            pausedContent(progress)
+          DownloadStatus.Complete -> completedContent(progress)
+          DownloadStatus.Downloading -> downloadingContent(progress)
+          DownloadStatus.Paused -> pausedContent(progress)
         }
-      is org.maplibre.compose.compose.offline.DownloadProgress.Error -> errorContent(progress)
-      is org.maplibre.compose.compose.offline.DownloadProgress.TileLimitExceeded ->
-        tileLimitExceededContent(progress)
-      is org.maplibre.compose.compose.offline.DownloadProgress.Unknown -> unknownContent(progress)
+      is DownloadProgress.Error -> errorContent(progress)
+      is DownloadProgress.TileLimitExceeded -> tileLimitExceededContent(progress)
+      is DownloadProgress.Unknown -> unknownContent(progress)
     }
   }
 }
 
 @Composable
-private fun DeleteButton(
-  pack: OfflinePack,
-  offlineManager: org.maplibre.compose.compose.offline.OfflineManager,
-) {
+private fun DeleteButton(pack: OfflinePack, offlineManager: OfflineManager) {
   val coroutineScope = rememberCoroutineScope()
   var deleting by remember { mutableStateOf(false) }
 
@@ -218,15 +201,15 @@ private fun DeleteButton(
 
 @Composable
 private fun DownloadProgressCircle(pack: OfflinePack) {
-  val progressRatio by derivedStateOf {
-    val progress = pack.downloadProgress
-    if (
-      progress is org.maplibre.compose.compose.offline.DownloadProgress.Healthy &&
-        progress.requiredResourceCount != 0L
-    )
-      progress.completedResourceCount.toFloat() / progress.requiredResourceCount
-    else 0f
-  }
+  val progressRatio by
+    remember(pack) {
+      derivedStateOf {
+        val progress = pack.downloadProgress
+        if (progress is DownloadProgress.Healthy && progress.requiredResourceCount != 0L)
+          progress.completedResourceCount.toFloat() / progress.requiredResourceCount
+        else 0f
+      }
+    }
 
   val animatedProgressRatio by
     animateFloatAsState(
@@ -238,39 +221,28 @@ private fun DownloadProgressCircle(pack: OfflinePack) {
 }
 
 @Composable
-private fun PauseResumeUpdateButton(
-  pack: OfflinePack,
-  offlineManager: org.maplibre.compose.compose.offline.OfflineManager,
-) {
-  val status =
-    (pack.downloadProgress as? org.maplibre.compose.compose.offline.DownloadProgress.Healthy)
-      ?.status ?: return
+private fun PauseResumeUpdateButton(pack: OfflinePack, offlineManager: OfflineManager) {
+  val status = (pack.downloadProgress as? DownloadProgress.Healthy)?.status ?: return
   val coroutineScope = rememberCoroutineScope()
 
   fun onClick() {
     when (status) {
-      _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Paused ->
-        offlineManager.resume(pack)
-      _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Downloading ->
-        offlineManager.pause(pack)
-      _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Complete ->
-        coroutineScope.launch { offlineManager.invalidate(pack) }
+      DownloadStatus.Paused -> offlineManager.resume(pack)
+      DownloadStatus.Downloading -> offlineManager.pause(pack)
+      DownloadStatus.Complete -> coroutineScope.launch { offlineManager.invalidate(pack) }
     }
   }
 
   IconButton(::onClick) {
     AnimatedContent(status) { status ->
       when (status) {
-        _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Paused ->
-          Icon(vectorResource(Res.drawable.resume), "Resume")
-        _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Downloading ->
-          Icon(vectorResource(Res.drawable.pause), "Pause")
-        _root_ide_package_.org.maplibre.compose.compose.offline.DownloadStatus.Complete ->
-          Icon(vectorResource(Res.drawable.sync), "Update")
+        DownloadStatus.Paused -> Icon(vectorResource(Res.drawable.resume), "Resume")
+        DownloadStatus.Downloading -> Icon(vectorResource(Res.drawable.pause), "Pause")
+        DownloadStatus.Complete -> Icon(vectorResource(Res.drawable.sync), "Update")
       }
     }
   }
 }
 
-private fun org.maplibre.compose.compose.offline.DownloadProgress.Healthy.completedBytesString() =
+private fun DownloadProgress.Healthy.completedBytesString() =
   completedResourceBytes.binaryBytes.toString()
