@@ -1,6 +1,41 @@
 package org.maplibre.compose.core
 
-import MapLibre.*
+import MapLibre.MLNAltitudeForZoomLevel
+import MapLibre.MLNCameraChangeReason
+import MapLibre.MLNCameraChangeReasonGestureOneFingerZoom
+import MapLibre.MLNCameraChangeReasonGesturePan
+import MapLibre.MLNCameraChangeReasonGesturePinch
+import MapLibre.MLNCameraChangeReasonGestureRotate
+import MapLibre.MLNCameraChangeReasonGestureTilt
+import MapLibre.MLNCameraChangeReasonGestureZoomIn
+import MapLibre.MLNCameraChangeReasonGestureZoomOut
+import MapLibre.MLNCameraChangeReasonProgrammatic
+import MapLibre.MLNCoordinateBoundsMake
+import MapLibre.MLNFeatureProtocol
+import MapLibre.MLNLoggingBlockHandler
+import MapLibre.MLNLoggingConfiguration
+import MapLibre.MLNLoggingLevel
+import MapLibre.MLNLoggingLevelDebug
+import MapLibre.MLNLoggingLevelError
+import MapLibre.MLNLoggingLevelFault
+import MapLibre.MLNLoggingLevelInfo
+import MapLibre.MLNLoggingLevelVerbose
+import MapLibre.MLNLoggingLevelWarning
+import MapLibre.MLNMapCamera
+import MapLibre.MLNMapDebugCollisionBoxesMask
+import MapLibre.MLNMapDebugOverdrawVisualizationMask
+import MapLibre.MLNMapDebugTileBoundariesMask
+import MapLibre.MLNMapDebugTileInfoMask
+import MapLibre.MLNMapDebugTimestampsMask
+import MapLibre.MLNMapView
+import MapLibre.MLNMapViewDelegateProtocol
+import MapLibre.MLNOrnamentPosition
+import MapLibre.MLNOrnamentPositionBottomLeft
+import MapLibre.MLNOrnamentPositionBottomRight
+import MapLibre.MLNOrnamentPositionTopLeft
+import MapLibre.MLNOrnamentPositionTopRight
+import MapLibre.MLNStyle
+import MapLibre.allowsTilting
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.*
 import co.touchlab.kermit.Logger
@@ -19,6 +54,7 @@ import org.maplibre.compose.expressions.value.BooleanValue
 import platform.CoreGraphics.CGPoint
 import platform.CoreGraphics.CGPointMake
 import platform.CoreGraphics.CGSize
+import platform.CoreLocation.CLLocationCoordinate2DMake
 import platform.Foundation.NSError
 import platform.Foundation.NSURL
 import platform.UIKit.*
@@ -211,6 +247,16 @@ internal class IosMap(
 
   override fun setMaxZoom(maxZoom: Double) {
     mapView.maximumZoomLevel = maxZoom
+  }
+
+  override fun setCameraBoundingBox(boundingBox: BoundingBox?) {
+    mapView.setMaximumScreenBounds(
+      boundingBox?.toMLNCoordinateBounds()
+        ?: MLNCoordinateBoundsMake(
+          ne = CLLocationCoordinate2DMake(latitude = 90.0, longitude = 180.0),
+          sw = CLLocationCoordinate2DMake(latitude = -90.0, longitude = -180.0),
+        )
+    )
   }
 
   override fun getVisibleBoundingBox(): BoundingBox {
