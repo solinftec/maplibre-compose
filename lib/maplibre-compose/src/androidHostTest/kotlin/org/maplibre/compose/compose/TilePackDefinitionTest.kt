@@ -1,12 +1,12 @@
 package org.maplibre.compose.compose
 
+import org.maplibre.compose.compose.offline.OfflinePackDefinition
+import org.maplibre.compose.compose.offline.toMLNOfflineRegionDefinition
+import org.maplibre.compose.compose.offline.toOfflinePackDefinition
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Polygon
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.test.Test
-import org.maplibre.compose.compose.offline.OfflinePackDefinition
-import org.maplibre.compose.compose.offline.toMLNOfflineRegionDefinition
-import org.maplibre.compose.compose.offline.toOfflinePackDefinition
 
 class TilePackDefinitionTest {
   @Test

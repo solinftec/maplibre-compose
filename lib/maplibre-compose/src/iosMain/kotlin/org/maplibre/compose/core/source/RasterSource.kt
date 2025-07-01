@@ -1,6 +1,14 @@
 package org.maplibre.compose.core.source
 
-import MapLibre.*
+import MapLibre.MLNRasterTileSource
+import MapLibre.MLNTileCoordinateSystemTMS
+import MapLibre.MLNTileCoordinateSystemXYZ
+import MapLibre.MLNTileSourceOptionAttributionHTMLString
+import MapLibre.MLNTileSourceOptionCoordinateBounds
+import MapLibre.MLNTileSourceOptionMaximumZoomLevel
+import MapLibre.MLNTileSourceOptionMinimumZoomLevel
+import MapLibre.MLNTileSourceOptionTileCoordinateSystem
+import MapLibre.MLNTileSourceOptionTileSize
 import org.maplibre.compose.core.util.toMLNCoordinateBounds
 import platform.Foundation.NSURL
 

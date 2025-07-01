@@ -10,7 +10,12 @@ import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.nil
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.ColorValue
+import org.maplibre.compose.expressions.value.DpOffsetValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.ImageValue
+import org.maplibre.compose.expressions.value.TranslateAnchor
 
 /**
  * A fill extrusion layer draws polygons from the [sourceLayer] in the given [source] in the given
@@ -26,8 +31,8 @@ import org.maplibre.compose.expressions.value.*
  *   this, the layer will be hidden. A value in the range of `[0..24]`.
  * @param filter An expression specifying conditions on source features. Only features that match
  *   the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom
- *   levels. The [featureState][org.maplibre.compose.expressions.dsl.Feature.state] expression is
- *   not supported in filter expressions.
+ *   levels. The [featureState][org.maplibre.compose.expressions.dsl.Feature.state]
+ *   expression is not supported in filter expressions.
  * @param visible Whether the layer should be displayed.
  * @param translate The geometry's offset relative to the [translateAnchor]. Negative numbers
  *   indicate left and up (on the flat plane), respectively.

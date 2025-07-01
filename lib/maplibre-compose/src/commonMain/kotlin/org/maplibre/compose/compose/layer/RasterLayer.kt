@@ -1,7 +1,6 @@
 package org.maplibre.compose.compose.layer
 
 import androidx.compose.runtime.Composable
-import kotlin.time.Duration.Companion.milliseconds
 import org.maplibre.compose.compose.MaplibreComposable
 import org.maplibre.compose.core.layer.RasterLayer
 import org.maplibre.compose.core.source.Source
@@ -10,6 +9,7 @@ import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.MillisecondsValue
 import org.maplibre.compose.expressions.value.RasterResampling
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Raster map textures such as satellite imagery.

@@ -1,7 +1,15 @@
 package org.maplibre.compose.expressions.value
 
 import org.maplibre.compose.expressions.ast.Expression
-import org.maplibre.compose.expressions.dsl.*
+import org.maplibre.compose.expressions.dsl.eq
+import org.maplibre.compose.expressions.dsl.format
+import org.maplibre.compose.expressions.dsl.gt
+import org.maplibre.compose.expressions.dsl.gte
+import org.maplibre.compose.expressions.dsl.interpolate
+import org.maplibre.compose.expressions.dsl.lt
+import org.maplibre.compose.expressions.dsl.lte
+import org.maplibre.compose.expressions.dsl.neq
+import org.maplibre.compose.expressions.dsl.switch
 
 /** Represents and [Expression] that resolves to a value that can be an input to [format]. */
 public sealed interface FormattableValue : ExpressionValue

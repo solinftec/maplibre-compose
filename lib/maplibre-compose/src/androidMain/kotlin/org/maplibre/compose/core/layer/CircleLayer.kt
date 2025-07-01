@@ -1,12 +1,19 @@
 package org.maplibre.compose.core.layer
 
-import org.maplibre.android.style.expressions.Expression as MLNExpression
-import org.maplibre.android.style.layers.CircleLayer as MLNCircleLayer
-import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toMLNExpression
 import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.CirclePitchAlignment
+import org.maplibre.compose.expressions.value.CirclePitchScale
+import org.maplibre.compose.expressions.value.ColorValue
+import org.maplibre.compose.expressions.value.DpOffsetValue
+import org.maplibre.compose.expressions.value.DpValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.TranslateAnchor
+import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.android.style.layers.CircleLayer as MLNCircleLayer
+import org.maplibre.android.style.layers.PropertyFactory
 
 internal actual class CircleLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

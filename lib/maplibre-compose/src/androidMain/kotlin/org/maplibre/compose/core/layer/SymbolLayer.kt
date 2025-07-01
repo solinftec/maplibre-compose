@@ -1,12 +1,36 @@
 package org.maplibre.compose.core.layer
 
-import org.maplibre.android.style.expressions.Expression as MLNExpression
-import org.maplibre.android.style.layers.PropertyFactory
-import org.maplibre.android.style.layers.SymbolLayer as MLNSymbolLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toMLNExpression
 import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.ColorValue
+import org.maplibre.compose.expressions.value.DpOffsetValue
+import org.maplibre.compose.expressions.value.DpPaddingValue
+import org.maplibre.compose.expressions.value.DpValue
+import org.maplibre.compose.expressions.value.FloatOffsetValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.FormattedValue
+import org.maplibre.compose.expressions.value.IconPitchAlignment
+import org.maplibre.compose.expressions.value.IconRotationAlignment
+import org.maplibre.compose.expressions.value.IconTextFit
+import org.maplibre.compose.expressions.value.ImageValue
+import org.maplibre.compose.expressions.value.ListValue
+import org.maplibre.compose.expressions.value.StringValue
+import org.maplibre.compose.expressions.value.SymbolAnchor
+import org.maplibre.compose.expressions.value.SymbolOverlap
+import org.maplibre.compose.expressions.value.SymbolPlacement
+import org.maplibre.compose.expressions.value.SymbolZOrder
+import org.maplibre.compose.expressions.value.TextJustify
+import org.maplibre.compose.expressions.value.TextPitchAlignment
+import org.maplibre.compose.expressions.value.TextRotationAlignment
+import org.maplibre.compose.expressions.value.TextTransform
+import org.maplibre.compose.expressions.value.TextVariableAnchorOffsetValue
+import org.maplibre.compose.expressions.value.TextWritingMode
+import org.maplibre.compose.expressions.value.TranslateAnchor
+import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.layers.SymbolLayer as MLNSymbolLayer
 
 internal actual class SymbolLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

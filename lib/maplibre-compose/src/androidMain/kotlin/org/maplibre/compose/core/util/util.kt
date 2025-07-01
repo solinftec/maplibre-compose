@@ -5,16 +5,44 @@ import android.graphics.RectF
 import android.view.Gravity
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.unit.*
-import com.google.gson.*
-import io.github.dellisd.spatialk.geojson.*
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.DpOffset
+import androidx.compose.ui.unit.DpRect
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.LayoutDirection
+import com.google.gson.JsonArray
+import com.google.gson.JsonElement
+import com.google.gson.JsonNull
+import com.google.gson.JsonObject
+import com.google.gson.JsonPrimitive
+import org.maplibre.compose.expressions.ast.BooleanLiteral
+import org.maplibre.compose.expressions.ast.ColorLiteral
+import org.maplibre.compose.expressions.ast.CompiledExpression
+import org.maplibre.compose.expressions.ast.CompiledFunctionCall
+import org.maplibre.compose.expressions.ast.CompiledListLiteral
+import org.maplibre.compose.expressions.ast.CompiledMapLiteral
+import org.maplibre.compose.expressions.ast.CompiledOptions
+import org.maplibre.compose.expressions.ast.DpPaddingLiteral
+import org.maplibre.compose.expressions.ast.FloatLiteral
+import org.maplibre.compose.expressions.ast.NullLiteral
+import org.maplibre.compose.expressions.ast.OffsetLiteral
+import org.maplibre.compose.expressions.ast.StringLiteral
+import io.github.dellisd.spatialk.geojson.BoundingBox
+import io.github.dellisd.spatialk.geojson.Geometry
+import io.github.dellisd.spatialk.geojson.GeometryCollection
+import io.github.dellisd.spatialk.geojson.LineString
+import io.github.dellisd.spatialk.geojson.MultiLineString
+import io.github.dellisd.spatialk.geojson.MultiPoint
+import io.github.dellisd.spatialk.geojson.MultiPolygon
+import io.github.dellisd.spatialk.geojson.Point
+import io.github.dellisd.spatialk.geojson.Polygon
+import io.github.dellisd.spatialk.geojson.Position
 import java.net.URI
 import java.net.URISyntaxException
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.geometry.LatLngBounds
 import org.maplibre.android.geometry.LatLngQuad
 import org.maplibre.android.style.expressions.Expression as MLNExpression
-import org.maplibre.compose.expressions.ast.*
 
 internal fun String.correctedAndroidUri(): String {
   return try {

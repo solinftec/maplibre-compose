@@ -15,7 +15,7 @@ This library is published via [Maven Central][maven], and snapshot builds of
 
     ```toml title="libs.versions.toml"
     [libraries]
-    maplibre-compose = { module = "org.maplibre.maplibre-compose:maplibre-compose", version = "{{ gradle.release_version }}" }
+    maplibre-compose = { module = "org.maplibre.compose:maplibre-compose", version = "{{ gradle.release_version }}" }
     ```
 
 === "Snapshots (GitHub Packages)"
@@ -45,7 +45,7 @@ This library is published via [Maven Central][maven], and snapshot builds of
 
     ```toml title="libs.versions.toml"
     [libraries]
-    maplibre-compose = { module = "org.maplibre.maplibre-compose:maplibre-compose", version = "{{ gradle.snapshot_version }}" }
+    maplibre-compose = { module = "org.maplibre.compose:maplibre-compose", version = "{{ gradle.snapshot_version }}" }
     ```
 
 In your Gradle build script, add:
@@ -211,7 +211,7 @@ is running in:
 In your Composable UI, add a map:
 
 ```kotlin title="App.kt"
--8<- "demo-app/src/commonMain/kotlin/org/maplibre/compose/demoapp/docs/GettingStarted.kt:app"
+-8<- "demo-app/src/commonMain/kotlin/org/maplibre/compose/docsnippets/GettingStarted.kt:app"
 ```
 
 When you run your app, you should see the default [demotiles] map. To learn how
@@ -220,7 +220,7 @@ to get a detailed map with all the features you'd expect, proceed to
 
 [compose-guide]:
   https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-create-first-app.html
-[maven]: https://central.sonatype.com/namespace/org.maplibre.maplibre-compose
+[maven]: https://central.sonatype.com/namespace/org.maplibre.compose
 [gh-packages]:
   https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry
 [gh-packages-guide]:

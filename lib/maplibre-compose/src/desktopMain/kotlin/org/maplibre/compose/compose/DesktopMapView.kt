@@ -14,7 +14,11 @@ import com.multiplatform.webview.web.WebViewNavigator
 import com.multiplatform.webview.web.rememberWebViewNavigator
 import com.multiplatform.webview.web.rememberWebViewStateWithHTMLData
 import org.maplibre.compose.core.BaseStyle
-import org.maplibre.compose.core.*
+import org.maplibre.compose.core.MapOptions
+import org.maplibre.compose.core.MaplibreMap
+import org.maplibre.compose.core.SafeStyle
+import org.maplibre.compose.core.WebviewBridge
+import org.maplibre.compose.core.WebviewMap
 
 @Composable
 internal actual fun ComposableMapView(

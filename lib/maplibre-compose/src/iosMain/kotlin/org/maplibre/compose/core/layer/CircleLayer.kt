@@ -5,7 +5,14 @@ import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toNSExpression
 import org.maplibre.compose.core.util.toNSPredicate
 import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.CirclePitchAlignment
+import org.maplibre.compose.expressions.value.CirclePitchScale
+import org.maplibre.compose.expressions.value.ColorValue
+import org.maplibre.compose.expressions.value.DpOffsetValue
+import org.maplibre.compose.expressions.value.DpValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.TranslateAnchor
 
 internal actual class CircleLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

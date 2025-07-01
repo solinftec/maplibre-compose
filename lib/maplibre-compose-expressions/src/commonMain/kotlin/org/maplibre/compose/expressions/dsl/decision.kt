@@ -2,7 +2,15 @@ package org.maplibre.compose.expressions.dsl
 
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.FunctionCall
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.CollatorValue
+import org.maplibre.compose.expressions.value.ComparableValue
+import org.maplibre.compose.expressions.value.EnumValue
+import org.maplibre.compose.expressions.value.EquatableValue
+import org.maplibre.compose.expressions.value.ExpressionValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.MatchableValue
+import org.maplibre.compose.expressions.value.StringValue
 import kotlin.jvm.JvmName
 
 /**

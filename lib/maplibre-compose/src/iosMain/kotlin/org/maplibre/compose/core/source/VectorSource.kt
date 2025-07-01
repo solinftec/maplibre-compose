@@ -1,7 +1,14 @@
 package org.maplibre.compose.core.source
 
-import MapLibre.*
-import io.github.dellisd.spatialk.geojson.Feature
+import MapLibre.MLNFeatureProtocol
+import MapLibre.MLNTileCoordinateSystemTMS
+import MapLibre.MLNTileCoordinateSystemXYZ
+import MapLibre.MLNTileSourceOptionAttributionHTMLString
+import MapLibre.MLNTileSourceOptionCoordinateBounds
+import MapLibre.MLNTileSourceOptionMaximumZoomLevel
+import MapLibre.MLNTileSourceOptionMinimumZoomLevel
+import MapLibre.MLNTileSourceOptionTileCoordinateSystem
+import MapLibre.MLNVectorTileSource
 import org.maplibre.compose.core.util.toFeature
 import org.maplibre.compose.core.util.toMLNCoordinateBounds
 import org.maplibre.compose.core.util.toNSPredicate
@@ -9,6 +16,7 @@ import org.maplibre.compose.expressions.ExpressionContext
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.value.BooleanValue
+import io.github.dellisd.spatialk.geojson.Feature
 import platform.Foundation.NSURL
 
 public actual class VectorSource : Source {

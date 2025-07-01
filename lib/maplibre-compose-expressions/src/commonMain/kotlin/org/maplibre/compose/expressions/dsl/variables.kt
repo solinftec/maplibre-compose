@@ -1,9 +1,9 @@
 package org.maplibre.compose.expressions.dsl
 
-import kotlin.jvm.JvmInline
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.FunctionCall
 import org.maplibre.compose.expressions.value.ExpressionValue
+import kotlin.jvm.JvmInline
 
 /**
  * Binds expression [value] to a [Variable] with the given [name], which can then be referenced

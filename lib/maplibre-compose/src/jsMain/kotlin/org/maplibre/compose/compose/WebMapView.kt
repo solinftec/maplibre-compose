@@ -1,14 +1,23 @@
 package org.maplibre.compose.compose
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import co.touchlab.kermit.Logger
+import org.maplibre.compose.htmlinterop.HtmlElement
+import org.maplibre.compose.core.BaseStyle
+import org.maplibre.compose.core.JsMap
+import org.maplibre.compose.core.MapOptions
+import org.maplibre.compose.core.MaplibreMap
+import org.maplibre.compose.core.SafeStyle
 import kotlinx.browser.document
-import org.maplibre.compose.core.*
-import org.maplibre.composehtmlinterop.HtmlElement
 import org.w3c.dom.HTMLElement
 
 @Composable

@@ -12,9 +12,7 @@ import MapLibre.MLNCameraChangeReasonGestureZoomOut
 import MapLibre.MLNCameraChangeReasonProgrammatic
 import MapLibre.MLNCoordinateBoundsMake
 import MapLibre.MLNFeatureProtocol
-import MapLibre.MLNLoggingBlockHandler
 import MapLibre.MLNLoggingConfiguration
-import MapLibre.MLNLoggingLevel
 import MapLibre.MLNLoggingLevelDebug
 import MapLibre.MLNLoggingLevelError
 import MapLibre.MLNLoggingLevelFault
@@ -37,8 +35,25 @@ import MapLibre.MLNOrnamentPositionTopRight
 import MapLibre.MLNStyle
 import MapLibre.allowsTilting
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.ui.unit.*
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.DpOffset
+import androidx.compose.ui.unit.DpRect
+import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
+import org.maplibre.compose.core.util.getSystemRefreshRate
+import org.maplibre.compose.core.util.toBoundingBox
+import org.maplibre.compose.core.util.toCGPoint
+import org.maplibre.compose.core.util.toCGRect
+import org.maplibre.compose.core.util.toCLLocationCoordinate2D
+import org.maplibre.compose.core.util.toDpOffset
+import org.maplibre.compose.core.util.toFeature
+import org.maplibre.compose.core.util.toMLNCoordinateBounds
+import org.maplibre.compose.core.util.toMLNOrnamentPosition
+import org.maplibre.compose.core.util.toNSPredicate
+import org.maplibre.compose.core.util.toPosition
+import org.maplibre.compose.expressions.ast.CompiledExpression
+import org.maplibre.compose.expressions.value.BooleanValue
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
@@ -47,19 +62,25 @@ import kotlin.coroutines.suspendCoroutine
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.TimeSource
-import kotlinx.cinterop.*
-import org.maplibre.compose.core.util.*
-import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.BooleanValue
+import kotlinx.cinterop.BetaInteropApi
+import kotlinx.cinterop.CValue
+import kotlinx.cinterop.ObjCAction
+import kotlinx.cinterop.ObjCSignatureOverride
+import kotlinx.cinterop.useContents
 import platform.CoreGraphics.CGPoint
 import platform.CoreGraphics.CGPointMake
 import platform.CoreGraphics.CGSize
 import platform.CoreLocation.CLLocationCoordinate2DMake
 import platform.Foundation.NSError
 import platform.Foundation.NSURL
-import platform.UIKit.*
+import platform.UIKit.UIEdgeInsets
+import platform.UIKit.UIEdgeInsetsMake
+import platform.UIKit.UIGestureRecognizer
+import platform.UIKit.UIGestureRecognizerStateBegan
+import platform.UIKit.UIGestureRecognizerStateEnded
+import platform.UIKit.UILongPressGestureRecognizer
+import platform.UIKit.UITapGestureRecognizer
 import platform.darwin.NSObject
-import platform.darwin.NSUInteger
 import platform.darwin.sel_registerName
 
 internal class IosMap(
@@ -93,25 +114,21 @@ internal class IosMap(
     )
 
     // delegate log level configuration to Kermit logger
-    MLNLoggingConfiguration.sharedConfiguration.setHandler(LoggingBlockHandler(this))
     MLNLoggingConfiguration.sharedConfiguration.loggingLevel = MLNLoggingLevelVerbose
-
-    delegate = Delegate(this)
-    mapView.delegate = delegate
-  }
-
-  private class LoggingBlockHandler(private val map: IosMap) : MLNLoggingBlockHandler {
-    override fun invoke(level: MLNLoggingLevel, path: String?, line: NSUInteger, message: String?) {
+    MLNLoggingConfiguration.sharedConfiguration.setHandler { level, path, line, message ->
       when (level) {
-        MLNLoggingLevelFault -> map.logger?.a { "$message" }
-        MLNLoggingLevelError -> map.logger?.e { "$message" }
-        MLNLoggingLevelWarning -> map.logger?.w { "$message" }
-        MLNLoggingLevelInfo -> map.logger?.i { "$message" }
-        MLNLoggingLevelDebug -> map.logger?.d { "$message" }
-        MLNLoggingLevelVerbose -> map.logger?.v { "$message" }
+        MLNLoggingLevelFault -> logger?.a { "$message" }
+        MLNLoggingLevelError -> logger?.e { "$message" }
+        MLNLoggingLevelWarning -> logger?.w { "$message" }
+        MLNLoggingLevelInfo -> logger?.i { "$message" }
+        MLNLoggingLevelDebug -> logger?.d { "$message" }
+        MLNLoggingLevelVerbose -> logger?.v { "$message" }
         else -> error("Unexpected logging level: $level")
       }
     }
+
+    delegate = Delegate(this)
+    mapView.delegate = delegate
   }
 
   private class Delegate(private val map: IosMap) : NSObject(), MLNMapViewDelegateProtocol {

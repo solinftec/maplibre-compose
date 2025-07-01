@@ -3,7 +3,9 @@ package org.maplibre.compose.material3.util
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.intl.Locale
 import org.maplibre.compose.material3.controls.ScaleBarMeasure
-import org.maplibre.compose.material3.controls.ScaleBarMeasure.*
+import org.maplibre.compose.material3.controls.ScaleBarMeasure.FeetAndMiles
+import org.maplibre.compose.material3.controls.ScaleBarMeasure.Metric
+import org.maplibre.compose.material3.controls.ScaleBarMeasure.YardsAndMiles
 import org.maplibre.compose.material3.controls.ScaleBarMeasures
 
 /** use system locale APIs for the primary scale bar measure */
@@ -12,10 +14,8 @@ import org.maplibre.compose.material3.controls.ScaleBarMeasures
 /** if the system APIs don't provide a primary measure, fall back to our hardcoded lists */
 internal fun fallbackDefaultPrimaryMeasure(region: String?): ScaleBarMeasure =
   when (region) {
-    in _root_ide_package_.org.maplibre.compose.material3.util.regionsUsingFeetAndMiles ->
-      FeetAndMiles
-    in _root_ide_package_.org.maplibre.compose.material3.util.regionsUsingYardsAndMiles ->
-      YardsAndMiles
+    in regionsUsingFeetAndMiles -> FeetAndMiles
+    in regionsUsingYardsAndMiles -> YardsAndMiles
     else -> Metric
   }
 
@@ -26,10 +26,8 @@ internal fun defaultSecondaryMeasure(primary: ScaleBarMeasure, region: String?):
     YardsAndMiles -> Metric
     Metric ->
       when (region) {
-        in _root_ide_package_.org.maplibre.compose.material3.util.regionsUsingFeetAndMiles ->
-          FeetAndMiles
-        in _root_ide_package_.org.maplibre.compose.material3.util.regionsUsingYardsAndMiles ->
-          YardsAndMiles
+        in regionsUsingFeetAndMiles -> FeetAndMiles
+        in regionsUsingYardsAndMiles -> YardsAndMiles
         else -> null
       }
     else -> null // should never happen because the primary is always one of the above
@@ -88,17 +86,6 @@ internal val regionsUsingYardsAndMiles =
 @Composable
 public fun defaultScaleBarMeasures(): ScaleBarMeasures {
   val region = Locale.current.region
-  val primary =
-    systemDefaultPrimaryMeasure()
-      ?: _root_ide_package_.org.maplibre.compose.material3.util.fallbackDefaultPrimaryMeasure(
-        region
-      )
-  return ScaleBarMeasures(
-    primary = primary,
-    secondary =
-      _root_ide_package_.org.maplibre.compose.material3.util.defaultSecondaryMeasure(
-        primary,
-        region,
-      ),
-  )
+  val primary = systemDefaultPrimaryMeasure() ?: fallbackDefaultPrimaryMeasure(region)
+  return ScaleBarMeasures(primary = primary, secondary = defaultSecondaryMeasure(primary, region))
 }

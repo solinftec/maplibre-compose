@@ -1,16 +1,27 @@
 package org.maplibre.compose.compose
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import co.touchlab.kermit.Logger
+import org.maplibre.compose.compose.engine.LayerNode
+import org.maplibre.compose.compose.engine.rememberStyleComposition
+import org.maplibre.compose.core.BaseStyle
+import org.maplibre.compose.core.CameraMoveReason
+import org.maplibre.compose.core.MapOptions
+import org.maplibre.compose.core.MaplibreMap
+import org.maplibre.compose.core.SafeStyle
+import org.maplibre.compose.core.StandardMaplibreMap
+import org.maplibre.compose.core.Style
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Position
 import kotlinx.coroutines.launch
-import org.maplibre.compose.compose.engine.LayerNode
-import org.maplibre.compose.compose.engine.rememberStyleComposition
-import org.maplibre.compose.core.*
 
 /**
  * Displays a MapLibre based map.
@@ -28,8 +39,9 @@ import org.maplibre.compose.core.*
  *   [this GH Issue](https://github.com/maplibre/maplibre-native/issues/3128).
  * @param onMapClick Invoked when the map is clicked. A click callback can be defined per layer,
  *   too, see e.g. the `onClick` parameter for
- *   [LineLayer][org.maplibre.compose.compose.layer.LineLayer]. However, this callback is always
- *   called first and can thus prevent subsequent callbacks to be invoked by consuming the event.
+ *   [LineLayer][org.maplibre.compose.compose.layer.LineLayer]. However, this callback is
+ *   always called first and can thus prevent subsequent callbacks to be invoked by consuming the
+ *   event.
  * @param onMapLongClick Invoked when the map is long-clicked. See [onMapClick].
  * @param onFrame Invoked on every rendered frame.
  * @param logger kermit logger to use.

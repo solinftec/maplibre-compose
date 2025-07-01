@@ -1,14 +1,38 @@
 package org.maplibre.compose.material3.controls
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.expandIn
+import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,8 +47,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.compose.compose.CameraState
 import org.maplibre.compose.compose.StyleState
 import org.maplibre.compose.core.CameraMoveReason
@@ -35,6 +57,8 @@ import org.maplibre.compose.material3.util.horizontal
 import org.maplibre.compose.material3.util.reverse
 import org.maplibre.compose.material3.util.toArrangement
 import org.maplibre.compose.material3.util.vertical
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 
 /**
  * Info button from which an attribution popup text is expanded. This version retracts when the user

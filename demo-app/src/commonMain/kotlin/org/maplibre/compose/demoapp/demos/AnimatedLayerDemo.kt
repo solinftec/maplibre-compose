@@ -4,96 +4,76 @@ import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import io.github.dellisd.spatialk.geojson.Position
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.maplibre.compose.compose.MaplibreMap
 import org.maplibre.compose.compose.layer.Anchor
 import org.maplibre.compose.compose.layer.LineLayer
-import org.maplibre.compose.compose.rememberCameraState
-import org.maplibre.compose.compose.rememberStyleState
 import org.maplibre.compose.compose.source.rememberGeoJsonSource
-import org.maplibre.compose.core.CameraPosition
 import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.core.source.GeoJsonOptions
-import org.maplibre.compose.demoapp.*
+import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.exponential
 import org.maplibre.compose.expressions.dsl.interpolate
 import org.maplibre.compose.expressions.dsl.zoom
 import org.maplibre.compose.expressions.value.LineCap
 import org.maplibre.compose.expressions.value.LineJoin
-
-private val US = Position(latitude = 46.336, longitude = -96.205)
+import io.github.dellisd.spatialk.geojson.BoundingBox
+import io.github.dellisd.spatialk.geojson.Position
 
 object AnimatedLayerDemo : Demo {
-  override val name = "Animated layer"
-  override val description = "Change layer properties at runtime."
+  override val name = "Animated layers"
+
+  override val region =
+    BoundingBox(southwest = Position(-125.0, 24.0), northeast = Position(-66.0, 49.0))
+
+  override val mapContentVisibilityState = mutableStateOf(true)
 
   @Composable
-  @OptIn(ExperimentalResourceApi::class)
-  override fun Component(navigateUp: () -> Unit) {
-    DemoScaffold(this, navigateUp) {
-      val cameraState = rememberCameraState(firstPosition = CameraPosition(target = US, zoom = 2.0))
-      val styleState = rememberStyleState()
+  override fun MapContent(state: DemoState, isOpen: Boolean) {
+    val routeSource =
+      rememberGeoJsonSource(
+        id = "amtrak-routes",
+        data =
+          GeoJsonData.Uri(
+            "https://raw.githubusercontent.com/datanews/amtrak-geojson/refs/heads/master/amtrak-combined.geojson"
+          ),
+        options = GeoJsonOptions(tolerance = 0.1f),
+      )
 
-      Box(modifier = Modifier.fillMaxSize()) {
-        MaplibreMap(
-          baseStyle = DEFAULT_STYLE,
-          cameraState = cameraState,
-          styleState = styleState,
-          options = DemoMapOptions(),
-        ) {
-          val routeSource =
-            rememberGeoJsonSource(
-              id = "amtrak-routes",
-              data =
-                GeoJsonData.Uri(
-                  "https://raw.githubusercontent.com/datanews/amtrak-geojson/refs/heads/master/amtrak-combined.geojson"
-                ),
-              options = GeoJsonOptions(tolerance = 0.1f),
-            )
+    val infiniteTransition = rememberInfiniteTransition()
+    val animatedColor by
+      infiniteTransition.animateColor(
+        Color.hsl(0f, 1f, 0.5f),
+        Color.hsl(0f, 1f, 0.5f),
+        animationSpec =
+          infiniteRepeatable(
+            animation =
+              keyframes {
+                durationMillis = 10000
+                for (i in 1..9) Color.hsl(i * 36f, 1f, 0.5f) at (i * 1000)
+              }
+          ),
+      )
 
-          val infiniteTransition = rememberInfiniteTransition()
-          val animatedColor by
-            infiniteTransition.animateColor(
-              Color.hsl(0f, 1f, 0.5f),
-              Color.hsl(0f, 1f, 0.5f),
-              animationSpec =
-                infiniteRepeatable(
-                  animation =
-                    keyframes {
-                      durationMillis = 10000
-                      for (i in 1..9) Color.hsl(i * 36f, 1f, 0.5f) at (i * 1000)
-                    }
-                ),
-            )
-
-          Anchor.Below("waterway_line_label") {
-            LineLayer(
-              id = "amtrak-routes",
-              source = routeSource,
-              color = const(animatedColor),
-              cap = const(LineCap.Round),
-              join = const(LineJoin.Round),
-              width =
-                interpolate(
-                  type = exponential(1.2f),
-                  input = zoom(),
-                  7 to const(1.75.dp),
-                  20 to const(22.dp),
-                ),
-            )
-          }
-        }
-        DemoMapControls(cameraState, styleState)
-      }
+    Anchor.At(state.selectedStyle.anchorBelowSymbols) {
+      LineLayer(
+        id = "amtrak-routes",
+        source = routeSource,
+        color = const(animatedColor),
+        cap = const(LineCap.Round),
+        join = const(LineJoin.Round),
+        width =
+          interpolate(
+            type = exponential(1.2f),
+            input = zoom(),
+            7 to const(1.75.dp),
+            20 to const(22.dp),
+          ),
+      )
     }
   }
 }

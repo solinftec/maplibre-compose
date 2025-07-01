@@ -4,7 +4,8 @@ import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.FeatureCollection
 
 public actual class ComputedSource : Source {
-  override val impl: Nothing = TODO("Not yet implemented")
+
+  @Suppress("UNREACHABLE_CODE") override val impl: Nothing = TODO()
 
   public actual constructor(
     id: String,

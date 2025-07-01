@@ -6,7 +6,7 @@ plugins {
   id("maven-publish")
 }
 
-group = "org.maplibre.maplibre-compose"
+group = "org.maplibre.compose"
 
 kotlin {
   explicitApi()
@@ -14,6 +14,8 @@ kotlin {
   jvmToolchain(properties["jvmToolchain"]!!.toString().toInt())
 
   compilerOptions {
+    // KLIB resolver: The same 'unique_name=annotation_commonMain' found in more than one library
+    allWarningsAsErrors = false
     freeCompilerArgs.addAll("-Xexpect-actual-classes", "-Xconsistent-data-class-copy-visibility")
   }
 }

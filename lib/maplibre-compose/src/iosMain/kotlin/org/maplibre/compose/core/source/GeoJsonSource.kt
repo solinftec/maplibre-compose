@@ -1,6 +1,15 @@
 package org.maplibre.compose.core.source
 
-import MapLibre.*
+import MapLibre.MLNShapeSource
+import MapLibre.MLNShapeSourceOptionBuffer
+import MapLibre.MLNShapeSourceOptionClusterProperties
+import MapLibre.MLNShapeSourceOptionClusterRadius
+import MapLibre.MLNShapeSourceOptionClustered
+import MapLibre.MLNShapeSourceOptionLineDistanceMetrics
+import MapLibre.MLNShapeSourceOptionMaximumZoomLevel
+import MapLibre.MLNShapeSourceOptionMaximumZoomLevelForClustering
+import MapLibre.MLNShapeSourceOptionMinimumZoomLevel
+import MapLibre.MLNShapeSourceOptionSimplificationTolerance
 import org.maplibre.compose.core.util.toMLNShape
 import org.maplibre.compose.core.util.toNSExpression
 import org.maplibre.compose.expressions.ExpressionContext

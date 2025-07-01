@@ -1,12 +1,21 @@
 package org.maplibre.compose.core.layer
 
-import org.maplibre.android.style.expressions.Expression as MLNExpression
-import org.maplibre.android.style.layers.LineLayer as MLNLineLayer
-import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toMLNExpression
 import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.ColorValue
+import org.maplibre.compose.expressions.value.DpOffsetValue
+import org.maplibre.compose.expressions.value.DpValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.ImageValue
+import org.maplibre.compose.expressions.value.LineCap
+import org.maplibre.compose.expressions.value.LineJoin
+import org.maplibre.compose.expressions.value.TranslateAnchor
+import org.maplibre.compose.expressions.value.VectorValue
+import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.android.style.layers.LineLayer as MLNLineLayer
+import org.maplibre.android.style.layers.PropertyFactory
 
 internal actual class LineLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

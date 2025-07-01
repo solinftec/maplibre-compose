@@ -3,12 +3,12 @@ package org.maplibre.compose.core
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpRect
+import org.maplibre.compose.expressions.ast.CompiledExpression
+import org.maplibre.compose.expressions.value.BooleanValue
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.time.Duration
-import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.BooleanValue
 
 internal interface MaplibreMap {
   suspend fun animateCameraPosition(finalPosition: CameraPosition, duration: Duration)

@@ -1,12 +1,28 @@
 package org.maplibre.compose.expressions.dsl
 
 import androidx.compose.ui.unit.TextUnitType
-import kotlin.enums.enumEntries
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.FunctionCall
 import org.maplibre.compose.expressions.ast.Options
 import org.maplibre.compose.expressions.ast.TextUnitCalculation
-import org.maplibre.compose.expressions.value.*
+import org.maplibre.compose.expressions.value.BooleanValue
+import org.maplibre.compose.expressions.value.CollatorValue
+import org.maplibre.compose.expressions.value.ColorValue
+import org.maplibre.compose.expressions.value.DpOffsetValue
+import org.maplibre.compose.expressions.value.DpPaddingValue
+import org.maplibre.compose.expressions.value.DpValue
+import org.maplibre.compose.expressions.value.EnumValue
+import org.maplibre.compose.expressions.value.ExpressionType
+import org.maplibre.compose.expressions.value.FloatOffsetValue
+import org.maplibre.compose.expressions.value.FloatValue
+import org.maplibre.compose.expressions.value.IntValue
+import org.maplibre.compose.expressions.value.ListValue
+import org.maplibre.compose.expressions.value.MapValue
+import org.maplibre.compose.expressions.value.MillisecondsValue
+import org.maplibre.compose.expressions.value.NumberValue
+import org.maplibre.compose.expressions.value.StringValue
+import org.maplibre.compose.expressions.value.TextUnitValue
+import kotlin.enums.enumEntries
 
 /** Returns a string describing the type of this expression. */
 public fun Expression<*>.type(): Expression<ExpressionType> = FunctionCall.of("typeof", this).cast()

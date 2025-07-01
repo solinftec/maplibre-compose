@@ -4,12 +4,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpRect
 import androidx.compose.ui.unit.LayoutDirection
+import org.maplibre.compose.expressions.ast.CompiledExpression
+import org.maplibre.compose.expressions.value.BooleanValue
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
 import kotlin.time.Duration
-import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.BooleanValue
 
 internal class WebviewMap(private val bridge: WebviewBridge) : MaplibreMap {
   suspend fun init() {

@@ -1,7 +1,5 @@
 package org.maplibre.compose.core
 
-import org.maplibre.compose.core.OrnamentOptions.Companion.OnlyLogo
-
 /**
  * Defines which additional platform-specific UI elements are displayed on top of the map.
  *

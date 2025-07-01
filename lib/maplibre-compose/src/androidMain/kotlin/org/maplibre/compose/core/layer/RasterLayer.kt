@@ -1,13 +1,13 @@
 package org.maplibre.compose.core.layer
 
-import org.maplibre.android.style.layers.PropertyFactory
-import org.maplibre.android.style.layers.RasterLayer as MLNRasterLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toMLNExpression
 import org.maplibre.compose.expressions.ast.CompiledExpression
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.MillisecondsValue
 import org.maplibre.compose.expressions.value.RasterResampling
+import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.layers.RasterLayer as MLNRasterLayer
 
 internal actual class RasterLayer actual constructor(id: String, actual val source: Source) :
   Layer() {

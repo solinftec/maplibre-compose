@@ -3,8 +3,14 @@
 
 package org.maplibre.compose.webview
 
+import org.maplibre.js.AttributionControl
+import org.maplibre.js.LogoControl
+import org.maplibre.js.Map
+import org.maplibre.js.MapOptions
+import org.maplibre.js.NavigationControl
+import org.maplibre.js.NavigationControlOptions
+import org.maplibre.js.ScaleControl
 import kotlinx.browser.document
-import org.maplibre.maplibrejs.*
 import org.w3c.dom.HTMLDivElement
 
 @JsExport

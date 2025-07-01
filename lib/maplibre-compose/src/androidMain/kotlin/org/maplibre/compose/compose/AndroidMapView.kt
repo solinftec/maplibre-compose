@@ -1,6 +1,12 @@
 package org.maplibre.compose.compose
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
@@ -17,7 +23,6 @@ import org.maplibre.compose.core.SafeStyle
 import org.maplibre.android.MapLibre
 import org.maplibre.android.maps.MapLibreMapOptions
 import org.maplibre.android.maps.MapView
-import org.maplibre.compose.core.*
 
 @Composable
 internal actual fun ComposableMapView(
@@ -66,48 +71,52 @@ internal fun AndroidMapView(
   val foregroundLoadColor = options.renderOptions.foregroundLoadColor
   val renderMode = options.renderOptions.renderMode
 
-  AndroidView(
-    modifier = modifier,
-    factory = { context ->
-      MapLibre.getInstance(context)
-      MapView(
-          context,
-          MapLibreMapOptions.createFromAttributes(context)
-            .foregroundLoadColor(foregroundLoadColor.toArgb())
-            .textureMode(renderMode == RenderOptions.RenderMode.TextureView),
-        )
-        .also { mapView ->
-          currentMapView = mapView
-          mapView.getMapAsync { map ->
-            currentMap =
-              AndroidMap(
-                mapView = mapView,
-                map = map,
-                scaleBar = AndroidScaleBar(context, mapView, map),
-                layoutDir = layoutDir,
-                density = density,
-                callbacks = callbacks,
-                baseStyle = style,
-                logger = logger,
-              )
+  // MUST key on all values used in the factory but not applied on update!
+  key(foregroundLoadColor, renderMode) {
+    AndroidView(
+      modifier = modifier,
+      factory = { context ->
+        MapLibre.getInstance(context)
+        println("Recreated map!")
+        MapView(
+            context,
+            MapLibreMapOptions.createFromAttributes(context)
+              .foregroundLoadColor(foregroundLoadColor.toArgb())
+              .textureMode(renderMode == RenderOptions.RenderMode.TextureView),
+          )
+          .also { mapView ->
+            currentMapView = mapView
+            mapView.getMapAsync { map ->
+              currentMap =
+                AndroidMap(
+                  mapView = mapView,
+                  map = map,
+                  scaleBar = AndroidScaleBar(context, mapView, map),
+                  layoutDir = layoutDir,
+                  density = density,
+                  callbacks = callbacks,
+                  baseStyle = style,
+                  logger = logger,
+                )
 
-            currentMap?.let { update(it) }
+              currentMap?.let { update(it) }
+            }
           }
-        }
-    },
-    update = { _ ->
-      val map = currentMap ?: return@AndroidView
-      map.layoutDir = layoutDir
-      map.density = density
-      map.callbacks = callbacks
-      map.logger = logger
-      map.setBaseStyle(style)
-      update(map)
-    },
-    onReset = {
-      currentOnReset()
-      currentMap = null
-      currentMapView = null
-    },
-  )
+      },
+      update = { _ ->
+        val map = currentMap ?: return@AndroidView
+        map.layoutDir = layoutDir
+        map.density = density
+        map.callbacks = callbacks
+        map.logger = logger
+        map.setBaseStyle(style)
+        update(map)
+      },
+      onReset = {
+        currentOnReset()
+        currentMap = null
+        currentMapView = null
+      },
+    )
+  }
 }

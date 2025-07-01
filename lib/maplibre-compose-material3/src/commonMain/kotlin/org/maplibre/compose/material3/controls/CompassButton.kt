@@ -1,7 +1,11 @@
 package org.maplibre.compose.material3.controls
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
@@ -11,13 +15,24 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.maplibre.compose.compose.CameraState
+import org.maplibre.compose.core.CameraPosition
+import org.maplibre.compose.material3.generated.Res
+import org.maplibre.compose.material3.generated.compass
+import org.maplibre.compose.material3.generated.compass_needle
+import org.maplibre.compose.material3.util.AngleMath
 import kotlin.math.absoluteValue
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -25,11 +40,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.maplibre.compose.compose.CameraState
-import org.maplibre.compose.core.CameraPosition
-import org.maplibre.compose.material3.generated.Res
-import org.maplibre.compose.material3.generated.compass
-import org.maplibre.compose.material3.generated.compass_needle
 
 @Composable
 public fun CompassButton(
@@ -90,7 +100,7 @@ public fun DisappearingCompassButton(
   val homePosition by derivedStateOf { getHomePosition(cameraState.position) }
 
   val shouldBeVisible by derivedStateOf {
-    with(_root_ide_package_.org.maplibre.compose.material3.util.AngleMath) {
+    with(AngleMath) {
       val tiltDiff = cameraState.position.tilt.diff(homePosition.tilt).absoluteValue
       val bearingDiff = cameraState.position.bearing.diff(homePosition.bearing).absoluteValue
       tiltDiff > slop || bearingDiff > slop

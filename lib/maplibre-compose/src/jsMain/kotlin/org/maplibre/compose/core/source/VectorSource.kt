@@ -1,8 +1,8 @@
 package org.maplibre.compose.core.source
 
-import io.github.dellisd.spatialk.geojson.Feature
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.value.BooleanValue
+import io.github.dellisd.spatialk.geojson.Feature
 
 public actual class VectorSource : Source {
   public actual constructor(id: String, uri: String) : super() {

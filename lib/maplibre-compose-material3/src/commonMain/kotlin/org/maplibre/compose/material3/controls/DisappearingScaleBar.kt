@@ -1,7 +1,11 @@
 package org.maplibre.compose.material3.controls
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -13,6 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.maplibre.compose.material3.util.backgroundColorFor
+import org.maplibre.compose.material3.util.defaultScaleBarMeasures
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
@@ -44,11 +50,9 @@ public fun DisappearingScaleBar(
   metersPerDp: Double,
   zoom: Double,
   modifier: Modifier = Modifier,
-  measures: ScaleBarMeasures =
-    _root_ide_package_.org.maplibre.compose.material3.util.defaultScaleBarMeasures(),
+  measures: ScaleBarMeasures = defaultScaleBarMeasures(),
   color: Color = LocalContentColor.current,
-  haloColor: Color =
-    _root_ide_package_.org.maplibre.compose.material3.util.backgroundColorFor(color),
+  haloColor: Color = backgroundColorFor(color),
   haloWidth: Dp = 0.dp,
   barWidth: Dp = 2.dp,
   textStyle: TextStyle = MaterialTheme.typography.labelMedium,

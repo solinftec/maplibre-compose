@@ -1,5 +1,7 @@
 package org.maplibre.compose.core
 
+import kotlin.Boolean
+
 /**
  * @param isRotateEnabled Set whether the user may rotate the map by moving two fingers in a
  *   circular motion.

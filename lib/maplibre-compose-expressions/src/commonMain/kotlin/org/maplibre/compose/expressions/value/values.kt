@@ -6,10 +6,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.TextUnit
-import kotlin.time.Duration
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.StringLiteral
-import org.maplibre.compose.expressions.dsl.*
+import org.maplibre.compose.expressions.dsl.collator
+import org.maplibre.compose.expressions.dsl.const
+import org.maplibre.compose.expressions.dsl.cubicBezier
+import org.maplibre.compose.expressions.dsl.exponential
+import org.maplibre.compose.expressions.dsl.format
+import org.maplibre.compose.expressions.dsl.image
+import org.maplibre.compose.expressions.dsl.linear
+import org.maplibre.compose.expressions.dsl.offset
+import kotlin.time.Duration
 
 /**
  * Represents a value that an [Expression] can resolve to. Many of these types are never actually
