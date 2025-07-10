@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import org.maplibre.compose.compose.FeaturesClickHandler
 import org.maplibre.compose.compose.MaplibreComposable
+import org.maplibre.compose.compose.source.SourceReferenceEffect
 import org.maplibre.compose.core.layer.SymbolLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.DefaultIconPadding
@@ -546,6 +547,7 @@ public fun SymbolLayer(
   val compiledTextTranslate = compile(textTranslate)
   val compiledTextTranslateAnchor = compile(textTranslateAnchor)
 
+  SourceReferenceEffect(source)
   LayerNode(
     factory = { SymbolLayer(id = id, source = source) },
     update = {

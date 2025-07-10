@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpOffset
 import org.maplibre.compose.compose.FeaturesClickHandler
 import org.maplibre.compose.compose.MaplibreComposable
+import org.maplibre.compose.compose.source.SourceReferenceEffect
 import org.maplibre.compose.core.layer.FillExtrusionLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.ast.Expression
@@ -91,6 +92,7 @@ public fun FillExtrusionLayer(
   val compiledBase = compile(base)
   val compiledVerticalGradient = compile(verticalGradient)
 
+  SourceReferenceEffect(source)
   LayerNode(
     factory = { FillExtrusionLayer(id = id, source = source) },
     update = {

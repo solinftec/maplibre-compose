@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpOffset
 import org.maplibre.compose.compose.FeaturesClickHandler
 import org.maplibre.compose.compose.MaplibreComposable
+import org.maplibre.compose.compose.source.SourceReferenceEffect
 import org.maplibre.compose.core.layer.FillLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.ast.Expression
@@ -90,6 +91,7 @@ public fun FillLayer(
   val compiledTranslateAnchor = compile(translateAnchor)
   val compiledOutlineColor = compile(outlineColor)
 
+  SourceReferenceEffect(source)
   LayerNode(
     factory = { FillLayer(id = id, source = source) },
     update = {

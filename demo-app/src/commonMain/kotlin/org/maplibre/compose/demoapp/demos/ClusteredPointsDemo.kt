@@ -20,9 +20,11 @@ import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.expressions.dsl.asNumber
 import org.maplibre.compose.expressions.dsl.asString
 import org.maplibre.compose.expressions.dsl.const
+import org.maplibre.compose.expressions.dsl.convertToNumber
 import org.maplibre.compose.expressions.dsl.feature
 import org.maplibre.compose.expressions.dsl.not
 import org.maplibre.compose.expressions.dsl.offset
+import org.maplibre.compose.expressions.dsl.plus
 import org.maplibre.compose.expressions.dsl.step
 import org.maplibre.compose.expressions.dsl.zoom
 import io.github.dellisd.spatialk.geojson.BoundingBox
@@ -70,25 +72,21 @@ object ClusteredPointsDemo : Demo {
 
     val bikeSource =
       rememberGeoJsonSource(
-        "bikes",
         GeoJsonData.JsonString(data),
         GeoJsonOptions(
           minZoom = 8,
           cluster = true,
           clusterRadius = 32,
           clusterMaxZoom = 16,
-          // TODO on Android, this segfaults when the mapper is anything but a constant
-          // See https://github.com/maplibre/maplibre-native/issues/3493
-          // clusterProperties =
-          //   mapOf(
-          //     "total_range" to
-          //       GeoJsonOptions.ClusterPropertyAggregator(
-          //         mapper = feature["current_range_meters"].asNumber(),
-          //         reducer =
-          //           feature.accumulated().asNumber() +
-          //             feature["total_range"].asNumber(),
-          //       )
-          //   ),
+          clusterProperties =
+            mapOf(
+              "total_range" to
+                GeoJsonOptions.ClusterPropertyAggregator(
+                  mapper = feature["current_range_meters"].convertToNumber(),
+                  reducer =
+                    feature.accumulated().asNumber() + feature["total_range"].convertToNumber(),
+                )
+            ),
         ),
       )
 
@@ -156,7 +154,7 @@ object ClusteredPointsDemo : Demo {
   private suspend fun getLimeBikeStatusAsGeoJson(): String {
     val bodyString =
       HttpClient()
-        .get("https://data.lime.bike/api/partners/v1/gbfs/seattle/free_bike_status.json")
+        .get("https://data.lime.bike/api/partners/v2/gbfs/seattle/free_bike_status.json")
         .bodyAsText()
     val body = Json.parseToJsonElement(bodyString).jsonObject
     val bikes = body["data"]!!.jsonObject["bikes"]!!.jsonArray.map { it.jsonObject }

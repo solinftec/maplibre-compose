@@ -3,6 +3,7 @@ package org.maplibre.compose.compose.layer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import org.maplibre.compose.compose.MaplibreComposable
+import org.maplibre.compose.compose.source.SourceReferenceEffect
 import org.maplibre.compose.core.layer.HillshadeLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.ast.Expression
@@ -57,6 +58,7 @@ public fun HillshadeLayer(
   val compiledIlluminationAnchor = compile(illuminationAnchor)
   val compiledExaggeration = compile(exaggeration)
 
+  SourceReferenceEffect(source)
   LayerNode(
     factory = { HillshadeLayer(id = id, source = source) },
     update = {
