@@ -12,12 +12,14 @@ import androidx.compose.ui.unit.DpOffset
 import co.touchlab.kermit.Logger
 import dev.sargunv.maplibrecompose.compose.engine.LayerNode
 import dev.sargunv.maplibrecompose.compose.engine.rememberStyleComposition
+import dev.sargunv.maplibrecompose.core.BaseStyle
 import dev.sargunv.maplibrecompose.core.CameraMoveReason
 import dev.sargunv.maplibrecompose.core.MapOptions
 import dev.sargunv.maplibrecompose.core.MaplibreMap
 import dev.sargunv.maplibrecompose.core.SafeStyle
 import dev.sargunv.maplibrecompose.core.StandardMaplibreMap
 import dev.sargunv.maplibrecompose.core.Style
+import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Position
 import kotlinx.coroutines.launch
 
@@ -25,12 +27,16 @@ import kotlinx.coroutines.launch
  * Displays a MapLibre based map.
  *
  * @param modifier The modifier to be applied to the layout.
- * @param styleUri The URI of the map style specification JSON to use, see
+ * @param baseStyle The URI or JSON of the map style to use. See
  *   [MapLibre Style](https://maplibre.org/maplibre-style-spec/).
- * @param zoomRange The allowable bounds for the camera zoom level.
- * @param pitchRange The allowable bounds for the camera pitch.
  * @param cameraState The camera state specifies what position of the map is rendered, at what zoom,
  *   at what tilt, etc.
+ * @param zoomRange The allowable camera zoom range.
+ * @param pitchRange The allowable camera pitch range.
+ * @param boundingBox The allowable bounds for the camera position. On iOS and Web, it prevents the
+ *   camera **edges** from going out of bounds. If null is provided, the bounds are reset. On
+ *   Android, it prevents the camera **center** from going out of bounds. See
+ *   [this GH Issue](https://github.com/maplibre/maplibre-native/issues/3128).
  * @param onMapClick Invoked when the map is clicked. A click callback can be defined per layer,
  *   too, see e.g. the `onClick` parameter for
  *   [LineLayer][dev.sargunv.maplibrecompose.compose.layer.LineLayer]. However, this callback is
@@ -39,8 +45,10 @@ import kotlinx.coroutines.launch
  * @param onMapLongClick Invoked when the map is long-clicked. See [onMapClick].
  * @param onFrame Invoked on every rendered frame.
  * @param logger kermit logger to use.
+ * @param onMapLoadFailed Invoked when the map failed to load.
+ * @param onMapLoadFinished Invoked when the map finished loading.
  * @param content The map content additional to what is already part of the map as defined in the
- *   base map style linked in [styleUri].
+ *   base map style linked in [baseStyle].
  *
  * Additional [sources](https://maplibre.org/maplibre-style-spec/sources/) can be added via:
  * - [rememberGeoJsonSource][dev.sargunv.maplibrecompose.compose.source.rememberGeoJsonSource] (see
@@ -80,16 +88,19 @@ import kotlinx.coroutines.launch
 @Composable
 public fun MaplibreMap(
   modifier: Modifier = Modifier,
-  styleUri: String = "https://demotiles.maplibre.org/style.json",
+  baseStyle: BaseStyle = BaseStyle.Demo,
+  cameraState: CameraState = rememberCameraState(),
   zoomRange: ClosedRange<Float> = 0f..20f,
   pitchRange: ClosedRange<Float> = 0f..60f,
-  cameraState: CameraState = rememberCameraState(),
+  boundingBox: BoundingBox? = null,
   styleState: StyleState = rememberStyleState(),
   onMapClick: MapClickHandler = { _, _ -> ClickResult.Pass },
   onMapLongClick: MapClickHandler = { _, _ -> ClickResult.Pass },
   onFrame: (framesPerSecond: Double) -> Unit = {},
   options: MapOptions = MapOptions(),
   logger: Logger? = remember { Logger.withTag("maplibre-compose") },
+  onMapLoadFailed: (reason: String?) -> Unit = {},
+  onMapLoadFinished: () -> Unit = {},
   content: @Composable @MaplibreComposable () -> Unit = {},
 ) {
   var rememberedStyle by remember { mutableStateOf<SafeStyle?>(null) }
@@ -107,9 +118,14 @@ public fun MaplibreMap(
             map.metersPerDpAtLatitude(map.getCameraPosition().target.latitude)
         }
 
+        override fun onMapFailLoading(reason: String?) {
+          onMapLoadFailed(reason)
+        }
+
         override fun onMapFinishedLoading(map: MaplibreMap) {
           map as StandardMaplibreMap
           styleState.reloadSources()
+          onMapLoadFinished()
         }
 
         override fun onCameraMoveStarted(map: MaplibreMap, reason: CameraMoveReason) {
@@ -176,7 +192,7 @@ public fun MaplibreMap(
 
   ComposableMapView(
     modifier = modifier.fillMaxSize(),
-    styleUri = styleUri,
+    style = baseStyle,
     update = { map ->
       when (map) {
         is StandardMaplibreMap -> {
@@ -188,6 +204,7 @@ public fun MaplibreMap(
           map.setRenderSettings(options.renderOptions)
           map.setGestureSettings(options.gestureOptions)
           map.setOrnamentSettings(options.ornamentOptions)
+          map.setCameraBoundingBox(boundingBox)
         }
 
         else ->
@@ -199,6 +216,7 @@ public fun MaplibreMap(
             map.asyncSetRenderSettings(options.renderOptions)
             map.asyncSetGestureSettings(options.gestureOptions)
             map.asyncSetOrnamentSettings(options.ornamentOptions)
+            map.asyncSetCameraBoundingBox(boundingBox)
           }
       }
     },

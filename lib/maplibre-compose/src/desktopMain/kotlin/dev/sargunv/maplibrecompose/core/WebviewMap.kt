@@ -16,8 +16,11 @@ internal class WebviewMap(private val bridge: WebviewBridge) : MaplibreMap {
     bridge.callVoid("init")
   }
 
-  override suspend fun asyncSetStyleUri(styleUri: String) {
-    bridge.callVoid("setStyleUri", styleUri)
+  override suspend fun asyncSetBaseStyle(style: BaseStyle) {
+    when (style) {
+      is BaseStyle.Uri -> bridge.callVoid("setStyleUri", style.uri)
+      is BaseStyle.Json -> bridge.callVoid("setStyleJson", style.json)
+    }
   }
 
   override suspend fun asyncGetCameraPosition(): CameraPosition {
@@ -40,6 +43,13 @@ internal class WebviewMap(private val bridge: WebviewBridge) : MaplibreMap {
 
   override suspend fun asyncSetMaxPitch(maxPitch: Double) {
     bridge.callVoid("setMaxPitch", maxPitch)
+  }
+
+  override suspend fun asyncSetCameraBoundingBox(boundingBox: BoundingBox?) {
+    bridge.callVoid(
+      "setMaxBounds",
+      boundingBox?.let { arrayOf(it.southwest.coordinates, it.northeast.coordinates) },
+    )
   }
 
   override suspend fun asyncGetVisibleBoundingBox(): BoundingBox {

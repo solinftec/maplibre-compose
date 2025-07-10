@@ -5,10 +5,10 @@ import dev.sargunv.maplibrecompose.expressions.ast.FunctionCall
 import dev.sargunv.maplibrecompose.expressions.value.BooleanValue
 import dev.sargunv.maplibrecompose.expressions.value.CollatorValue
 import dev.sargunv.maplibrecompose.expressions.value.ComparableValue
+import dev.sargunv.maplibrecompose.expressions.value.EnumValue
 import dev.sargunv.maplibrecompose.expressions.value.EquatableValue
 import dev.sargunv.maplibrecompose.expressions.value.ExpressionValue
 import dev.sargunv.maplibrecompose.expressions.value.FloatValue
-import dev.sargunv.maplibrecompose.expressions.value.GeoJsonValue
 import dev.sargunv.maplibrecompose.expressions.value.MatchableValue
 import dev.sargunv.maplibrecompose.expressions.value.StringValue
 import kotlin.jvm.JvmName
@@ -25,13 +25,13 @@ import kotlin.jvm.JvmName
  *     output = interpolate(
  *       linear(),
  *       zoom(),
- *       1 to feature.get("color1").convertToColor(),
- *       20 to feature.get("color2").convertToColor()
+ *       1 to feature["color1"].convertToColor(),
+ *       20 to feature["color2"].convertToColor()
  *     ),
  *   ),
  *   condition(
  *     test = feature.has("color"),
- *     output = feature.get("color").convertToColor(),
+ *     output = feature["color"].convertToColor(),
  *   ),
  *   fallback = const(Color.Red),
  * )
@@ -86,7 +86,7 @@ public fun <T : ExpressionValue> condition(
  * Example:
  * ```kt
  * switch(
- *   input = feature.get("building_type").asString(),
+ *   input = feature["building_type"].asString(),
  *   case(
  *     label = "residential",
  *     output = const(Color.Cyan),
@@ -132,6 +132,12 @@ public fun <O : ExpressionValue> case(label: String, output: Expression<O>): Cas
   Case(const(label), output)
 
 /** Create a [Case], see [switch] */
+public fun <O : ExpressionValue, E : EnumValue<E>> case(
+  label: E,
+  output: Expression<O>,
+): Case<EnumValue<E>, O> = Case(const(label), output)
+
+/** Create a [Case], see [switch] */
 public fun <O : ExpressionValue> case(label: Number, output: Expression<O>): Case<FloatValue, O> =
   Case(const(label.toFloat()), output)
 
@@ -139,6 +145,13 @@ public fun <O : ExpressionValue> case(label: Number, output: Expression<O>): Cas
 @JvmName("stringsCase")
 public fun <O : ExpressionValue> case(
   label: List<String>,
+  output: Expression<O>,
+): Case<StringValue, O> = Case(const(label), output)
+
+/** Create a [Case], see [switch] */
+@JvmName("enumsCase")
+public fun <O : ExpressionValue, E : EnumValue<E>> case(
+  label: List<E>,
   output: Expression<O>,
 ): Case<StringValue, O> = Case(const(label), output)
 
@@ -235,7 +248,7 @@ public fun lt(
 /**
  * Returns whether this expression is greater than or equal to [other].
  *
- * Strings are compared lexicographically (`"b" >= "a"`).
+ * Strings are compared lexicographically (`"b" ≥ "a"`).
  */
 public infix fun <T> Expression<ComparableValue<T>>.gte(
   other: Expression<ComparableValue<T>>
@@ -246,7 +259,7 @@ public infix fun <T> Expression<ComparableValue<T>>.gte(
  * expression. An optional [collator] (see [collator]) can be specified to control locale-dependent
  * string comparisons.
  *
- * Strings are compared lexicographically (`"b" >= "a"`).
+ * Strings are compared lexicographically (`"b" ≥ "a"`).
  */
 public fun gte(
   left: Expression<StringValue>,
@@ -257,7 +270,7 @@ public fun gte(
 /**
  * Returns whether this string expression is less than or equal to [other].
  *
- * Strings are compared lexicographically (`"a" <= "b"`).
+ * Strings are compared lexicographically (`"a" ≤ "b"`).
  */
 public infix fun <T> Expression<ComparableValue<T>>.lte(
   other: Expression<ComparableValue<T>>
@@ -298,14 +311,3 @@ public infix fun Expression<BooleanValue>.or(
 @JvmName("notOperator")
 public operator fun Expression<BooleanValue>.not(): Expression<BooleanValue> =
   FunctionCall.of("!", this).cast()
-
-/**
- * Returns true if the evaluated feature is fully contained inside a boundary of the input geometry,
- * false otherwise. The input value can be a valid GeoJSON of type Polygon, MultiPolygon, Feature,
- * or FeatureCollection. Supported features for evaluation:
- * - Point: Returns false if a point is on the boundary or falls outside the boundary.
- * - LineString: Returns false if any part of a line falls outside the boundary, the line intersects
- *   the boundary, or a line's endpoint is on the boundary.
- */
-public fun within(geometry: Expression<GeoJsonValue>): Expression<BooleanValue> =
-  FunctionCall.of("within", geometry).cast()

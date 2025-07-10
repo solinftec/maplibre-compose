@@ -25,7 +25,7 @@ public external class Map public constructor(options: MapOptions) {
   public val touchPitch: TwoFingersTouchPitchHandler
   public val touchZoomRotate: TwoFingersTouchZoomRotateHandler
 
-  public fun setStyle(style: String)
+  public fun setStyle(style: dynamic)
 
   public fun remove()
 
@@ -56,6 +56,8 @@ public external class Map public constructor(options: MapOptions) {
   public fun setMaxPitch(max: Double)
 
   public fun setMinPitch(min: Double)
+
+  public fun setMaxBounds(bounds: Array<DoubleArray>?)
 
   public fun jumpTo(options: JumpToOptions)
 

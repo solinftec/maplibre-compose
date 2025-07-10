@@ -21,7 +21,7 @@ internal interface MaplibreMap {
     duration: Duration,
   )
 
-  suspend fun asyncSetStyleUri(styleUri: String)
+  suspend fun asyncSetBaseStyle(style: BaseStyle)
 
   suspend fun asyncGetCameraPosition(): CameraPosition
 
@@ -34,6 +34,8 @@ internal interface MaplibreMap {
   suspend fun asyncSetMinPitch(minPitch: Double)
 
   suspend fun asyncSetMaxPitch(maxPitch: Double)
+
+  suspend fun asyncSetCameraBoundingBox(boundingBox: BoundingBox?)
 
   suspend fun asyncGetVisibleBoundingBox(): BoundingBox
 
@@ -68,6 +70,8 @@ internal interface MaplibreMap {
 
     fun onMapFinishedLoading(map: MaplibreMap)
 
+    fun onMapFailLoading(reason: String?)
+
     fun onCameraMoveStarted(map: MaplibreMap, reason: CameraMoveReason)
 
     fun onCameraMoved(map: MaplibreMap)
@@ -83,7 +87,7 @@ internal interface MaplibreMap {
 }
 
 internal interface StandardMaplibreMap : MaplibreMap {
-  override suspend fun asyncSetStyleUri(styleUri: String) = setStyleUri(styleUri)
+  override suspend fun asyncSetBaseStyle(style: BaseStyle) = setBaseStyle(style)
 
   override suspend fun asyncGetCameraPosition(): CameraPosition = getCameraPosition()
 
@@ -97,6 +101,9 @@ internal interface StandardMaplibreMap : MaplibreMap {
   override suspend fun asyncSetMinPitch(minPitch: Double) = setMinPitch(minPitch)
 
   override suspend fun asyncSetMaxPitch(maxPitch: Double) = setMaxPitch(maxPitch)
+
+  override suspend fun asyncSetCameraBoundingBox(boundingBox: BoundingBox?) =
+    setCameraBoundingBox(boundingBox)
 
   override suspend fun asyncGetVisibleBoundingBox(): BoundingBox = getVisibleBoundingBox()
 
@@ -129,11 +136,13 @@ internal interface StandardMaplibreMap : MaplibreMap {
   override suspend fun asyncMetersPerDpAtLatitude(latitude: Double): Double =
     metersPerDpAtLatitude(latitude)
 
-  fun setStyleUri(styleUri: String)
+  fun setBaseStyle(style: BaseStyle)
 
   fun getCameraPosition(): CameraPosition
 
   fun setCameraPosition(cameraPosition: CameraPosition)
+
+  fun setCameraBoundingBox(boundingBox: BoundingBox?)
 
   fun setMaxZoom(maxZoom: Double)
 

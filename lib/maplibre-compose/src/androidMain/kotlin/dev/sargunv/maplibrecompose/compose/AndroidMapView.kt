@@ -2,6 +2,7 @@ package dev.sargunv.maplibrecompose.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
@@ -14,6 +15,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import co.touchlab.kermit.Logger
 import dev.sargunv.maplibrecompose.core.AndroidMap
 import dev.sargunv.maplibrecompose.core.AndroidScaleBar
+import dev.sargunv.maplibrecompose.core.BaseStyle
 import dev.sargunv.maplibrecompose.core.MapOptions
 import dev.sargunv.maplibrecompose.core.MaplibreMap
 import dev.sargunv.maplibrecompose.core.RenderOptions
@@ -25,7 +27,7 @@ import org.maplibre.android.maps.MapView
 @Composable
 internal actual fun ComposableMapView(
   modifier: Modifier,
-  styleUri: String,
+  style: BaseStyle,
   rememberedStyle: SafeStyle?,
   update: (map: MaplibreMap) -> Unit,
   onReset: () -> Unit,
@@ -35,7 +37,7 @@ internal actual fun ComposableMapView(
 ) {
   AndroidMapView(
     modifier = modifier,
-    styleUri = styleUri,
+    style = style,
     rememberedStyle = rememberedStyle,
     update = update,
     onReset = onReset,
@@ -48,7 +50,7 @@ internal actual fun ComposableMapView(
 @Composable
 internal fun AndroidMapView(
   modifier: Modifier,
-  styleUri: String,
+  style: BaseStyle,
   rememberedStyle: SafeStyle?,
   update: (map: MaplibreMap) -> Unit,
   onReset: () -> Unit,
@@ -69,48 +71,52 @@ internal fun AndroidMapView(
   val foregroundLoadColor = options.renderOptions.foregroundLoadColor
   val renderMode = options.renderOptions.renderMode
 
-  AndroidView(
-    modifier = modifier,
-    factory = { context ->
-      MapLibre.getInstance(context)
-      MapView(
-          context,
-          MapLibreMapOptions.createFromAttributes(context)
-            .foregroundLoadColor(foregroundLoadColor.toArgb())
-            .textureMode(renderMode == RenderOptions.RenderMode.TextureView),
-        )
-        .also { mapView ->
-          currentMapView = mapView
-          mapView.getMapAsync { map ->
-            currentMap =
-              AndroidMap(
-                mapView = mapView,
-                map = map,
-                scaleBar = AndroidScaleBar(context, mapView, map),
-                layoutDir = layoutDir,
-                density = density,
-                callbacks = callbacks,
-                styleUri = styleUri,
-                logger = logger,
-              )
+  // MUST key on all values used in the factory but not applied on update!
+  key(foregroundLoadColor, renderMode) {
+    AndroidView(
+      modifier = modifier,
+      factory = { context ->
+        MapLibre.getInstance(context)
+        println("Recreated map!")
+        MapView(
+            context,
+            MapLibreMapOptions.createFromAttributes(context)
+              .foregroundLoadColor(foregroundLoadColor.toArgb())
+              .textureMode(renderMode == RenderOptions.RenderMode.TextureView),
+          )
+          .also { mapView ->
+            currentMapView = mapView
+            mapView.getMapAsync { map ->
+              currentMap =
+                AndroidMap(
+                  mapView = mapView,
+                  map = map,
+                  scaleBar = AndroidScaleBar(context, mapView, map),
+                  layoutDir = layoutDir,
+                  density = density,
+                  callbacks = callbacks,
+                  baseStyle = style,
+                  logger = logger,
+                )
 
-            currentMap?.let { update(it) }
+              currentMap?.let { update(it) }
+            }
           }
-        }
-    },
-    update = { _ ->
-      val map = currentMap ?: return@AndroidView
-      map.layoutDir = layoutDir
-      map.density = density
-      map.callbacks = callbacks
-      map.logger = logger
-      map.setStyleUri(styleUri)
-      update(map)
-    },
-    onReset = {
-      currentOnReset()
-      currentMap = null
-      currentMapView = null
-    },
-  )
+      },
+      update = { _ ->
+        val map = currentMap ?: return@AndroidView
+        map.layoutDir = layoutDir
+        map.density = density
+        map.callbacks = callbacks
+        map.logger = logger
+        map.setBaseStyle(style)
+        update(map)
+      },
+      onReset = {
+        currentOnReset()
+        currentMap = null
+        currentMapView = null
+      },
+    )
+  }
 }

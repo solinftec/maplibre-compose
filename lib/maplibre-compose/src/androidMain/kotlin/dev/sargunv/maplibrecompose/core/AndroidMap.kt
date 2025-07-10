@@ -58,7 +58,7 @@ internal class AndroidMap(
   density: Density,
   internal var callbacks: MaplibreMap.Callbacks,
   logger: Logger?,
-  styleUri: String,
+  baseStyle: BaseStyle,
 ) : StandardMaplibreMap {
 
   internal var layoutDir: LayoutDirection = layoutDir
@@ -83,22 +83,29 @@ internal class AndroidMap(
       }
     }
 
-  private var lastStyleUri: String = ""
+  private var lastBaseStyle: BaseStyle? = null
 
-  override fun setStyleUri(styleUri: String) {
-    if (styleUri == lastStyleUri) return
-    lastStyleUri = styleUri
+  override fun setBaseStyle(style: BaseStyle) {
+    if (style == lastBaseStyle) return
+    lastBaseStyle = style
     logger?.i { "Setting style URI" }
     callbacks.onStyleChanged(this, null)
-    val builder = MlnStyle.Builder().fromUri(styleUri.correctedAndroidUri())
-    map.setStyle(builder) {
+
+    val builder =
+      when (style) {
+        is BaseStyle.Uri -> MlnStyle.Builder().fromUri(style.uri.correctedAndroidUri())
+        is BaseStyle.Json -> MlnStyle.Builder().fromJson(style.json)
+      }
+
+    map.setStyle(builder) { style ->
       logger?.i { "Style finished loading" }
-      callbacks.onStyleChanged(this, AndroidStyle(it))
+      callbacks.onStyleChanged(this, AndroidStyle(style))
     }
   }
 
   init {
     mapView.addOnDidFinishLoadingMapListener { callbacks.onMapFinishedLoading(this) }
+    mapView.addOnDidFailLoadingMapListener { callbacks.onMapFailLoading(it) }
 
     map.addOnCameraMoveStartedListener { reason ->
       // MapLibre doesn't have docs on these reasons, and even though they're named like Google's:
@@ -184,7 +191,7 @@ internal class AndroidMap(
 
     map.setOnFpsChangedListener { fps -> callbacks.onFrame(fps) }
 
-    this.setStyleUri(styleUri)
+    setBaseStyle(baseStyle)
   }
 
   override fun setMinPitch(minPitch: Double) {
@@ -201,6 +208,10 @@ internal class AndroidMap(
 
   override fun setMaxZoom(maxZoom: Double) {
     map.setMaxZoomPreference(maxZoom)
+  }
+
+  override fun setCameraBoundingBox(boundingBox: BoundingBox?) {
+    map.setLatLngBoundsForCameraTarget(boundingBox?.toLatLngBounds())
   }
 
   override fun getVisibleBoundingBox(): BoundingBox {

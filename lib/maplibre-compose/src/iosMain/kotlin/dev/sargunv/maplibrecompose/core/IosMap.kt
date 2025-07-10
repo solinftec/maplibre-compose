@@ -10,10 +10,9 @@ import MapLibre.MLNCameraChangeReasonGestureTilt
 import MapLibre.MLNCameraChangeReasonGestureZoomIn
 import MapLibre.MLNCameraChangeReasonGestureZoomOut
 import MapLibre.MLNCameraChangeReasonProgrammatic
+import MapLibre.MLNCoordinateBoundsMake
 import MapLibre.MLNFeatureProtocol
-import MapLibre.MLNLoggingBlockHandler
 import MapLibre.MLNLoggingConfiguration
-import MapLibre.MLNLoggingLevel
 import MapLibre.MLNLoggingLevelDebug
 import MapLibre.MLNLoggingLevelError
 import MapLibre.MLNLoggingLevelFault
@@ -71,6 +70,7 @@ import kotlinx.cinterop.useContents
 import platform.CoreGraphics.CGPoint
 import platform.CoreGraphics.CGPointMake
 import platform.CoreGraphics.CGSize
+import platform.CoreLocation.CLLocationCoordinate2DMake
 import platform.Foundation.NSError
 import platform.Foundation.NSURL
 import platform.UIKit.UIEdgeInsets
@@ -81,7 +81,6 @@ import platform.UIKit.UIGestureRecognizerStateEnded
 import platform.UIKit.UILongPressGestureRecognizer
 import platform.UIKit.UITapGestureRecognizer
 import platform.darwin.NSObject
-import platform.darwin.NSUInteger
 import platform.darwin.sel_registerName
 
 internal class IosMap(
@@ -115,25 +114,21 @@ internal class IosMap(
     )
 
     // delegate log level configuration to Kermit logger
-    MLNLoggingConfiguration.sharedConfiguration.setHandler(LoggingBlockHandler(this))
     MLNLoggingConfiguration.sharedConfiguration.loggingLevel = MLNLoggingLevelVerbose
-
-    delegate = Delegate(this)
-    mapView.delegate = delegate
-  }
-
-  private class LoggingBlockHandler(private val map: IosMap) : MLNLoggingBlockHandler {
-    override fun invoke(level: MLNLoggingLevel, path: String?, line: NSUInteger, message: String?) {
+    MLNLoggingConfiguration.sharedConfiguration.setHandler { level, path, line, message ->
       when (level) {
-        MLNLoggingLevelFault -> map.logger?.a { "$message" }
-        MLNLoggingLevelError -> map.logger?.e { "$message" }
-        MLNLoggingLevelWarning -> map.logger?.w { "$message" }
-        MLNLoggingLevelInfo -> map.logger?.i { "$message" }
-        MLNLoggingLevelDebug -> map.logger?.d { "$message" }
-        MLNLoggingLevelVerbose -> map.logger?.v { "$message" }
+        MLNLoggingLevelFault -> logger?.a { "$message" }
+        MLNLoggingLevelError -> logger?.e { "$message" }
+        MLNLoggingLevelWarning -> logger?.w { "$message" }
+        MLNLoggingLevelInfo -> logger?.i { "$message" }
+        MLNLoggingLevelDebug -> logger?.d { "$message" }
+        MLNLoggingLevelVerbose -> logger?.v { "$message" }
         else -> error("Unexpected logging level: $level")
       }
     }
+
+    delegate = Delegate(this)
+    mapView.delegate = delegate
   }
 
   private class Delegate(private val map: IosMap) : NSObject(), MLNMapViewDelegateProtocol {
@@ -147,6 +142,7 @@ internal class IosMap(
 
     override fun mapViewDidFailLoadingMap(mapView: MLNMapView, withError: NSError) {
       map.logger?.e { "Map failed to load: $withError" }
+      map.callbacks.onMapFailLoading(withError.localizedFailureReason)
     }
 
     override fun mapViewDidFinishLoadingMap(mapView: MLNMapView) {
@@ -213,14 +209,17 @@ internal class IosMap(
     }
   }
 
-  private var lastStyleUri: String = ""
+  private var lastBaseStyle: BaseStyle? = null
 
-  override fun setStyleUri(styleUri: String) {
-    if (styleUri == lastStyleUri) return
-    lastStyleUri = styleUri
+  override fun setBaseStyle(style: BaseStyle) {
+    if (style == lastBaseStyle) return
+    lastBaseStyle = style
     logger?.i { "Setting style URI" }
     callbacks.onStyleChanged(this, null)
-    mapView.setStyleURL(NSURL(string = styleUri))
+    when (style) {
+      is BaseStyle.Uri -> mapView.setStyleURL(NSURL(string = style.uri))
+      is BaseStyle.Json -> mapView.setStyleJSON(style.json)
+    }
   }
 
   internal class Gesture<T : UIGestureRecognizer>(
@@ -265,6 +264,16 @@ internal class IosMap(
 
   override fun setMaxZoom(maxZoom: Double) {
     mapView.maximumZoomLevel = maxZoom
+  }
+
+  override fun setCameraBoundingBox(boundingBox: BoundingBox?) {
+    mapView.setMaximumScreenBounds(
+      boundingBox?.toMLNCoordinateBounds()
+        ?: MLNCoordinateBoundsMake(
+          ne = CLLocationCoordinate2DMake(latitude = 90.0, longitude = 180.0),
+          sw = CLLocationCoordinate2DMake(latitude = -90.0, longitude = -180.0),
+        )
+    )
   }
 
   override fun getVisibleBoundingBox(): BoundingBox {

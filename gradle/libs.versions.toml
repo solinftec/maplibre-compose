@@ -4,48 +4,48 @@ alchemist = "0.2.0"
 androidx-activity = "1.10.1"
 bytesize = "2.0.0-beta04"
 compass = "2.3.1"
-htmlConverterCompose = "1.0.4"
+htmlConverterCompose = "1.1.0"
 kermit = "2.0.6"
-kotlin-wrappers = "2025.6.4"
+kotlin-wrappers = "2025.7.2"
 kotlinx-browser = "0.3"
 kotlinx-coroutines = "1.10.2"
-ktor = "3.1.3"
-maplibre-android-sdk = "11.10.3"
+ktor = "3.2.1"
+maplibre-android-sdk = "11.12.1"
 maplibre-android-plugins = "3.0.2"
 maplibre-js = "4.7.1" # TODO: is outdated; update to v5.x
 spatialk = "0.3.0" # TODO: is unmaintained; watch for https://github.com/maplibre/maplibre-java/pull/40
 webpack-html = "5.6.3"
 webpack-htmlInlineScript = "3.2.1"
-webview = "1.9.40"
+webview = "2.0.1"
 
 # Regular tools: keep as up to date as possible
 gradle-dokka = "2.0.0"
 gradle-jgitver = "0.10.0-rc03"
-gradle-mavenPublish = "0.32.0"
+gradle-mavenPublish = "0.33.0"
 gradle-mkdocs = "4.0.1"
-gradle-spotless = "7.0.4"
-gradle-spmForKmp = "0.11.2"
+gradle-spotless = "7.1.0"
+gradle-spmForKmp = "0.11.3"
 tool-prettier = "3.5.3"
 
 # Libraries coupled to Compose: keep Compose up to date and set others accordingly.
 # https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-compatibility-and-versioning.html#jetpack-compose-artifacts-used
-gradle-compose = "1.8.1"
+gradle-compose = "1.8.2"
 #noinspection GradleDependency: follow version matrix above
-androidx-composeUi = "1.8.1"
+androidx-compose = "1.8.2"
 #noinspection GradleDependency: follow version matrix above
-androidx-navigation = "2.9.0-beta02"
+androidx-navigation = "2.9.0-beta03"
 
 # Android and Kotlin: Keep Kotlin up to date and set Android accordingly.
 # Also note the Gradle and XCode versions in the matrix!
 # https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-compatibility-guide.html
-gradle-kotlin = "2.2.0-RC3"
+gradle-kotlin = "2.2.0"
 #noinspection AndroidGradlePluginVersion: follow version matrix above
-gradle-android = "8.7.2"
+gradle-android = "8.10.0"
 
 [libraries]
 alchemist = { module = "io.github.kevincianfarini.alchemist:alchemist", version.ref = "alchemist" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
-androidx-composeUi-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-composeUi" }
+androidx-composeUi-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-compose" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
 bytesize = { module = "me.saket.bytesize:bytesize", version.ref = "bytesize" }
 compass-geolocation-core = { module = "dev.jordond.compass:geolocation", version.ref = "compass" }
@@ -73,7 +73,8 @@ spatialk-geojson = { group = "io.github.dellisd.spatialk", name = "geojson", ver
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle-android" }
-android-library = { id = "com.android.library", version.ref = "gradle-android" }
+android-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "gradle-android" }
+android-lint = { id = "com.android.lint", version.ref = "gradle-android" }
 compose = { id = "org.jetbrains.compose", version.ref = "gradle-compose" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "gradle-dokka" }
 jgitver = { id = "fr.brouillard.oss.gradle.jgitver", version.ref = "gradle-jgitver" }

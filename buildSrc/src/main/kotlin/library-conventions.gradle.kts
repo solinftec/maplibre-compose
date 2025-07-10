@@ -14,7 +14,8 @@ kotlin {
   jvmToolchain(properties["jvmToolchain"]!!.toString().toInt())
 
   compilerOptions {
-    allWarningsAsErrors = false // TODO re-enable after Compose 1.8.1
+    // KLIB resolver: The same 'unique_name=annotation_commonMain' found in more than one library
+    allWarningsAsErrors = false
     freeCompilerArgs.addAll("-Xexpect-actual-classes", "-Xconsistent-data-class-copy-visibility")
   }
 }

@@ -9,8 +9,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import dev.sargunv.maplibrecompose.compose.FeaturesClickHandler
 import dev.sargunv.maplibrecompose.compose.MaplibreComposable
+import dev.sargunv.maplibrecompose.compose.source.SourceReferenceEffect
 import dev.sargunv.maplibrecompose.core.layer.SymbolLayer
 import dev.sargunv.maplibrecompose.core.source.Source
+import dev.sargunv.maplibrecompose.expressions.DefaultIconPadding
 import dev.sargunv.maplibrecompose.expressions.Defaults
 import dev.sargunv.maplibrecompose.expressions.ZeroPadding
 import dev.sargunv.maplibrecompose.expressions.ast.Expression
@@ -415,7 +417,7 @@ public fun SymbolLayer(
   iconOffset: Expression<DpOffsetValue> = const(DpOffset.Zero),
 
   // icon collision
-  iconPadding: Expression<DpValue> = const(2.dp),
+  iconPadding: Expression<DpPaddingValue> = const(DefaultIconPadding),
   iconAllowOverlap: Expression<BooleanValue> = const(false),
   iconOverlap: Expression<StringValue> = nil(),
   iconIgnorePlacement: Expression<BooleanValue> = const(false),
@@ -545,6 +547,7 @@ public fun SymbolLayer(
   val compiledTextTranslate = compile(textTranslate)
   val compiledTextTranslateAnchor = compile(textTranslateAnchor)
 
+  SourceReferenceEffect(source)
   LayerNode(
     factory = { SymbolLayer(id = id, source = source) },
     update = {

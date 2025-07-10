@@ -43,7 +43,10 @@ import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import be.digitalia.compose.htmlconverter.HtmlStyle
+import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
 import dev.sargunv.maplibrecompose.compose.CameraState
 import dev.sargunv.maplibrecompose.compose.StyleState
 import dev.sargunv.maplibrecompose.core.CameraMoveReason
@@ -51,7 +54,6 @@ import dev.sargunv.maplibrecompose.material3.generated.Res
 import dev.sargunv.maplibrecompose.material3.generated.attribution
 import dev.sargunv.maplibrecompose.material3.generated.info
 import dev.sargunv.maplibrecompose.material3.util.horizontal
-import dev.sargunv.maplibrecompose.material3.util.htmlToAnnotatedString
 import dev.sargunv.maplibrecompose.material3.util.reverse
 import dev.sargunv.maplibrecompose.material3.util.toArrangement
 import dev.sargunv.maplibrecompose.material3.util.vertical
@@ -225,7 +227,16 @@ public fun AttributionLinks(
   breakWithinAttribution: Boolean = false,
   modifier: Modifier = Modifier,
 ) {
-  val texts = remember(attributions) { attributions.map { htmlToAnnotatedString(it, linkStyles) } }
+  val texts =
+    remember(attributions) {
+      attributions.map { html ->
+        htmlToAnnotatedString(
+          html = html,
+          compactMode = true,
+          style = HtmlStyle(indentUnit = TextUnit.Unspecified, textLinkStyles = linkStyles),
+        )
+      }
+    }
   FlowRow(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(spacing)) {
     texts.forEach {
       if (breakWithinAttribution) Text(it)
