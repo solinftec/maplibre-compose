@@ -12,7 +12,7 @@ import org.maplibre.compose.core.source.Source
  * @throws IllegalStateException if the source does not exist
  */
 @Composable
-public fun getBaseSource(id: String): Source {
+public fun getBaseSource(id: String): Source? {
   val node = LocalStyleNode.current
   return remember(node, id) { node.sourceManager.getBaseSource(id) }
 }
