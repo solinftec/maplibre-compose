@@ -6,10 +6,10 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import org.maplibre.js.LngLat
-import org.maplibre.js.LngLatBounds
-import org.maplibre.js.PaddingOptions
-import org.maplibre.js.Point
+import org.maplibre.maplibrejs.LngLat
+import org.maplibre.maplibrejs.LngLatBounds
+import org.maplibre.maplibrejs.PaddingOptions
+import org.maplibre.maplibrejs.Point
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Position
 

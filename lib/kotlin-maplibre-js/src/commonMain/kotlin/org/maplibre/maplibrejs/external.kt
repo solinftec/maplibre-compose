@@ -1,6 +1,6 @@
 @file:JsModule("maplibre-gl")
 
-package org.maplibre.js
+package org.maplibre.maplibrejs
 
 import org.w3c.dom.HTMLCanvasElement
 import org.w3c.dom.HTMLElement

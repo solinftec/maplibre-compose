@@ -11,7 +11,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import co.touchlab.kermit.Logger
-import org.maplibre.compose.htmlinterop.HtmlElement
+import org.maplibre.composehtmlinterop.HtmlElement
 import org.maplibre.compose.core.BaseStyle
 import org.maplibre.compose.core.JsMap
 import org.maplibre.compose.core.MapOptions

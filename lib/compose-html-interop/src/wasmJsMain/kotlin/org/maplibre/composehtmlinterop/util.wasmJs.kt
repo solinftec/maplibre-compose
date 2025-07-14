@@ -1,4 +1,4 @@
-package org.maplibre.compose.htmlinterop
+package org.maplibre.composehtmlinterop
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -7,21 +7,18 @@ import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInWindow
 import androidx.compose.ui.unit.Density
 import kotlinx.browser.document
-import org.maplibre.compose.htmlinterop.HTMLElement
-import org.maplibre.compose.htmlinterop.rememberDomNode
-import org.maplibre.compose.htmlinterop.toCssValue
 
 public actual typealias HTMLElement = org.w3c.dom.HTMLElement
 
 @Composable
 internal actual fun rememberContainerNode(zIndex: String): HTMLElement =
-    rememberDomNode(parent = document.body!!) {
-        document.createElement("div").unsafeCast<HTMLElement>().apply {
-            style.position = "absolute"
-            style.margin = "0px"
-            style.zIndex = zIndex
-        }
+  rememberDomNode(parent = document.body!!) {
+    document.createElement("div").unsafeCast<HTMLElement>().apply {
+      style.position = "absolute"
+      style.margin = "0px"
+      style.zIndex = zIndex
     }
+  }
 
 internal actual fun HTMLElement.matchLayout(
   layoutCoordinates: LayoutCoordinates,

@@ -3,7 +3,7 @@ package org.maplibre.compose.core
 import androidx.compose.ui.graphics.ImageBitmap
 import org.maplibre.compose.core.layer.Layer
 import org.maplibre.compose.core.source.Source
-import org.maplibre.js.Map as MlJsMap
+import org.maplibre.maplibrejs.Map as MlJsMap
 
 internal class JsStyle(internal val impl: MlJsMap) : Style {
 
