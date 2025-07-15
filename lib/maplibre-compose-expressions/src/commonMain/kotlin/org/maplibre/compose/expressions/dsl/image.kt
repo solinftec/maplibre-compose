@@ -12,11 +12,11 @@ import org.maplibre.compose.expressions.value.StringValue
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.compose.compose.layer.SymbolLayer]), `pattern` entries (see
- * [BackgroundLayer][org.maplibre.compose.compose.layer.BackgroundLayer],
- * [FillLayer][org.maplibre.compose.compose.layer.FillLayer],
- * [FillExtrusionLayer][org.maplibre.compose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.compose.layer.LineLayer]) and as a section in the
+ * [SymbolLayer][org.maplibre.compose.style.layer.SymbolLayer]), `pattern` entries (see
+ * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
+ * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
+ * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
  * [format] expression.
  *
  * If set, the image argument will check that the requested image exists in the style and will
@@ -29,11 +29,11 @@ public fun image(value: Expression<StringValue>): Expression<ImageValue> =
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.compose.compose.layer.SymbolLayer]), `pattern` entries (see
- * [BackgroundLayer][org.maplibre.compose.compose.layer.BackgroundLayer],
- * [FillLayer][org.maplibre.compose.compose.layer.FillLayer],
- * [FillExtrusionLayer][org.maplibre.compose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.compose.layer.LineLayer]) and as a section in the
+ * [SymbolLayer][org.maplibre.compose.style.layer.SymbolLayer]), `pattern` entries (see
+ * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
+ * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
+ * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
  * [format] expression.
  *
  * The image argument will check that the requested image exists in the style and will return either
@@ -45,11 +45,11 @@ public fun image(value: String): Expression<ImageValue> = image(const(value))
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.compose.compose.layer.SymbolLayer]), `pattern` entries (see
- * [BackgroundLayer][org.maplibre.compose.compose.layer.BackgroundLayer],
- * [FillLayer][org.maplibre.compose.compose.layer.FillLayer],
- * [FillExtrusionLayer][org.maplibre.compose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.compose.layer.LineLayer]) and as a section in the
+ * [SymbolLayer][org.maplibre.compose.style.layer.SymbolLayer]), `pattern` entries (see
+ * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
+ * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
+ * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
  * [format] expression.
  *
  * The [ImageBitmap] will be registered with the style when it's referenced by a layer, and
@@ -64,11 +64,11 @@ public fun image(value: ImageBitmap, isSdf: Boolean = false): Expression<ImageVa
 
 /**
  * Returns an image type for use in `iconImage` (see
- * [SymbolLayer][org.maplibre.compose.compose.layer.SymbolLayer]), `pattern` entries (see
- * [BackgroundLayer][org.maplibre.compose.compose.layer.BackgroundLayer],
- * [FillLayer][org.maplibre.compose.compose.layer.FillLayer],
- * [FillExtrusionLayer][org.maplibre.compose.compose.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.compose.layer.LineLayer]) and as a section in the
+ * [SymbolLayer][org.maplibre.compose.style.layer.SymbolLayer]), `pattern` entries (see
+ * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
+ * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
+ * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
  * [format] expression.
  *
  * The [Painter] will be drawn to an [ImageBitmap] and registered with the style when it's

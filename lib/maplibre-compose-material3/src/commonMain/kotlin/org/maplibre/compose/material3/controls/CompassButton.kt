@@ -27,7 +27,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.compose.CameraState
+import org.maplibre.compose.style.CameraState
 import org.maplibre.compose.core.CameraPosition
 import org.maplibre.compose.material3.generated.Res
 import org.maplibre.compose.material3.generated.compass

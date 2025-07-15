@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.compose.CameraState
-import org.maplibre.compose.compose.MaplibreMap
-import org.maplibre.compose.compose.StyleState
+import org.maplibre.compose.style.CameraState
+import org.maplibre.compose.style.MaplibreMap
+import org.maplibre.compose.style.StyleState
 import org.maplibre.compose.core.MapOptions
 import org.maplibre.compose.demoapp.util.Platform
 import org.maplibre.compose.demoapp.util.PlatformFeature

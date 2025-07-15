@@ -18,11 +18,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import org.maplibre.compose.compose.offline.DownloadProgress
-import org.maplibre.compose.compose.offline.DownloadStatus
-import org.maplibre.compose.compose.offline.OfflineManager
-import org.maplibre.compose.compose.offline.OfflinePack
-import org.maplibre.compose.compose.offline.rememberOfflineManager
+import org.maplibre.compose.style.offline.DownloadProgress
+import org.maplibre.compose.style.offline.DownloadStatus
+import org.maplibre.compose.style.offline.OfflineManager
+import org.maplibre.compose.style.offline.OfflinePack
+import org.maplibre.compose.style.offline.rememberOfflineManager
 import org.maplibre.compose.material3.generated.Res
 import org.maplibre.compose.material3.generated.check_circle_filled
 import org.maplibre.compose.material3.generated.delete

@@ -116,7 +116,7 @@ public sealed interface AlternatingListValue<
  * Represents an [ExpressionValue] that resolves to an alternating list of [SymbolAnchor] and
  * [FloatOffsetValue].
  *
- * See [SymbolLayer][org.maplibre.compose.compose.layer.SymbolLayer].
+ * See [SymbolLayer][org.maplibre.compose.style.layer.SymbolLayer].
  */
 public typealias TextVariableAnchorOffsetValue =
   AlternatingListValue<SymbolAnchor, FloatOffsetValue>

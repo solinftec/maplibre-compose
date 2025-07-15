@@ -13,7 +13,7 @@ import org.maplibre.compose.expressions.value.TextUnitValue
 
 /**
  * Returns a formatted string for displaying mixed-format text in the `textField` property (see
- * [SymbolLayer][org.maplibre.compose.compose.layer.SymbolLayer]). The input may contain a
+ * [SymbolLayer][org.maplibre.compose.style.layer.SymbolLayer]). The input may contain a
  * string literal or expression, including an [image] expression.
  *
  * Example:

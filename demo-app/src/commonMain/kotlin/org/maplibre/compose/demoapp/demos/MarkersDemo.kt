@@ -10,9 +10,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.em
-import org.maplibre.compose.compose.ClickResult
-import org.maplibre.compose.compose.layer.SymbolLayer
-import org.maplibre.compose.compose.source.rememberGeoJsonSource
+import org.maplibre.compose.style.ClickResult
+import org.maplibre.compose.style.layer.SymbolLayer
+import org.maplibre.compose.style.source.rememberGeoJsonSource
 import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.demoapp.generated.Res

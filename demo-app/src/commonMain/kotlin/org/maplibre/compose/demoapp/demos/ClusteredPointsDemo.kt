@@ -10,10 +10,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.compose.ClickResult
-import org.maplibre.compose.compose.layer.CircleLayer
-import org.maplibre.compose.compose.layer.SymbolLayer
-import org.maplibre.compose.compose.source.rememberGeoJsonSource
+import org.maplibre.compose.style.ClickResult
+import org.maplibre.compose.style.layer.CircleLayer
+import org.maplibre.compose.style.layer.SymbolLayer
+import org.maplibre.compose.style.source.rememberGeoJsonSource
 import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.core.source.GeoJsonOptions
 import org.maplibre.compose.demoapp.DemoState
@@ -26,7 +26,6 @@ import org.maplibre.compose.expressions.dsl.not
 import org.maplibre.compose.expressions.dsl.offset
 import org.maplibre.compose.expressions.dsl.plus
 import org.maplibre.compose.expressions.dsl.step
-import org.maplibre.compose.expressions.dsl.zoom
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.FeatureCollection

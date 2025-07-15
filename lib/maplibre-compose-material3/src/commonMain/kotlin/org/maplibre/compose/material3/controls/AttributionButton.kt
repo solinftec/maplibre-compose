@@ -47,8 +47,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
-import org.maplibre.compose.compose.CameraState
-import org.maplibre.compose.compose.StyleState
+import org.maplibre.compose.style.CameraState
+import org.maplibre.compose.style.StyleState
 import org.maplibre.compose.core.CameraMoveReason
 import org.maplibre.compose.material3.generated.Res
 import org.maplibre.compose.material3.generated.attribution

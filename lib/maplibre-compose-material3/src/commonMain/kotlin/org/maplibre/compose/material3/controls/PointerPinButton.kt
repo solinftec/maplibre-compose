@@ -32,7 +32,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.compose.CameraState
+import org.maplibre.compose.style.CameraState
 import org.maplibre.compose.material3.util.findEllipsisIntersection
 import org.maplibre.compose.material3.util.proportionalAbsoluteOffset
 import org.maplibre.compose.material3.util.proportionalPadding

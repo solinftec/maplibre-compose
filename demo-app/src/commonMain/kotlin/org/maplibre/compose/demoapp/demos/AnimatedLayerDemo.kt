@@ -9,9 +9,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.compose.layer.Anchor
-import org.maplibre.compose.compose.layer.LineLayer
-import org.maplibre.compose.compose.source.rememberGeoJsonSource
+import org.maplibre.compose.style.layer.Anchor
+import org.maplibre.compose.style.layer.LineLayer
+import org.maplibre.compose.style.source.rememberGeoJsonSource
 import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.core.source.GeoJsonOptions
 import org.maplibre.compose.demoapp.DemoState

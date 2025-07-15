@@ -1,6 +1,6 @@
 package org.maplibre.compose.demoapp
 
-import org.maplibre.compose.compose.layer.Anchor
+import org.maplibre.compose.style.layer.Anchor
 import org.maplibre.compose.core.BaseStyle
 import org.maplibre.compose.demoapp.generated.Res
 
