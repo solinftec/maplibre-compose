@@ -1,4 +1,4 @@
-package org.maplibre.composehtmlinterop
+package org.maplibre.compose.htmlinterop
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.layout.LayoutCoordinates

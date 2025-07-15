@@ -1,4 +1,4 @@
-package org.maplibre.composehtmlinterop
+package org.maplibre.compose.htmlinterop
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
