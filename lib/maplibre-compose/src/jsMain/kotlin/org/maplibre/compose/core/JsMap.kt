@@ -46,7 +46,7 @@ internal class JsMap(
   internal var callbacks: MaplibreMap.Callbacks,
   internal var logger: Logger?,
 ) : StandardMaplibreMap {
-  private val impl = Map(MapOptions(parent, disableAttributionControl = true))
+  private val impl = Map(org.maplibre.maplibrejs.MapOptions(parent, disableAttributionControl = true))
 
   val timeSource = TimeSource.Monotonic
   var lastFrameTime = timeSource.markNow()
