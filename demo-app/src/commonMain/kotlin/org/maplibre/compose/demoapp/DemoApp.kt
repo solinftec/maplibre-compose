@@ -20,11 +20,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.demoapp.generated.keyboard_arrow_up_24px
 import org.maplibre.compose.demoapp.util.getDefaultColorScheme
-import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun DemoApp() {

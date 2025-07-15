@@ -2,15 +2,15 @@ package org.maplibre.compose.style
 
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpRect
+import io.github.dellisd.spatialk.geojson.BoundingBox
+import io.github.dellisd.spatialk.geojson.Feature
+import io.github.dellisd.spatialk.geojson.Position
 import org.maplibre.compose.core.StandardMaplibreMap
 import org.maplibre.compose.core.VisibleRegion
 import org.maplibre.compose.expressions.ExpressionContext
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.value.BooleanValue
-import io.github.dellisd.spatialk.geojson.BoundingBox
-import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.Position
 
 /**
  * Provides an imperative API to interact with the projection of the map, such as converting

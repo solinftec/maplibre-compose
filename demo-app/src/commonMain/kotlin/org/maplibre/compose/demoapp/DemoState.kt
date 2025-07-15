@@ -8,10 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import org.maplibre.compose.style.CameraState
-import org.maplibre.compose.style.StyleState
-import org.maplibre.compose.style.rememberCameraState
-import org.maplibre.compose.style.rememberStyleState
 import org.maplibre.compose.core.RenderOptions
 import org.maplibre.compose.demoapp.demos.AnimatedLayerDemo
 import org.maplibre.compose.demoapp.demos.CameraStateDemo
@@ -20,6 +16,10 @@ import org.maplibre.compose.demoapp.demos.Demo
 import org.maplibre.compose.demoapp.demos.MarkersDemo
 import org.maplibre.compose.demoapp.demos.StyleSelectorDemo
 import org.maplibre.compose.demoapp.util.Platform
+import org.maplibre.compose.style.CameraState
+import org.maplibre.compose.style.StyleState
+import org.maplibre.compose.style.rememberCameraState
+import org.maplibre.compose.style.rememberStyleState
 
 class DemoState(
   val nav: NavHostController,

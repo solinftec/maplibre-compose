@@ -12,8 +12,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import org.maplibre.compose.core.util.KVObserverProtocol
-import org.maplibre.compose.core.util.toNSData
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -21,6 +19,8 @@ import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCAction
 import kotlinx.cinterop.StableRef
 import kotlinx.cinterop.useContents
+import org.maplibre.compose.core.util.KVObserverProtocol
+import org.maplibre.compose.core.util.toNSData
 import platform.Foundation.NSError
 import platform.Foundation.NSKeyValueObservingOptionInitial
 import platform.Foundation.NSKeyValueObservingOptionNew

@@ -9,9 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.style.MaplibreMap
-import org.maplibre.compose.style.rememberCameraState
-import org.maplibre.compose.style.rememberStyleState
 import org.maplibre.compose.core.MapOptions
 import org.maplibre.compose.core.OrnamentOptions
 import org.maplibre.compose.material3.controls.CompassButton
@@ -19,6 +16,9 @@ import org.maplibre.compose.material3.controls.DisappearingCompassButton
 import org.maplibre.compose.material3.controls.DisappearingScaleBar
 import org.maplibre.compose.material3.controls.ExpandingAttributionButton
 import org.maplibre.compose.material3.controls.ScaleBar
+import org.maplibre.compose.style.MaplibreMap
+import org.maplibre.compose.style.rememberCameraState
+import org.maplibre.compose.style.rememberStyleState
 
 @Composable
 fun Material3() {

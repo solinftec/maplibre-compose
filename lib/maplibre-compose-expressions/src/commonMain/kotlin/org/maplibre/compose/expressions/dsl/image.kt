@@ -16,8 +16,8 @@ import org.maplibre.compose.expressions.value.StringValue
  * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
- * [format] expression.
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the [format]
+ * expression.
  *
  * If set, the image argument will check that the requested image exists in the style and will
  * return either the resolved image name or `null`, depending on whether or not the image is
@@ -33,8 +33,8 @@ public fun image(value: Expression<StringValue>): Expression<ImageValue> =
  * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
- * [format] expression.
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the [format]
+ * expression.
  *
  * The image argument will check that the requested image exists in the style and will return either
  * the resolved image name or `null`, depending on whether or not the image is currently in the
@@ -49,8 +49,8 @@ public fun image(value: String): Expression<ImageValue> = image(const(value))
  * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
- * [format] expression.
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the [format]
+ * expression.
  *
  * The [ImageBitmap] will be registered with the style when it's referenced by a layer, and
  * unregistered from the style if it's no longer referenced by any layer. An ID referencing the
@@ -68,8 +68,8 @@ public fun image(value: ImageBitmap, isSdf: Boolean = false): Expression<ImageVa
  * [BackgroundLayer][org.maplibre.compose.style.layer.BackgroundLayer],
  * [FillLayer][org.maplibre.compose.style.layer.FillLayer],
  * [FillExtrusionLayer][org.maplibre.compose.style.layer.FillExtrusionLayer],
- * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the
- * [format] expression.
+ * [LineLayer][org.maplibre.compose.style.layer.LineLayer]) and as a section in the [format]
+ * expression.
  *
  * The [Painter] will be drawn to an [ImageBitmap] and registered with the style when it's
  * referenced by a layer, and unregistered from the style if it's no longer referenced by any layer.

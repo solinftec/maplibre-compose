@@ -9,8 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.FrameWindowScope
-import org.maplibre.compose.generated.Res
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.maplibre.compose.generated.Res
 
 @Composable
 @OptIn(ExperimentalResourceApi::class)

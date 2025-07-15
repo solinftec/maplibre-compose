@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.compose.demoapp.demos.Demo
 import org.maplibre.compose.demoapp.design.CardColumn
 import org.maplibre.compose.demoapp.design.CloseButton
@@ -22,8 +24,6 @@ import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.demoapp.generated.filter_center_focus_24px
 import org.maplibre.compose.demoapp.generated.visibility_24px
 import org.maplibre.compose.demoapp.generated.visibility_off_24px
-import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun DemoSheetContent(state: DemoState, modifier: Modifier) {

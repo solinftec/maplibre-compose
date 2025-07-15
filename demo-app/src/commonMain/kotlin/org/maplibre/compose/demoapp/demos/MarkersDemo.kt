@@ -10,9 +10,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.em
-import org.maplibre.compose.style.ClickResult
-import org.maplibre.compose.style.layer.SymbolLayer
-import org.maplibre.compose.style.source.rememberGeoJsonSource
+import io.github.dellisd.spatialk.geojson.BoundingBox
+import io.github.dellisd.spatialk.geojson.Feature
+import io.github.dellisd.spatialk.geojson.Position
+import org.jetbrains.compose.resources.painterResource
 import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.demoapp.generated.Res
@@ -24,10 +25,9 @@ import org.maplibre.compose.expressions.dsl.format
 import org.maplibre.compose.expressions.dsl.image
 import org.maplibre.compose.expressions.dsl.offset
 import org.maplibre.compose.expressions.dsl.span
-import io.github.dellisd.spatialk.geojson.BoundingBox
-import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.Position
-import org.jetbrains.compose.resources.painterResource
+import org.maplibre.compose.style.ClickResult
+import org.maplibre.compose.style.layer.SymbolLayer
+import org.maplibre.compose.style.source.rememberGeoJsonSource
 
 object MarkersDemo : Demo {
   override val name = "Markers and icons"

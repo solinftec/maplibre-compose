@@ -18,11 +18,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import org.maplibre.compose.style.offline.DownloadProgress
-import org.maplibre.compose.style.offline.DownloadStatus
-import org.maplibre.compose.style.offline.OfflineManager
-import org.maplibre.compose.style.offline.OfflinePack
-import org.maplibre.compose.style.offline.rememberOfflineManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import me.saket.bytesize.binaryBytes
+import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.compose.material3.generated.Res
 import org.maplibre.compose.material3.generated.check_circle_filled
 import org.maplibre.compose.material3.generated.delete
@@ -32,10 +31,11 @@ import org.maplibre.compose.material3.generated.pause_circle_filled
 import org.maplibre.compose.material3.generated.resume
 import org.maplibre.compose.material3.generated.sync
 import org.maplibre.compose.material3.generated.warning_filled
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import me.saket.bytesize.binaryBytes
-import org.jetbrains.compose.resources.vectorResource
+import org.maplibre.compose.style.offline.DownloadProgress
+import org.maplibre.compose.style.offline.DownloadStatus
+import org.maplibre.compose.style.offline.OfflineManager
+import org.maplibre.compose.style.offline.OfflinePack
+import org.maplibre.compose.style.offline.rememberOfflineManager
 
 /**
  * A [ListItem] to manage an [OfflinePack].

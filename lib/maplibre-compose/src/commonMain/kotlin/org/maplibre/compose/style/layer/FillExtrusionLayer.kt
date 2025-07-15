@@ -3,9 +3,6 @@ package org.maplibre.compose.style.layer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpOffset
-import org.maplibre.compose.style.FeaturesClickHandler
-import org.maplibre.compose.style.MaplibreComposable
-import org.maplibre.compose.style.source.SourceReferenceEffect
 import org.maplibre.compose.core.layer.FillExtrusionLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.ast.Expression
@@ -17,6 +14,9 @@ import org.maplibre.compose.expressions.value.DpOffsetValue
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.ImageValue
 import org.maplibre.compose.expressions.value.TranslateAnchor
+import org.maplibre.compose.style.FeaturesClickHandler
+import org.maplibre.compose.style.MaplibreComposable
+import org.maplibre.compose.style.source.SourceReferenceEffect
 
 /**
  * A fill extrusion layer draws polygons from the [sourceLayer] in the given [source] in the given
@@ -32,8 +32,8 @@ import org.maplibre.compose.expressions.value.TranslateAnchor
  *   this, the layer will be hidden. A value in the range of `[0..24]`.
  * @param filter An expression specifying conditions on source features. Only features that match
  *   the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom
- *   levels. The [featureState][org.maplibre.compose.expressions.dsl.Feature.state]
- *   expression is not supported in filter expressions.
+ *   levels. The [featureState][org.maplibre.compose.expressions.dsl.Feature.state] expression is
+ *   not supported in filter expressions.
  * @param visible Whether the layer should be displayed.
  * @param translate The geometry's offset relative to the [translateAnchor]. Negative numbers
  *   indicate left and up (on the flat plane), respectively.

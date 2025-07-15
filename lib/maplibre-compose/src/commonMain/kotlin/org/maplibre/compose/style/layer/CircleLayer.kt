@@ -4,9 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.style.FeaturesClickHandler
-import org.maplibre.compose.style.MaplibreComposable
-import org.maplibre.compose.style.source.SourceReferenceEffect
 import org.maplibre.compose.core.layer.CircleLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.ast.Expression
@@ -20,6 +17,9 @@ import org.maplibre.compose.expressions.value.DpOffsetValue
 import org.maplibre.compose.expressions.value.DpValue
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.TranslateAnchor
+import org.maplibre.compose.style.FeaturesClickHandler
+import org.maplibre.compose.style.MaplibreComposable
+import org.maplibre.compose.style.source.SourceReferenceEffect
 
 /**
  * A circle layer draws points from the [sourceLayer] in the given [source] in the given style as a
@@ -34,8 +34,8 @@ import org.maplibre.compose.expressions.value.TranslateAnchor
  *   this, the layer will be hidden. A value in the range of `[0..24]`.
  * @param filter An expression specifying conditions on source features. Only features that match
  *   the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom
- *   levels. The [featureState][org.maplibre.compose.expressions.dsl.Feature.state]
- *   expression is not supported in filter expressions.
+ *   levels. The [featureState][org.maplibre.compose.expressions.dsl.Feature.state] expression is
+ *   not supported in filter expressions.
  * @param visible Whether the layer should be displayed.
  * @param sortKey Sorts features within this layer in ascending order based on this value. Features
  *   with a higher sort key will appear above features with a lower sort key.

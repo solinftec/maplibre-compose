@@ -2,8 +2,6 @@ package org.maplibre.compose.style.layer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import org.maplibre.compose.style.MaplibreComposable
-import org.maplibre.compose.style.source.SourceReferenceEffect
 import org.maplibre.compose.core.layer.HillshadeLayer
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.expressions.ast.Expression
@@ -11,6 +9,8 @@ import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.value.ColorValue
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.IlluminationAnchor
+import org.maplibre.compose.style.MaplibreComposable
+import org.maplibre.compose.style.source.SourceReferenceEffect
 
 /**
  * Client-side hillshading visualization based on DEM data. The implementation supports Mapbox

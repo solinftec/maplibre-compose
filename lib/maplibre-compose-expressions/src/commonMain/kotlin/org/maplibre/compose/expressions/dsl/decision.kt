@@ -1,5 +1,6 @@
 package org.maplibre.compose.expressions.dsl
 
+import kotlin.jvm.JvmName
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.FunctionCall
 import org.maplibre.compose.expressions.value.BooleanValue
@@ -11,7 +12,6 @@ import org.maplibre.compose.expressions.value.ExpressionValue
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.MatchableValue
 import org.maplibre.compose.expressions.value.StringValue
-import kotlin.jvm.JvmName
 
 /**
  * Selects the first output from the given [conditions] whose corresponding test condition evaluates

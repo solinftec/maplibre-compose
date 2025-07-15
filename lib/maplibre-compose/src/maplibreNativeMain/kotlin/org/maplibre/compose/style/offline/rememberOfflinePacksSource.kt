@@ -1,15 +1,15 @@
 package org.maplibre.compose.style.offline
 
 import androidx.compose.runtime.Composable
-import org.maplibre.compose.style.source.rememberGeoJsonSource
-import org.maplibre.compose.core.source.GeoJsonData
-import org.maplibre.compose.core.source.GeoJsonOptions
-import org.maplibre.compose.core.source.Source
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Polygon
 import io.github.dellisd.spatialk.geojson.Position
 import io.github.dellisd.spatialk.geojson.dsl.PropertiesBuilder
 import io.github.dellisd.spatialk.geojson.dsl.featureCollection
+import org.maplibre.compose.core.source.GeoJsonData
+import org.maplibre.compose.core.source.GeoJsonOptions
+import org.maplibre.compose.core.source.Source
+import org.maplibre.compose.style.source.rememberGeoJsonSource
 
 /**
  * Specialization of [rememberGeoJsonSource] that contains the list of [OfflinePack] as features.

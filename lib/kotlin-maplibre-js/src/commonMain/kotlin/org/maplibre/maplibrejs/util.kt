@@ -47,11 +47,11 @@ public fun NavigationControlOptions(
 }
 
 public fun JumpToOptions(
-    center: LngLat? = null,
-    zoom: Double? = null,
-    bearing: Double? = null,
-    pitch: Double? = null,
-    padding: PaddingOptions? = null,
+  center: LngLat? = null,
+  zoom: Double? = null,
+  bearing: Double? = null,
+  pitch: Double? = null,
+  padding: PaddingOptions? = null,
 ): JumpToOptions = jso {
   center?.let { this.center = it }
   zoom?.let { this.zoom = it }
@@ -73,19 +73,19 @@ public fun PaddingOptions(
 }
 
 public fun FitBoundsOptions(
-    linear: Boolean? = null,
-    maxZoom: Double? = null,
-    offset: Point? = null,
-    center: LngLat? = null,
-    zoom: Double? = null,
-    bearing: Double? = null,
-    pitch: Double? = null,
-    speed: Double? = null,
-    curve: Double? = null,
-    maxDuration: Double? = null,
-    minZoom: Double? = null,
-    padding: PaddingOptions? = null,
-    screenSpeed: Double? = null,
+  linear: Boolean? = null,
+  maxZoom: Double? = null,
+  offset: Point? = null,
+  center: LngLat? = null,
+  zoom: Double? = null,
+  bearing: Double? = null,
+  pitch: Double? = null,
+  speed: Double? = null,
+  curve: Double? = null,
+  maxDuration: Double? = null,
+  minZoom: Double? = null,
+  padding: PaddingOptions? = null,
+  screenSpeed: Double? = null,
 ): FitBoundsOptions = jso {
   linear?.let { this.linear = it }
   maxZoom?.let { this.maxZoom = it }
@@ -103,16 +103,16 @@ public fun FitBoundsOptions(
 }
 
 public fun FlyToOptions(
-    center: LngLat? = null,
-    zoom: Double? = null,
-    bearing: Double? = null,
-    pitch: Double? = null,
-    speed: Double? = null,
-    curve: Double? = null,
-    maxDuration: Double? = null,
-    minZoom: Double? = null,
-    padding: PaddingOptions? = null,
-    screenSpeed: Double? = null,
+  center: LngLat? = null,
+  zoom: Double? = null,
+  bearing: Double? = null,
+  pitch: Double? = null,
+  speed: Double? = null,
+  curve: Double? = null,
+  maxDuration: Double? = null,
+  minZoom: Double? = null,
+  padding: PaddingOptions? = null,
+  screenSpeed: Double? = null,
 ): FlyToOptions = jso {
   center?.let { this.center = it }
   zoom?.let { this.zoom = it }
@@ -127,13 +127,13 @@ public fun FlyToOptions(
 }
 
 public fun EaseToOptions(
-    center: LngLat? = null,
-    zoom: Double? = null,
-    bearing: Double? = null,
-    pitch: Double? = null,
-    padding: PaddingOptions? = null,
-    duration: Double? = null,
-    easing: ((Double) -> Double)? = null,
+  center: LngLat? = null,
+  zoom: Double? = null,
+  bearing: Double? = null,
+  pitch: Double? = null,
+  padding: PaddingOptions? = null,
+  duration: Double? = null,
+  easing: ((Double) -> Double)? = null,
 ): EaseToOptions = jso {
   center?.let { this.center = it }
   zoom?.let { this.zoom = it }

@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import org.maplibre.android.maps.MapView
 import org.maplibre.compose.core.MapViewLifecycleObserver
 import org.maplibre.compose.core.SafeStyle
-import org.maplibre.android.maps.MapView
 
 @Composable
 internal fun MapViewLifecycleEffect(mapView: MapView?, rememberedStyle: SafeStyle?) {

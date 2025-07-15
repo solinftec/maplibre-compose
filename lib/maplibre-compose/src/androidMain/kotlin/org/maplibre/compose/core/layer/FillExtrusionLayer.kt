@@ -1,5 +1,8 @@
 package org.maplibre.compose.core.layer
 
+import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.android.style.layers.FillExtrusionLayer as MLNFillExtrusionLayer
+import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.util.toMLNExpression
 import org.maplibre.compose.expressions.ast.CompiledExpression
@@ -9,9 +12,6 @@ import org.maplibre.compose.expressions.value.DpOffsetValue
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.ImageValue
 import org.maplibre.compose.expressions.value.TranslateAnchor
-import org.maplibre.android.style.expressions.Expression as MLNExpression
-import org.maplibre.android.style.layers.FillExtrusionLayer as MLNFillExtrusionLayer
-import org.maplibre.android.style.layers.PropertyFactory
 
 internal actual class FillExtrusionLayer actual constructor(id: String, source: Source) :
   FeatureLayer(source) {

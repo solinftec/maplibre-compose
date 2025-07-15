@@ -7,15 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.style.ClickResult
-import org.maplibre.compose.style.MaplibreMap
-import org.maplibre.compose.style.rememberCameraState
+import io.github.dellisd.spatialk.geojson.Position
+import kotlin.time.Duration.Companion.seconds
 import org.maplibre.compose.core.CameraPosition
 import org.maplibre.compose.core.GestureOptions
 import org.maplibre.compose.core.MapOptions
 import org.maplibre.compose.core.OrnamentOptions
-import io.github.dellisd.spatialk.geojson.Position
-import kotlin.time.Duration.Companion.seconds
+import org.maplibre.compose.style.ClickResult
+import org.maplibre.compose.style.MaplibreMap
+import org.maplibre.compose.style.rememberCameraState
 
 @Composable
 fun Interaction() {

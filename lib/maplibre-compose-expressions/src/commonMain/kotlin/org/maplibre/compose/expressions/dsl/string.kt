@@ -1,12 +1,12 @@
 package org.maplibre.compose.expressions.dsl
 
+import kotlin.jvm.JvmName
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.ast.FunctionCall
 import org.maplibre.compose.expressions.value.BooleanValue
 import org.maplibre.compose.expressions.value.CollatorValue
 import org.maplibre.compose.expressions.value.IntValue
 import org.maplibre.compose.expressions.value.StringValue
-import kotlin.jvm.JvmName
 
 /** Returns whether this string contains the [substring]. */
 @JvmName("containsString")

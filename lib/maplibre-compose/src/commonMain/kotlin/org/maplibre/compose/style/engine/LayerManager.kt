@@ -1,7 +1,7 @@
 package org.maplibre.compose.style.engine
 
-import org.maplibre.compose.style.layer.Anchor
 import org.maplibre.compose.core.layer.Layer
+import org.maplibre.compose.style.layer.Anchor
 
 internal class LayerManager(private val styleNode: StyleNode) {
   private val baseLayers = styleNode.style.getLayers().associateBy { it.id }

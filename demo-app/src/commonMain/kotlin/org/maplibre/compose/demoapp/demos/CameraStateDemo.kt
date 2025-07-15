@@ -14,11 +14,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kotlin.math.pow
+import kotlin.math.roundToInt
 import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.demoapp.design.CardColumn
 import org.maplibre.compose.demoapp.design.Subheading
-import kotlin.math.pow
-import kotlin.math.roundToInt
 
 object CameraStateDemo : Demo {
   override val name = "Camera State"

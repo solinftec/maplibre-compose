@@ -2,11 +2,11 @@ package org.maplibre.compose.core.source
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
+import java.net.URI
+import org.maplibre.android.style.sources.ImageSource as MLNImageSource
 import org.maplibre.compose.core.util.PositionQuad
 import org.maplibre.compose.core.util.correctedAndroidUri
 import org.maplibre.compose.core.util.toLatLngQuad
-import java.net.URI
-import org.maplibre.android.style.sources.ImageSource as MLNImageSource
 
 public actual class ImageSource : Source {
 

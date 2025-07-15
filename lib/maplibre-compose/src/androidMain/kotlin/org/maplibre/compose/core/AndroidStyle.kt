@@ -2,6 +2,13 @@ package org.maplibre.compose.core
 
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
+import org.maplibre.android.maps.Style as MLNStyle
+import org.maplibre.android.style.sources.CustomGeometrySource
+import org.maplibre.android.style.sources.GeoJsonSource as MLNGeoJsonSource
+import org.maplibre.android.style.sources.ImageSource as MLNImageSource
+import org.maplibre.android.style.sources.RasterSource as MLNRasterSource
+import org.maplibre.android.style.sources.Source as MLNSource
+import org.maplibre.android.style.sources.VectorSource as MLNVectorSource
 import org.maplibre.compose.core.layer.Layer
 import org.maplibre.compose.core.layer.UnknownLayer
 import org.maplibre.compose.core.source.ComputedSource
@@ -11,13 +18,6 @@ import org.maplibre.compose.core.source.RasterSource
 import org.maplibre.compose.core.source.Source
 import org.maplibre.compose.core.source.UnknownSource
 import org.maplibre.compose.core.source.VectorSource
-import org.maplibre.android.maps.Style as MLNStyle
-import org.maplibre.android.style.sources.CustomGeometrySource
-import org.maplibre.android.style.sources.GeoJsonSource as MLNGeoJsonSource
-import org.maplibre.android.style.sources.ImageSource as MLNImageSource
-import org.maplibre.android.style.sources.RasterSource as MLNRasterSource
-import org.maplibre.android.style.sources.Source as MLNSource
-import org.maplibre.android.style.sources.VectorSource as MLNVectorSource
 
 internal class AndroidStyle(style: MLNStyle) : Style {
   private var impl: MLNStyle = style

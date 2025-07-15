@@ -1,7 +1,7 @@
 package org.maplibre.compose.style.engine
 
-import org.maplibre.compose.style.StyleState
 import org.maplibre.compose.core.source.Source
+import org.maplibre.compose.style.StyleState
 
 internal class SourceManager(private val node: StyleNode) {
 

@@ -2,7 +2,6 @@ package org.maplibre.compose.style.layer
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import org.maplibre.compose.style.MaplibreComposable
 import org.maplibre.compose.core.layer.BackgroundLayer
 import org.maplibre.compose.expressions.ast.Expression
 import org.maplibre.compose.expressions.dsl.const
@@ -10,6 +9,7 @@ import org.maplibre.compose.expressions.dsl.nil
 import org.maplibre.compose.expressions.value.ColorValue
 import org.maplibre.compose.expressions.value.FloatValue
 import org.maplibre.compose.expressions.value.ImageValue
+import org.maplibre.compose.style.MaplibreComposable
 
 /**
  * The background layer just draws the map background, by default, plain black.

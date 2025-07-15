@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.UiComposable
-import org.maplibre.compose.style.MaplibreComposable
-import org.maplibre.compose.demoapp.DemoState
 import io.github.dellisd.spatialk.geojson.BoundingBox
+import org.maplibre.compose.demoapp.DemoState
+import org.maplibre.compose.style.MaplibreComposable
 
 interface Demo {
   val name: String

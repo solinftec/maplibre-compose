@@ -10,12 +10,12 @@ import MapLibre.MLNShapeSourceOptionMaximumZoomLevel
 import MapLibre.MLNShapeSourceOptionMinimumZoomLevel
 import MapLibre.MLNShapeSourceOptionSimplificationTolerance
 import MapLibre.MLNShapeSourceOptionWrapsCoordinates
-import org.maplibre.compose.core.util.toBoundingBox
-import org.maplibre.compose.core.util.toMLNCoordinateBounds
-import org.maplibre.compose.core.util.toMLNShape
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.FeatureCollection
 import kotlinx.cinterop.CValue
+import org.maplibre.compose.core.util.toBoundingBox
+import org.maplibre.compose.core.util.toMLNCoordinateBounds
+import org.maplibre.compose.core.util.toMLNShape
 import platform.Foundation.NSNumber
 import platform.darwin.NSObject
 import platform.darwin.NSUInteger

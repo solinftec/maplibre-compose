@@ -6,6 +6,12 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.DpRect
 import androidx.compose.ui.unit.LayoutDirection
 import co.touchlab.kermit.Logger
+import io.github.dellisd.spatialk.geojson.BoundingBox
+import io.github.dellisd.spatialk.geojson.Feature
+import io.github.dellisd.spatialk.geojson.Position
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
+import kotlin.time.TimeSource
 import org.maplibre.compose.core.util.toBoundingBox
 import org.maplibre.compose.core.util.toControlPosition
 import org.maplibre.compose.core.util.toDpOffset
@@ -31,12 +37,6 @@ import org.maplibre.maplibrejs.NavigationControlOptions
 import org.maplibre.maplibrejs.Point
 import org.maplibre.maplibrejs.QueryRenderedFeaturesOptions
 import org.maplibre.maplibrejs.ScaleControl
-import io.github.dellisd.spatialk.geojson.BoundingBox
-import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.Position
-import kotlin.time.Duration
-import kotlin.time.DurationUnit
-import kotlin.time.TimeSource
 import org.w3c.dom.HTMLElement
 
 internal class JsMap(

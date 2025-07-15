@@ -2,8 +2,8 @@ package org.maplibre.compose.style.source
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import org.maplibre.compose.style.engine.LocalStyleNode
 import org.maplibre.compose.core.source.Source
+import org.maplibre.compose.style.engine.LocalStyleNode
 
 /**
  * Get the source with the given [id] from the base style specified via the `baseStyle` parameter in

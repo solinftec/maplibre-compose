@@ -2,13 +2,6 @@ package org.maplibre.compose.material3.controls
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.intl.Locale
-import org.maplibre.compose.material3.generated.Res
-import org.maplibre.compose.material3.generated.feet_symbol
-import org.maplibre.compose.material3.generated.kilometers_symbol
-import org.maplibre.compose.material3.generated.meters_symbol
-import org.maplibre.compose.material3.generated.miles_symbol
-import org.maplibre.compose.material3.generated.yards_symbol
-import org.maplibre.compose.material3.util.rememberNumberFormatter
 import io.github.kevincianfarini.alchemist.scalar.centimeters
 import io.github.kevincianfarini.alchemist.scalar.kilometers
 import io.github.kevincianfarini.alchemist.scalar.toLength
@@ -21,6 +14,13 @@ import io.github.kevincianfarini.alchemist.unit.LengthUnit.UnitedStatesCustomary
 import io.github.kevincianfarini.alchemist.unit.LengthUnit.UnitedStatesCustomary.Yard
 import kotlin.math.pow
 import org.jetbrains.compose.resources.stringResource
+import org.maplibre.compose.material3.generated.Res
+import org.maplibre.compose.material3.generated.feet_symbol
+import org.maplibre.compose.material3.generated.kilometers_symbol
+import org.maplibre.compose.material3.generated.meters_symbol
+import org.maplibre.compose.material3.generated.miles_symbol
+import org.maplibre.compose.material3.generated.yards_symbol
+import org.maplibre.compose.material3.util.rememberNumberFormatter
 
 /** A measurement system to show in the scale bar. */
 public interface ScaleBarMeasure {

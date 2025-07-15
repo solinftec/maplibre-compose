@@ -15,18 +15,6 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonNull
 import com.google.gson.JsonObject
 import com.google.gson.JsonPrimitive
-import org.maplibre.compose.expressions.ast.BooleanLiteral
-import org.maplibre.compose.expressions.ast.ColorLiteral
-import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.ast.CompiledFunctionCall
-import org.maplibre.compose.expressions.ast.CompiledListLiteral
-import org.maplibre.compose.expressions.ast.CompiledMapLiteral
-import org.maplibre.compose.expressions.ast.CompiledOptions
-import org.maplibre.compose.expressions.ast.DpPaddingLiteral
-import org.maplibre.compose.expressions.ast.FloatLiteral
-import org.maplibre.compose.expressions.ast.NullLiteral
-import org.maplibre.compose.expressions.ast.OffsetLiteral
-import org.maplibre.compose.expressions.ast.StringLiteral
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Geometry
 import io.github.dellisd.spatialk.geojson.GeometryCollection
@@ -43,6 +31,18 @@ import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.geometry.LatLngBounds
 import org.maplibre.android.geometry.LatLngQuad
 import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.compose.expressions.ast.BooleanLiteral
+import org.maplibre.compose.expressions.ast.ColorLiteral
+import org.maplibre.compose.expressions.ast.CompiledExpression
+import org.maplibre.compose.expressions.ast.CompiledFunctionCall
+import org.maplibre.compose.expressions.ast.CompiledListLiteral
+import org.maplibre.compose.expressions.ast.CompiledMapLiteral
+import org.maplibre.compose.expressions.ast.CompiledOptions
+import org.maplibre.compose.expressions.ast.DpPaddingLiteral
+import org.maplibre.compose.expressions.ast.FloatLiteral
+import org.maplibre.compose.expressions.ast.NullLiteral
+import org.maplibre.compose.expressions.ast.OffsetLiteral
+import org.maplibre.compose.expressions.ast.StringLiteral
 
 internal fun String.correctedAndroidUri(): String {
   return try {

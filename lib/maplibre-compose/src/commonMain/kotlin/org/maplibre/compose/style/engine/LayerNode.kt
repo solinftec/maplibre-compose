@@ -1,8 +1,8 @@
 package org.maplibre.compose.style.engine
 
+import org.maplibre.compose.core.layer.Layer
 import org.maplibre.compose.style.FeaturesClickHandler
 import org.maplibre.compose.style.layer.Anchor
-import org.maplibre.compose.core.layer.Layer
 
 internal class LayerNode<T : Layer>(val layer: T, val anchor: Anchor) : MapNode() {
   internal var added: Boolean = false

@@ -7,6 +7,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
+import kotlin.jvm.JvmName
+import kotlin.time.Duration
 import org.maplibre.compose.expressions.ast.BooleanLiteral
 import org.maplibre.compose.expressions.ast.ColorLiteral
 import org.maplibre.compose.expressions.ast.DpLiteral
@@ -32,8 +34,6 @@ import org.maplibre.compose.expressions.value.SymbolAnchor
 import org.maplibre.compose.expressions.value.TextUnitOffsetValue
 import org.maplibre.compose.expressions.value.TextVariableAnchorOffsetValue
 import org.maplibre.compose.expressions.value.VectorValue
-import kotlin.jvm.JvmName
-import kotlin.time.Duration
 
 /** Creates a literal expression for a [String] value. */
 public fun const(string: String): StringLiteral = StringLiteral.of(string)

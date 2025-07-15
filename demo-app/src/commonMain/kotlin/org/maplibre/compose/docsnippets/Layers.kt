@@ -5,13 +5,7 @@ package org.maplibre.compose.docsnippets
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import org.maplibre.compose.style.ClickResult
-import org.maplibre.compose.style.MaplibreMap
-import org.maplibre.compose.style.layer.Anchor
-import org.maplibre.compose.style.layer.CircleLayer
-import org.maplibre.compose.style.layer.LineLayer
-import org.maplibre.compose.style.source.getBaseSource
-import org.maplibre.compose.style.source.rememberGeoJsonSource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.maplibre.compose.core.BaseStyle
 import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.generated.Res
@@ -21,7 +15,13 @@ import org.maplibre.compose.expressions.dsl.interpolate
 import org.maplibre.compose.expressions.dsl.zoom
 import org.maplibre.compose.expressions.value.LineCap
 import org.maplibre.compose.expressions.value.LineJoin
-import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.maplibre.compose.style.ClickResult
+import org.maplibre.compose.style.MaplibreMap
+import org.maplibre.compose.style.layer.Anchor
+import org.maplibre.compose.style.layer.CircleLayer
+import org.maplibre.compose.style.layer.LineLayer
+import org.maplibre.compose.style.source.getBaseSource
+import org.maplibre.compose.style.source.rememberGeoJsonSource
 
 @Composable
 @OptIn(ExperimentalResourceApi::class)

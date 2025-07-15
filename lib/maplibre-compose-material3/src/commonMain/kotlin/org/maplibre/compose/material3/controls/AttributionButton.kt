@@ -47,8 +47,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import be.digitalia.compose.htmlconverter.HtmlStyle
 import be.digitalia.compose.htmlconverter.htmlToAnnotatedString
-import org.maplibre.compose.style.CameraState
-import org.maplibre.compose.style.StyleState
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 import org.maplibre.compose.core.CameraMoveReason
 import org.maplibre.compose.material3.generated.Res
 import org.maplibre.compose.material3.generated.attribution
@@ -57,8 +57,8 @@ import org.maplibre.compose.material3.util.horizontal
 import org.maplibre.compose.material3.util.reverse
 import org.maplibre.compose.material3.util.toArrangement
 import org.maplibre.compose.material3.util.vertical
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
+import org.maplibre.compose.style.CameraState
+import org.maplibre.compose.style.StyleState
 
 /**
  * Info button from which an attribution popup text is expanded. This version retracts when the user

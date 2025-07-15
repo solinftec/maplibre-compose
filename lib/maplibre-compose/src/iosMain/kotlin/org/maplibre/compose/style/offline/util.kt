@@ -10,11 +10,11 @@ import MapLibre.MLNOfflineRegionProtocol
 import MapLibre.MLNShape
 import MapLibre.MLNShapeOfflineRegion
 import MapLibre.MLNTilePyramidOfflineRegion
+import io.github.dellisd.spatialk.geojson.Geometry
 import org.maplibre.compose.core.util.toBoundingBox
 import org.maplibre.compose.core.util.toByteArray
 import org.maplibre.compose.core.util.toMLNCoordinateBounds
 import org.maplibre.compose.core.util.toNSData
-import io.github.dellisd.spatialk.geojson.Geometry
 import platform.Foundation.NSError
 import platform.Foundation.NSURL
 import platform.Foundation.NSUTF8StringEncoding

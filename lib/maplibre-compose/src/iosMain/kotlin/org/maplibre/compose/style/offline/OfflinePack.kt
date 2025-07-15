@@ -2,12 +2,12 @@ package org.maplibre.compose.style.offline
 
 import MapLibre.MLNOfflinePack
 import androidx.compose.runtime.mutableStateOf
-import org.maplibre.compose.core.util.toByteArray
-import org.maplibre.compose.core.util.toNSData
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import kotlinx.cinterop.useContents
+import org.maplibre.compose.core.util.toByteArray
+import org.maplibre.compose.core.util.toNSData
 
 public actual class OfflinePack private constructor(internal val impl: MLNOfflinePack) {
   internal companion object {

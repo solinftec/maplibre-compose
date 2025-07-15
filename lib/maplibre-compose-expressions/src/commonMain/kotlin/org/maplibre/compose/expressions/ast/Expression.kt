@@ -24,30 +24,25 @@ import org.maplibre.compose.expressions.value.ExpressionValue
  * - [switch][org.maplibre.compose.expressions.dsl.switch] - if-else / switch-case
  * - [coalesce][org.maplibre.compose.expressions.dsl.coalesce] - get first non-null value
  * - [eq][org.maplibre.compose.expressions.dsl.eq], [neq][org.maplibre.compose.expressions.dsl.neq],
- *   [gt][org.maplibre.compose.expressions.dsl.gt],
- *   [gte][org.maplibre.compose.expressions.dsl.gte],
+ *   [gt][org.maplibre.compose.expressions.dsl.gt], [gte][org.maplibre.compose.expressions.dsl.gte],
  *   [lt][org.maplibre.compose.expressions.dsl.lt],
- *   [lte][org.maplibre.compose.expressions.dsl.lte] - infix comparison (`=`,`≠`,`>`,`≥`,`<`,
- *   `≤`)
+ *   [lte][org.maplibre.compose.expressions.dsl.lte] - infix comparison (`=`,`≠`,`>`,`≥`,`<`, `≤`)
  * - [not][org.maplibre.compose.expressions.dsl.not], [all][org.maplibre.compose.expressions.dsl.all],
- *   [any][org.maplibre.compose.expressions.dsl.any] - boolean operators, also available as
- *   infix [and][org.maplibre.compose.expressions.dsl.and],
- *   [or][org.maplibre.compose.expressions.dsl.or]
+ *   [any][org.maplibre.compose.expressions.dsl.any] - boolean operators, also available as infix
+ *   [and][org.maplibre.compose.expressions.dsl.and], [or][org.maplibre.compose.expressions.dsl.or]
  *
  * ### Ramps, scales, curves
  * - [step][org.maplibre.compose.expressions.dsl.step] - produce stepped results
  * - [interpolate][org.maplibre.compose.expressions.dsl.interpolate] - produce interpolation
- * - [interpolateHcl][org.maplibre.compose.expressions.dsl.interpolateHcl] - produce
- *   interpolation in HCL color space
- * - [interpolateLab][org.maplibre.compose.expressions.dsl.interpolateLab] - produce
- *   interpolation in CIELAB color space
+ * - [interpolateHcl][org.maplibre.compose.expressions.dsl.interpolateHcl] - produce interpolation
+ *   in HCL color space
+ * - [interpolateLab][org.maplibre.compose.expressions.dsl.interpolateLab] - produce interpolation
+ *   in CIELAB color space
  *
  * ### Math
  * - [+][org.maplibre.compose.expressions.dsl.plus], [-][org.maplibre.compose.expressions.dsl.minus],
- *   [*][org.maplibre.compose.expressions.dsl.times],
- *   [/][org.maplibre.compose.expressions.dsl.div],
- *   [%][org.maplibre.compose.expressions.dsl.rem],
- *   [pow][org.maplibre.compose.expressions.dsl.pow],
+ *   [*][org.maplibre.compose.expressions.dsl.times], [/][org.maplibre.compose.expressions.dsl.div],
+ *   [%][org.maplibre.compose.expressions.dsl.rem], [pow][org.maplibre.compose.expressions.dsl.pow],
  *   [sqrt][org.maplibre.compose.expressions.dsl.sqrt] - algebraic operations
  * - [log10][org.maplibre.compose.expressions.dsl.log10], [log2][org.maplibre.compose.expressions.dsl.log2],
  *   [ln][org.maplibre.compose.expressions.dsl.ln] - logarithmic functions
@@ -66,60 +61,55 @@ import org.maplibre.compose.expressions.value.ExpressionValue
  *
  * ### Inputs, feature data
  * - [zoom][org.maplibre.compose.expressions.dsl.zoom] - get current zoom level
- * - [heatmapDensity][org.maplibre.compose.expressions.dsl.heatmapDensity] - get heatmap
- *   density
- * - `feature.`[get][org.maplibre.compose.expressions.dsl.Feature.get] - get feature
+ * - [heatmapDensity][org.maplibre.compose.expressions.dsl.heatmapDensity] - get heatmap density
+ * - `feature.`[get][org.maplibre.compose.expressions.dsl.Feature.get] - get feature attribute
+ * - `feature.`[has][org.maplibre.compose.expressions.dsl.Feature.has] - check presence of feature
  *   attribute
- * - `feature.`[has][org.maplibre.compose.expressions.dsl.Feature.has] - check presence of
- *   feature attribute
- * - `feature.`[properties][org.maplibre.compose.expressions.dsl.Feature.properties] - get
- *   all feature attributes
- * - `feature.`[state][org.maplibre.compose.expressions.dsl.Feature.state] - get property
- *   from feature state
- * - `feature.`[geometryType][org.maplibre.compose.expressions.dsl.Feature.geometryType] -
- *   get feature's geometry type
+ * - `feature.`[properties][org.maplibre.compose.expressions.dsl.Feature.properties] - get all
+ *   feature attributes
+ * - `feature.`[state][org.maplibre.compose.expressions.dsl.Feature.state] - get property from
+ *   feature state
+ * - `feature.`[geometryType][org.maplibre.compose.expressions.dsl.Feature.geometryType] - get
+ *   feature's geometry type
  * - `feature.`[id][org.maplibre.compose.expressions.dsl.Feature.id] - get feature id
- * - `feature.`[lineProgress][org.maplibre.compose.expressions.dsl.Feature.lineProgress] -
- *   progress along a gradient line
- * - `feature.`[accumulated][org.maplibre.compose.expressions.dsl.Feature.accumulated] -
- *   value of accumulated cluster property so far
- * - `feature.`[within][org.maplibre.compose.expressions.dsl.Feature.within] - check whether
- *   feature is within geometry
- * - `feature.`[distance][org.maplibre.compose.expressions.dsl.Feature.distance] - distance
- *   of feature to geometry
+ * - `feature.`[lineProgress][org.maplibre.compose.expressions.dsl.Feature.lineProgress] - progress
+ *   along a gradient line
+ * - `feature.`[accumulated][org.maplibre.compose.expressions.dsl.Feature.accumulated] - value of
+ *   accumulated cluster property so far
+ * - `feature.`[within][org.maplibre.compose.expressions.dsl.Feature.within] - check whether feature
+ *   is within geometry
+ * - `feature.`[distance][org.maplibre.compose.expressions.dsl.Feature.distance] - distance of
+ *   feature to geometry
  *
  * ### Collections
- * - `Expression<ListValue<T>>.`[get][org.maplibre.compose.expressions.dsl.get] - get value
- *   at index
- * - `Expression<ListValue<T>>.`[contains][org.maplibre.compose.expressions.dsl.contains] -
- *   check whether list contains value
- * - `Expression<ListValue<T>>.`[indexOf][org.maplibre.compose.expressions.dsl.indexOf] -
- *   check where the list contains value
- * - `Expression<ListValue<T>>.`[slice][org.maplibre.compose.expressions.dsl.slice] - return
- *   a sub-list
- * - `Expression<ListValue<T>>.`[length][org.maplibre.compose.expressions.dsl.length] - list
- *   length
+ * - `Expression<ListValue<T>>.`[get][org.maplibre.compose.expressions.dsl.get] - get value at index
+ * - `Expression<ListValue<T>>.`[contains][org.maplibre.compose.expressions.dsl.contains] - check
+ *   whether list contains value
+ * - `Expression<ListValue<T>>.`[indexOf][org.maplibre.compose.expressions.dsl.indexOf] - check
+ *   where the list contains value
+ * - `Expression<ListValue<T>>.`[slice][org.maplibre.compose.expressions.dsl.slice] - return a
+ *   sub-list
+ * - `Expression<ListValue<T>>.`[length][org.maplibre.compose.expressions.dsl.length] - list length
  * - `Expression<MapValue<T>>.`[get][org.maplibre.compose.expressions.dsl.get] - get value
- * - `Expression<MapValue<T>>.`[has][org.maplibre.compose.expressions.dsl.has] - check
- *   presence of key
+ * - `Expression<MapValue<T>>.`[has][org.maplibre.compose.expressions.dsl.has] - check presence of
+ *   key
  *
  * ### Strings
- * - `Expression<StringValue>.`[contains][org.maplibre.compose.expressions.dsl.contains] -
- *   check if string contains another
- * - `Expression<StringValue>.`[indexOf][org.maplibre.compose.expressions.dsl.indexOf] -
- *   check where string contains another
- * - `Expression<StringValue>.`[substring][org.maplibre.compose.expressions.dsl.substring] -
- *   return a sub-string
- * - `Expression<StringValue>.`[length][org.maplibre.compose.expressions.dsl.length] - string
- *   length
+ * - `Expression<StringValue>.`[contains][org.maplibre.compose.expressions.dsl.contains] - check if
+ *   string contains another
+ * - `Expression<StringValue>.`[indexOf][org.maplibre.compose.expressions.dsl.indexOf] - check where
+ *   string contains another
+ * - `Expression<StringValue>.`[substring][org.maplibre.compose.expressions.dsl.substring] - return
+ *   a sub-string
+ * - `Expression<StringValue>.`[length][org.maplibre.compose.expressions.dsl.length] - string length
  * - `Expression<StringValue>.` [isScriptSupported][org.maplibre.compose.expressions.dsl.isScriptSupported] -
  *   whether string is expected to render correctly
  * - `Expression<StringValue>.`[uppercase][org.maplibre.compose.expressions.dsl.uppercase] -
  *   uppercase the string
  * - `Expression<StringValue>.`[lowercase][org.maplibre.compose.expressions.dsl.lowercase] -
  *   lowercase the string
- * - `Expression<StringValue>.`[+][org.maplibre.compose.expressions.dsl.plus] - concatenate
- *   the string
+ * - `Expression<StringValue>.`[+][org.maplibre.compose.expressions.dsl.plus] - concatenate the
+ *   string
  * - [resolvedLocale][org.maplibre.compose.expressions.dsl.resolvedLocale] - return locale
  *
  * ### Format
@@ -135,8 +125,8 @@ import org.maplibre.compose.expressions.value.ExpressionValue
  * - [image][org.maplibre.compose.expressions.dsl.image] - image for use in `iconImage`
  *
  * ### Variable binding
- * - [withVariable][org.maplibre.compose.expressions.dsl.withVariable] - define variable
- *   within expression
+ * - [withVariable][org.maplibre.compose.expressions.dsl.withVariable] - define variable within
+ *   expression
  */
 public sealed interface Expression<out T : ExpressionValue> {
   /** Transform this expression into the equivalent [CompiledExpression]. */

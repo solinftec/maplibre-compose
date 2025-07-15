@@ -10,19 +10,6 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
-import org.maplibre.compose.core.util.correctedAndroidUri
-import org.maplibre.compose.core.util.getSystemRefreshRate
-import org.maplibre.compose.core.util.toBoundingBox
-import org.maplibre.compose.core.util.toGravity
-import org.maplibre.compose.core.util.toLatLng
-import org.maplibre.compose.core.util.toLatLngBounds
-import org.maplibre.compose.core.util.toMLNExpression
-import org.maplibre.compose.core.util.toOffset
-import org.maplibre.compose.core.util.toPointF
-import org.maplibre.compose.core.util.toPosition
-import org.maplibre.compose.core.util.toRectF
-import org.maplibre.compose.expressions.ast.CompiledExpression
-import org.maplibre.compose.expressions.value.BooleanValue
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
@@ -48,6 +35,19 @@ import org.maplibre.android.maps.MapLibreMap.OnScaleListener
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.maps.Style as MlnStyle
 import org.maplibre.android.style.expressions.Expression as MLNExpression
+import org.maplibre.compose.core.util.correctedAndroidUri
+import org.maplibre.compose.core.util.getSystemRefreshRate
+import org.maplibre.compose.core.util.toBoundingBox
+import org.maplibre.compose.core.util.toGravity
+import org.maplibre.compose.core.util.toLatLng
+import org.maplibre.compose.core.util.toLatLngBounds
+import org.maplibre.compose.core.util.toMLNExpression
+import org.maplibre.compose.core.util.toOffset
+import org.maplibre.compose.core.util.toPointF
+import org.maplibre.compose.core.util.toPosition
+import org.maplibre.compose.core.util.toRectF
+import org.maplibre.compose.expressions.ast.CompiledExpression
+import org.maplibre.compose.expressions.value.BooleanValue
 import org.maplibre.geojson.Feature as MLNFeature
 
 internal class AndroidMap(

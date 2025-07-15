@@ -1,7 +1,7 @@
 package org.maplibre.compose.demoapp.util
 
-import org.maplibre.compose.demoapp.demos.Demo
 import kotlinx.browser.window
+import org.maplibre.compose.demoapp.demos.Demo
 
 actual object Platform {
   actual val name = "JS on ${window.navigator.appName}"

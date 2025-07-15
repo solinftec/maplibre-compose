@@ -2,10 +2,10 @@ package org.maplibre.compose.style.source
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
-import org.maplibre.compose.core.source.ComputedSource
-import org.maplibre.compose.core.source.ComputedSourceOptions
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.FeatureCollection
+import org.maplibre.compose.core.source.ComputedSource
+import org.maplibre.compose.core.source.ComputedSourceOptions
 
 /**
  * Remember a new [ComputedSource] with the given [options] from the given [getFeatures] function.

@@ -1,9 +1,9 @@
 package org.maplibre.compose.style
 
-import org.maplibre.compose.core.util.toByteArray
-import org.maplibre.compose.core.util.toNSData
 import kotlin.experimental.ExperimentalNativeApi
 import kotlin.test.Test
+import org.maplibre.compose.core.util.toByteArray
+import org.maplibre.compose.core.util.toNSData
 
 @OptIn(ExperimentalNativeApi::class)
 class NSDataTest {
