@@ -2,6 +2,7 @@ package org.maplibre.compose.core.source
 
 import MapLibre.MLNShapeSource
 import MapLibre.MLNShapeSourceOptionBuffer
+import MapLibre.MLNShapeSourceOptionClusterMinPoints
 import MapLibre.MLNShapeSourceOptionClusterProperties
 import MapLibre.MLNShapeSourceOptionClusterRadius
 import MapLibre.MLNShapeSourceOptionClustered
@@ -57,6 +58,7 @@ public actual class GeoJsonSource : Source {
       put(MLNShapeSourceOptionClustered, NSNumber(options.cluster))
       put(MLNShapeSourceOptionMaximumZoomLevelForClustering, NSNumber(options.clusterMaxZoom))
       put(MLNShapeSourceOptionClusterRadius, NSNumber(options.clusterRadius))
+      put(MLNShapeSourceOptionClusterMinPoints, NSNumber(options.clusterMinPoints))
       put(
         MLNShapeSourceOptionClusterProperties,
         options.clusterProperties.mapValues { (name, aggregator) ->
