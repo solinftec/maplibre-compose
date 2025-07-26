@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.vectorResource
-import org.maplibre.compose.core.BaseStyle
+import org.maplibre.compose.camera.CameraState
 import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.demoapp.DemoStyle
 import org.maplibre.compose.demoapp.design.CardColumn
@@ -39,14 +39,14 @@ import org.maplibre.compose.expressions.dsl.case
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.feature
 import org.maplibre.compose.expressions.dsl.switch
-import org.maplibre.compose.material3.offline.OfflinePackListItem
-import org.maplibre.compose.style.CameraState
-import org.maplibre.compose.style.layer.FillLayer
-import org.maplibre.compose.style.offline.OfflineManager
-import org.maplibre.compose.style.offline.OfflinePack
-import org.maplibre.compose.style.offline.OfflinePackDefinition
-import org.maplibre.compose.style.offline.rememberOfflineManager
-import org.maplibre.compose.style.offline.rememberOfflinePacksSource
+import org.maplibre.compose.layers.FillLayer
+import org.maplibre.compose.material3.OfflinePackListItem
+import org.maplibre.compose.offline.OfflineManager
+import org.maplibre.compose.offline.OfflinePack
+import org.maplibre.compose.offline.OfflinePackDefinition
+import org.maplibre.compose.offline.rememberOfflineManager
+import org.maplibre.compose.offline.rememberOfflinePacksSource
+import org.maplibre.compose.style.BaseStyle
 
 object OfflineManagerDemo : Demo {
   override val name = "Manage offline tiles"

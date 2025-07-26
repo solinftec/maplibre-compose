@@ -28,8 +28,6 @@ import kotlinx.serialization.json.double
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import org.maplibre.compose.core.source.GeoJsonData
-import org.maplibre.compose.core.source.GeoJsonOptions
 import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.expressions.dsl.asNumber
 import org.maplibre.compose.expressions.dsl.asString
@@ -40,10 +38,12 @@ import org.maplibre.compose.expressions.dsl.not
 import org.maplibre.compose.expressions.dsl.offset
 import org.maplibre.compose.expressions.dsl.plus
 import org.maplibre.compose.expressions.dsl.step
-import org.maplibre.compose.style.ClickResult
-import org.maplibre.compose.style.layer.CircleLayer
-import org.maplibre.compose.style.layer.SymbolLayer
-import org.maplibre.compose.style.source.rememberGeoJsonSource
+import org.maplibre.compose.layers.CircleLayer
+import org.maplibre.compose.layers.SymbolLayer
+import org.maplibre.compose.sources.GeoJsonData
+import org.maplibre.compose.sources.GeoJsonOptions
+import org.maplibre.compose.sources.rememberGeoJsonSource
+import org.maplibre.compose.util.ClickResult
 
 object ClusteredPointsDemo : Demo {
   override val name = "Clustered points"

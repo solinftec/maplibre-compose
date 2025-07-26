@@ -14,7 +14,6 @@ import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.Position
 import org.jetbrains.compose.resources.painterResource
-import org.maplibre.compose.core.source.GeoJsonData
 import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.demoapp.generated.Res
 import org.maplibre.compose.demoapp.generated.marker
@@ -25,9 +24,10 @@ import org.maplibre.compose.expressions.dsl.format
 import org.maplibre.compose.expressions.dsl.image
 import org.maplibre.compose.expressions.dsl.offset
 import org.maplibre.compose.expressions.dsl.span
-import org.maplibre.compose.style.ClickResult
-import org.maplibre.compose.style.layer.SymbolLayer
-import org.maplibre.compose.style.source.rememberGeoJsonSource
+import org.maplibre.compose.layers.SymbolLayer
+import org.maplibre.compose.sources.GeoJsonData
+import org.maplibre.compose.sources.rememberGeoJsonSource
+import org.maplibre.compose.util.ClickResult
 
 object MarkersDemo : Demo {
   override val name = "Markers and icons"

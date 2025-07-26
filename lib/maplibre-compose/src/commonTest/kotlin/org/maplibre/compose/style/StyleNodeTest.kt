@@ -8,16 +8,13 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 import kotlin.test.assertNull
-import org.maplibre.compose.core.SafeStyle
-import org.maplibre.compose.core.layer.Layer
-import org.maplibre.compose.core.layer.LineLayer
-import org.maplibre.compose.core.source.GeoJsonData
-import org.maplibre.compose.core.source.GeoJsonOptions
-import org.maplibre.compose.core.source.GeoJsonSource
-import org.maplibre.compose.core.source.VectorSource
-import org.maplibre.compose.style.engine.LayerNode
-import org.maplibre.compose.style.engine.StyleNode
-import org.maplibre.compose.style.layer.Anchor
+import org.maplibre.compose.layers.Anchor
+import org.maplibre.compose.layers.Layer
+import org.maplibre.compose.layers.LineLayer
+import org.maplibre.compose.sources.GeoJsonData
+import org.maplibre.compose.sources.GeoJsonOptions
+import org.maplibre.compose.sources.GeoJsonSource
+import org.maplibre.compose.sources.VectorSource
 
 @OptIn(ExperimentalTestApi::class)
 abstract class StyleNodeTest {

@@ -11,8 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import io.github.dellisd.spatialk.geojson.BoundingBox
 import io.github.dellisd.spatialk.geojson.Position
-import org.maplibre.compose.core.source.GeoJsonData
-import org.maplibre.compose.core.source.GeoJsonOptions
 import org.maplibre.compose.demoapp.DemoState
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.exponential
@@ -20,9 +18,11 @@ import org.maplibre.compose.expressions.dsl.interpolate
 import org.maplibre.compose.expressions.dsl.zoom
 import org.maplibre.compose.expressions.value.LineCap
 import org.maplibre.compose.expressions.value.LineJoin
-import org.maplibre.compose.style.layer.Anchor
-import org.maplibre.compose.style.layer.LineLayer
-import org.maplibre.compose.style.source.rememberGeoJsonSource
+import org.maplibre.compose.layers.Anchor
+import org.maplibre.compose.layers.LineLayer
+import org.maplibre.compose.sources.GeoJsonData
+import org.maplibre.compose.sources.GeoJsonOptions
+import org.maplibre.compose.sources.rememberGeoJsonSource
 
 object AnimatedLayerDemo : Demo {
   override val name = "Animated layers"
